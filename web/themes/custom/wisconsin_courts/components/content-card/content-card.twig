@@ -1,0 +1,178 @@
+{% set items = [
+  {
+    text: item_1_text,
+    url: item_1_url
+  },
+  {
+    text: item_2_text,
+    url: item_2_url
+  },
+  {
+    text: item_3_text,
+    url: item_3_url
+  },
+  {
+    text: item_4_text,
+    url: item_4_url
+  },
+  {
+    text: item_5_text,
+    url: item_5_url
+  }
+] %}
+
+{# Image sizes. #}
+{% set image_sizes = {
+  'small': '100px',
+  'medium': '140px',
+  'large': '180px',
+  'extra-large': '220px'
+} %}
+
+{# Image focal-point positions. #}
+{% set image_focus_positions = {
+  'top': 'center top',
+  'center': 'center center',
+  'bottom': 'center bottom',
+  'left': 'left center',
+  'right': 'right center'
+} %}
+
+{% set image_dimension = image_sizes[image_size]|default('140px') %}
+{% set fit = image_fit|default('cover') %}
+{% set focus = image_focus_positions[image_focus]|default('center center') %}
+
+{# Image shape. #}
+{% if image_shape == 'circle' %}
+  {% set image_radius = '50%' %}
+{% elseif image_shape == 'square' %}
+  {% set image_radius = '0' %}
+{% else %}
+  {% set image_radius = '0.5rem' %}
+{% endif %}
+
+{# Official USWDS button variants. #}
+{% set button_variant_classes = {
+  'secondary': 'usa-button--secondary',
+  'accent-cool': 'usa-button--accent-cool',
+  'accent-warm': 'usa-button--accent-warm',
+  'base': 'usa-button--base',
+  'outline': 'usa-button--outline',
+  'inverse': 'usa-button--inverse',
+  'unstyled': 'usa-button--unstyled'
+} %}
+
+{% set button_variant_class = button_variant_classes[button_variant]|default('') %}
+
+{# Official USWDS big-button modifier. #}
+{% set button_size_class = button_size == 'big'
+  ? 'usa-button--big'
+  : ''
+%}
+
+{# Build the optional image. #}
+{% set image_markup %}
+  {% if image_url %}
+    <div
+      style="
+        width: {{ image_dimension }};
+        height: {{ image_dimension }};
+        border-radius: {{ image_radius }};
+        overflow: hidden;
+        flex-shrink: 0;
+      "
+    >
+      <img
+        src="{{ image_url }}"
+        alt=""
+        style="
+          width: 100%;
+          height: 100%;
+          object-fit: {{ fit }};
+          object-position: {{ focus }};
+          display: block;
+          max-width: none;
+        "
+      >
+    </div>
+  {% endif %}
+{% endset %}
+
+<div class="usa-card">
+  <div class="usa-card__container">
+
+    <div class="display-flex flex-align-start">
+
+      {# Left image. #}
+      {% if image_url and image_position != 'right' %}
+        <div class="margin-right-3 flex-shrink-0">
+          {{ image_markup }}
+        </div>
+      {% endif %}
+
+      {# Main card content. #}
+      <div class="flex-1">
+
+        {% if card_title %}
+          <div class="usa-card__header">
+            <h2 class="usa-card__heading">
+              {{ card_title }}
+            </h2>
+          </div>
+        {% endif %}
+
+        {% if body or list_type != 'none' %}
+          <div class="usa-card__body">
+
+            {% if body %}
+              <p>
+                {{ body }}
+              </p>
+            {% endif %}
+
+            {% if list_type != 'none' %}
+              <ul>
+                {% for item in items %}
+                  {% if item.text %}
+                    <li>
+                      {% if list_type == 'links' and item.url %}
+                        <a href="{{ item.url }}">
+                          {{ item.text }}
+                        </a>
+                      {% else %}
+                        {{ item.text }}
+                      {% endif %}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+        {# Optional call-to-action button. #}
+        {% if button_text and button_url %}
+          <div class="usa-card__footer">
+            <a
+              href="{{ button_url }}"
+              class="usa-button {{ button_variant_class }} {{ button_size_class }}"
+            >
+              {{ button_text }}
+            </a>
+          </div>
+        {% endif %}
+
+      </div>
+
+      {# Right image. #}
+      {% if image_url and image_position == 'right' %}
+        <div class="margin-left-3 flex-shrink-0">
+          {{ image_markup }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>

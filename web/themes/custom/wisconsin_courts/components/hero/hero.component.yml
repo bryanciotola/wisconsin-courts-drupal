@@ -1,0 +1,68 @@
+name: Hero
+replaces: 'ui_suite_uswds:hero'
+description: 'A big eye-catching image with info, usually in the above-the-fold zone of the page right below the header.'
+group: Other
+
+slots:
+  title:
+    title: 'Title'
+    description: 'Will render as an H1.'
+
+  body:
+    title: 'Body'
+    description: 'Small body for banner, recommended keep short.'
+
+props:
+  type: object
+  properties:
+    title_alt:
+      title: 'Text alt'
+      description: 'Will render above title.'
+      type: string
+
+    aria_label:
+      title: 'Aria label'
+      description: 'Short label for this specific banner.'
+      type: string
+
+    bg_image:
+      title: 'Background image'
+      $ref: 'ui-patterns://url'
+
+    callout_color:
+      title: 'Callout color'
+      type: string
+      enum:
+        - default
+        - transparent
+        - primary
+        - primary-dark
+        - primary-darker
+        - base-dark
+        - base-darker
+
+    title_color:
+      title: 'Title color'
+      type: string
+      enum:
+        - default
+        - white
+        - primary
+        - primary-dark
+        - primary-darker
+        - base-dark
+        - base-darker
+
+    bottom_spacing:
+      title: 'Bottom spacing'
+      type: string
+      enum:
+        - none
+        - small
+        - medium
+        - large
+
+# Fake library for extension/override in sub-themes.
+libraryOverrides:
+  css: {}
+  

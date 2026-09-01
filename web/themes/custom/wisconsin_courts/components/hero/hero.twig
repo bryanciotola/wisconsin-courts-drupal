@@ -1,0 +1,60 @@
+{% set attributes = attributes.setAttribute(
+  "style",
+  "background-image: " ~ bg_image|default("none")
+) %}
+
+{% set callout_color_classes = {
+  'primary': 'bg-primary',
+  'primary-dark': 'bg-primary-dark',
+  'primary-darker': 'bg-primary-darker',
+  'base-dark': 'bg-base-dark',
+  'base-darker': 'bg-base-darker'
+} %}
+
+{% set title_color_classes = {
+  'white': 'text-white',
+  'primary': 'text-primary',
+  'primary-dark': 'text-primary-dark',
+  'primary-darker': 'text-primary-darker',
+  'base-dark': 'text-base-dark',
+  'base-darker': 'text-base-darker'
+} %}
+
+{% set bottom_spacing_classes = {
+  'small': 'margin-bottom-2',
+  'medium': 'margin-bottom-4',
+  'large': 'margin-bottom-6'
+} %}
+
+{% set callout_class = callout_color_classes[callout_color]|default('') %}
+{% set title_class = title_color_classes[title_color]|default('') %}
+{% set bottom_spacing_class = bottom_spacing_classes[bottom_spacing]|default('') %}
+
+<section{{ attributes
+  .addClass('usa-hero')
+  .addClass(bottom_spacing_class)
+  .setAttribute('aria-label', aria_label|default('Introduction'))
+}}>
+  <div class="grid-container">
+
+    <div
+      class="usa-hero__callout {{ callout_class }}"
+      {% if callout_color == 'transparent' %}
+        style="background-color: transparent;"
+      {% endif %}
+    >
+      <h1 class="usa-hero__heading {{ title_class }}">
+        {% if title_alt %}
+          <span class="usa-hero__heading--alt">
+            {{ title_alt }}
+          </span>
+        {% endif %}
+
+        {{ title }}
+      </h1>
+
+      {{ body }}
+    </div>
+
+  </div>
+</section>

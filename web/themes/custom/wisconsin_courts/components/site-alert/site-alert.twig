@@ -1,0 +1,81 @@
+<div
+  role="status"
+  style="
+    width: 100%;
+    background: #173f67;
+    color: #ffffff;
+  "
+>
+  <div
+    class="grid-container"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 32px;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      text-align: center;
+      font-size: 0.78rem;
+      line-height: 1.2;
+    "
+  >
+
+    <span
+      aria-hidden="true"
+      style="
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      "
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M12 3L22 20H2L12 3Z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 9V14"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        />
+        <circle
+          cx="12"
+          cy="17"
+          r="1"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+
+    {% if alert_text %}
+      <span>
+        {{ alert_text }}
+      </span>
+    {% endif %}
+
+    {% if alert_link_text and alert_link_url %}
+      <a
+        href="{{ alert_link_url }}"
+        style="
+          color: #ffffff;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        "
+      >
+        {{ alert_link_text }}
+      </a>
+    {% endif %}
+
+  </div>
+</div>

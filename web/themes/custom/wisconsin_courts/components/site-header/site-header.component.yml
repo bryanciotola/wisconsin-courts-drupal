@@ -1,0 +1,118 @@
+name: 'Site Header'
+description: 'Wisconsin Court System sitewide header with utility navigation and primary navigation.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    site_name:
+      title: 'Site name'
+      type: string
+
+    home_url:
+      title: 'Home URL'
+      $ref: 'ui-patterns://url'
+
+    logo_image:
+      title: 'Logo image'
+      $ref: 'ui-patterns://url'
+
+    logo_alt:
+      title: 'Logo alt text'
+      type: string
+
+    utility_1_text:
+      title: 'Utility link 1 text'
+      type: string
+
+    utility_1_url:
+      title: 'Utility link 1 URL'
+      $ref: 'ui-patterns://url'
+
+    utility_2_text:
+      title: 'Utility link 2 text'
+      type: string
+
+    utility_2_url:
+      title: 'Utility link 2 URL'
+      $ref: 'ui-patterns://url'
+
+    utility_3_text:
+      title: 'Utility link 3 text'
+      type: string
+
+    utility_3_url:
+      title: 'Utility link 3 URL'
+      $ref: 'ui-patterns://url'
+
+    utility_4_text:
+      title: 'Utility link 4 text'
+      type: string
+
+    utility_4_url:
+      title: 'Utility link 4 URL'
+      $ref: 'ui-patterns://url'
+
+    search_url:
+      title: 'Search URL'
+      $ref: 'ui-patterns://url'
+
+    primary_1_text:
+      title: 'Primary link 1 text'
+      type: string
+
+    primary_1_url:
+      title: 'Primary link 1 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_2_text:
+      title: 'Primary link 2 text'
+      type: string
+
+    primary_2_url:
+      title: 'Primary link 2 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_3_text:
+      title: 'Primary link 3 text'
+      type: string
+
+    primary_3_url:
+      title: 'Primary link 3 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_4_text:
+      title: 'Primary link 4 text'
+      type: string
+
+    primary_4_url:
+      title: 'Primary link 4 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_5_text:
+      title: 'Primary link 5 text'
+      type: string
+
+    primary_5_url:
+      title: 'Primary link 5 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_6_text:
+      title: 'Primary link 6 text'
+      type: string
+
+    primary_6_url:
+      title: 'Primary link 6 URL'
+      $ref: 'ui-patterns://url'
+
+    primary_7_text:
+      title: 'Primary link 7 text'
+      type: string
+
+    primary_7_url:
+      title: 'Primary link 7 URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}

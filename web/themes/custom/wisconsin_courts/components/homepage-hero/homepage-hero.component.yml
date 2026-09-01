@@ -1,0 +1,163 @@
+name: 'Homepage Hero'
+description: 'Wisconsin Courts homepage hero with search, specialized search links, quick actions, and audience links.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    heading:
+      title: 'Heading'
+      type: string
+
+    intro_text:
+      title: 'Intro text'
+      type: string
+
+    background_image:
+      title: 'Background image'
+      $ref: 'ui-patterns://url'
+
+    search_placeholder:
+      title: 'Search placeholder'
+      type: string
+
+    search_button_text:
+      title: 'Search button text'
+      type: string
+
+    search_action:
+      title: 'Search form action'
+      description: 'URL that receives the search query.'
+      $ref: 'ui-patterns://url'
+
+    specialized_label:
+      title: 'Specialized searches label'
+      type: string
+
+    specialized_1_text:
+      title: 'Specialized search 1 text'
+      type: string
+
+    specialized_1_url:
+      title: 'Specialized search 1 URL'
+      $ref: 'ui-patterns://url'
+
+    specialized_2_text:
+      title: 'Specialized search 2 text'
+      type: string
+
+    specialized_2_url:
+      title: 'Specialized search 2 URL'
+      $ref: 'ui-patterns://url'
+
+    specialized_3_text:
+      title: 'Specialized search 3 text'
+      type: string
+
+    specialized_3_url:
+      title: 'Specialized search 3 URL'
+      $ref: 'ui-patterns://url'
+
+    specialized_4_text:
+      title: 'Specialized search 4 text'
+      type: string
+
+    specialized_4_url:
+      title: 'Specialized search 4 URL'
+      $ref: 'ui-patterns://url'
+
+    action_1_title:
+      title: 'Action 1 title'
+      type: string
+
+    action_1_description:
+      title: 'Action 1 description'
+      type: string
+
+    action_1_url:
+      title: 'Action 1 URL'
+      $ref: 'ui-patterns://url'
+
+    action_2_title:
+      title: 'Action 2 title'
+      type: string
+
+    action_2_description:
+      title: 'Action 2 description'
+      type: string
+
+    action_2_url:
+      title: 'Action 2 URL'
+      $ref: 'ui-patterns://url'
+
+    action_3_title:
+      title: 'Action 3 title'
+      type: string
+
+    action_3_description:
+      title: 'Action 3 description'
+      type: string
+
+    action_3_url:
+      title: 'Action 3 URL'
+      $ref: 'ui-patterns://url'
+
+    action_4_title:
+      title: 'Action 4 title'
+      type: string
+
+    action_4_description:
+      title: 'Action 4 description'
+      type: string
+
+    action_4_url:
+      title: 'Action 4 URL'
+      $ref: 'ui-patterns://url'
+
+    audience_label:
+      title: 'Audience label'
+      type: string
+
+    audience_1_text:
+      title: 'Audience 1 text'
+      type: string
+
+    audience_1_url:
+      title: 'Audience 1 URL'
+      $ref: 'ui-patterns://url'
+
+    audience_2_text:
+      title: 'Audience 2 text'
+      type: string
+
+    audience_2_url:
+      title: 'Audience 2 URL'
+      $ref: 'ui-patterns://url'
+
+    audience_3_text:
+      title: 'Audience 3 text'
+      type: string
+
+    audience_3_url:
+      title: 'Audience 3 URL'
+      $ref: 'ui-patterns://url'
+
+    audience_4_text:
+      title: 'Audience 4 text'
+      type: string
+
+    audience_4_url:
+      title: 'Audience 4 URL'
+      $ref: 'ui-patterns://url'
+
+    audience_5_text:
+      title: 'Audience 5 text'
+      type: string
+
+    audience_5_url:
+      title: 'Audience 5 URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}

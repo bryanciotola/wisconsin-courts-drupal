@@ -1,0 +1,49 @@
+# --------------------------------------------------
+# Composer dependencies
+# Re-created with: composer install
+# --------------------------------------------------
+/vendor/
+
+# --------------------------------------------------
+# Drupal core and contributed packages
+# These are managed by Composer.
+# --------------------------------------------------
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+
+# --------------------------------------------------
+# Drupal uploaded/generated files
+# Media Library uploads are migrated separately.
+# --------------------------------------------------
+/web/sites/*/files/
+/web/sites/*/private/
+
+# --------------------------------------------------
+# Local Drupal settings
+# --------------------------------------------------
+/web/sites/*/settings.php
+/web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
+/web/sites/*/settings.ddev.php
+
+# --------------------------------------------------
+# Node / npm
+# --------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --------------------------------------------------
+# Editor files
+# --------------------------------------------------
+.vscode/
+.idea/
+
+# --------------------------------------------------
+# Operating system junk
+# --------------------------------------------------
+.DS_Store
+Thumbs.db

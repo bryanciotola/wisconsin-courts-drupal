@@ -1,0 +1,22 @@
+name: 'Site Alert'
+description: 'Sitewide Wisconsin Courts alert banner.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    alert_text:
+      title: 'Alert text'
+      type: string
+
+    alert_link_text:
+      title: 'Alert link text'
+      type: string
+
+    alert_link_url:
+      title: 'Alert link URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}
