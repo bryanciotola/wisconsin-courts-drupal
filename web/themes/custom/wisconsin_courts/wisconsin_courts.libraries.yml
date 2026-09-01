@@ -3,6 +3,10 @@ global-styling:
 
   css:
     base:
+      "https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@400;500;600;700&display=swap":
+        type: external
+        minified: true
+
       assets/css/base/styles.css: { weight: -1 }
       assets/css/base/variables.css: {}
       assets/css/base/elements.css: {}

@@ -1,0 +1,19 @@
+name: 'Site Footer'
+description: 'Wisconsin Court System sitewide footer.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    logo:
+      title: 'Footer logo'
+      $ref: 'ui-patterns://url'
+
+    logo_alt:
+      title: 'Logo alt text'
+      type: string
+
+    description:
+      title: 'Court System description'
+      type: string

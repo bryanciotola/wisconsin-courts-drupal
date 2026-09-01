@@ -68,14 +68,6 @@
 .wc-popular-tasks__heading,
 .wc-popular-tasks__title,
 .wc-popular-tasks__description {
-  font-family:
-    "Source Sans Pro Web",
-    "Helvetica Neue",
-    Helvetica,
-    Roboto,
-    Arial,
-    sans-serif;
-
   font-stretch: normal;
 }
 
@@ -202,13 +194,6 @@
   width: 1rem;
 
   color: #005ea8;
-
-  font-family:
-    "Source Sans Pro Web",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    sans-serif;
 
   font-size: 1.25rem;
   font-weight: 700;

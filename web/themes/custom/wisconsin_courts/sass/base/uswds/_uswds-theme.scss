@@ -1,12 +1,117 @@
 /*
 ----------------------------------------
-USWDS with settings overrides
+Wisconsin Courts USWDS theme settings
 ----------------------------------------
-Project-specific USWDS design tokens are
-configured here.
+
+Typography:
+- Oswald: headings and UI
+- Carlito: body copy
+- Times New Roman: serif/formal content
+
+Brand colors:
+- Primary blue: #1E3A70
+- Accent blue:  #2A5298
 ----------------------------------------
 */
 
 @use "uswds-core" with (
-  $theme-font-role-heading: "sans",
+
+  /* =======================================================
+     CUSTOM TYPEFACES
+     ======================================================= */
+
+  $theme-typeface-tokens: (
+    "oswald": (
+      "display-name": "Oswald",
+      "cap-height": 364px,
+      "stack": "Arial, sans-serif",
+    ),
+
+    "courts-sans": (
+      "display-name": "Carlito",
+      "cap-height": 364px,
+      "stack": "Calibri, Aptos, 'Segoe UI', Arial, sans-serif",
+    ),
+
+    "courts-serif": (
+      "display-name": "Times New Roman",
+      "cap-height": 364px,
+      "stack": "Times, serif",
+    ),
+  ),
+
+
+  /* =======================================================
+     FONT TYPES
+     ======================================================= */
+
+  $theme-font-type-cond: "oswald",
+  $theme-font-type-sans: "courts-sans",
+  $theme-font-type-serif: "courts-serif",
+
+
+  /* =======================================================
+     FONT ROLES
+     ======================================================= */
+
+  /*
+   * Headings:
+   * Oswald
+   */
+  $theme-font-role-heading: "cond",
+
+  /*
+   * Navigation, buttons, labels, interface elements:
+   * Oswald
+   */
+  $theme-font-role-ui: "cond",
+
+  /*
+   * Paragraphs and general content:
+   * Carlito
+   */
+  $theme-font-role-body: "sans",
+
+  /*
+   * Alternate content:
+   * Carlito
+   */
+  $theme-font-role-alt: "sans",
+
+
+  /* =======================================================
+     BRAND COLORS
+     ======================================================= */
+
+  /*
+   * Official Wisconsin Courts primary blue.
+   */
+  $theme-color-primary: #1e3a70,
+
+  /*
+   * Official Wisconsin Courts accent blue.
+   */
+  $theme-color-primary-vivid: #2a5298,
+  $theme-color-accent-cool: #2a5298,
+
+  /*
+   * Interaction shades derived from the primary blue.
+   * The two official brand colors above remain the anchors.
+   */
+  $theme-color-primary-dark: #182f5c,
+  $theme-color-primary-darker: #112142,
+
+
+  /* =======================================================
+     LINKS
+     ======================================================= */
+
+  /*
+   * Normal links use the brighter accent blue.
+   * Hover returns to the primary brand blue.
+   */
+  $theme-link-color: "primary-vivid",
+  $theme-link-hover-color: "primary",
+  $theme-link-active-color: "primary-dark",
+
 );

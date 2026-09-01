@@ -1,0 +1,216 @@
+{% set directories = [
+  {
+    title: 'All directories',
+    url: '#'
+  },
+  {
+    title: 'Supreme Court/state administrative offices',
+    url: '#'
+  },
+  {
+    title: 'Court of Appeals',
+    url: '#'
+  },
+  {
+    title: 'Circuit court administrative districts',
+    url: '#'
+  },
+  {
+    title: 'Circuit courts',
+    url: '#'
+  },
+  {
+    title: 'Alphabetical listing',
+    url: '#'
+  },
+  {
+    title: 'Circuit court clerks',
+    url: '#'
+  }
+] %}
+
+{% set key_links = [
+  {
+    title: 'Closure information',
+    url: '#'
+  },
+  {
+    title: 'Livestream courts',
+    url: '#'
+  },
+  {
+    title: 'News',
+    url: '#'
+  },
+  {
+    title: 'Employment',
+    url: '#'
+  },
+  {
+    title: 'Forms',
+    url: '#'
+  },
+  {
+    title: 'Find a case',
+    url: '#'
+  }
+] %}
+
+{% set utility_links = [
+  {
+    title: 'A-Z index',
+    url: '#'
+  },
+  {
+    title: 'Disclaimer',
+    url: '#'
+  },
+  {
+    title: 'Site map',
+    url: '#'
+  },
+  {
+    title: 'RSS',
+    url: '#'
+  },
+  {
+    title: 'Related sites',
+    url: '#'
+  },
+  {
+    title: 'Court system staff',
+    url: '#'
+  },
+  {
+    title: 'Contact',
+    url: '#'
+  }
+] %}
+
+<footer class="wc-site-footer bg-primary-darker text-white">
+
+  <div class="wc-site-footer__main">
+
+    <div class="grid-container">
+
+      <div class="wc-site-footer__grid">
+
+        <div class="wc-site-footer__brand">
+
+          {% if logo %}
+            <img
+              src="{{ logo }}"
+              alt="{{ logo_alt|default('Wisconsin Court System') }}"
+              class="wc-site-footer__logo"
+            >
+          {% endif %}
+
+          {% if description %}
+            <p class="wc-site-footer__description font-body-xs">
+              {{ description }}
+            </p>
+          {% endif %}
+
+        </div>
+
+
+        <div class="wc-site-footer__column">
+
+          <h2
+            class="
+              wc-site-footer__heading
+              font-heading-md
+              text-white
+              text-bold
+            "
+          >
+            Directories
+          </h2>
+
+          <ul class="wc-site-footer__links">
+
+            {% for item in directories %}
+              <li>
+                <a
+                  href="{{ item.url }}"
+                  class="wc-site-footer__link text-white font-body-xs"
+                >
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
+
+          </ul>
+
+        </div>
+
+
+        <div class="wc-site-footer__column">
+
+          <h2
+            class="
+              wc-site-footer__heading
+              font-heading-md
+              text-white
+              text-bold
+            "
+          >
+            Key Links
+          </h2>
+
+          <ul class="wc-site-footer__links">
+
+            {% for item in key_links %}
+              <li>
+                <a
+                  href="{{ item.url }}"
+                  class="wc-site-footer__link text-white font-body-xs"
+                >
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="wc-site-footer__utility">
+
+    <div class="grid-container">
+
+      <nav aria-label="Footer utility navigation">
+
+        <ul class="wc-site-footer__utility-links">
+
+          {% for item in utility_links %}
+
+            <li class="wc-site-footer__utility-item">
+
+              <a
+                href="{{ item.url }}"
+                class="wc-site-footer__utility-link text-white font-body-xs"
+              >
+                {{ item.title }}
+              </a>
+
+            </li>
+
+          {% endfor %}
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </div>
+
+</footer>

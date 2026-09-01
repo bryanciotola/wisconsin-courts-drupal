@@ -1,50 +1,90 @@
 {% extends '@ui_suite_uswds/layout/page.html.twig' %}
 
 {#
-  Front page override.
+  Wisconsin Courts front page override.
 
-  The UI Suite USWDS base theme normally wraps page.content in a
-  .grid-container. That is appropriate for standard interior pages,
-  but the homepage contains full-width sections whose individual
-  components provide their own inner .grid-container.
+  The UI Suite USWDS base theme normally constrains main content
+  inside a .grid-container and renders its own USWDS footer.
 
-  Removing the outer container here allows:
-  - hero backgrounds to span the viewport
-  - alert/header backgrounds to remain full-width
-  - component content to align consistently inside its own grid-container
+  The Wisconsin Courts homepage contains full-width components
+  that manage their own inner .grid-container, including:
+  - site alert
+  - site header
+  - homepage hero
+  - site footer
+
+  Standard-width homepage sections handle their own content
+  constraints separately.
 #}
 
+
+{# =========================================================
+   MAIN CONTENT
+   ========================================================= #}
+
 {% block main %}
+
   <main
     class="main-content usa-layout-docs {{ main_classes }}"
     id="main-content"
   >
 
     {% if page.breadcrumb %}
+
       <div class="grid-container">
+
         {{ include('ui_suite_uswds:grid_row', {
           first: page.breadcrumb
         }, with_context = false) }}
+
       </div>
+
     {% endif %}
 
+
     {% if page.highlighted %}
+
       <div class="grid-container">
+
         {{ include('ui_suite_uswds:grid_row', {
           first: page.highlighted
         }, with_context = false) }}
+
       </div>
+
     {% endif %}
 
+
     {% if page.help %}
+
       <div class="grid-container">
+
         {{ include('ui_suite_uswds:grid_row', {
           first: page.help
         }, with_context = false) }}
+
       </div>
+
     {% endif %}
+
 
     {{ page.content }}
 
   </main>
+
+{% endblock %}
+
+
+{# =========================================================
+   FOOTER
+   ========================================================= #}
+
+{% block footer %}
+
+  {% if page.footer_bottom %}
+
+    {{ page.footer_bottom }}
+
+  {% endif %}
+
 {% endblock %}

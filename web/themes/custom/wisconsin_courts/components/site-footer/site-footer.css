@@ -1,0 +1,237 @@
+/*
+ * Wisconsin Courts
+ * Site Footer
+ *
+ * Full-width footer with centered inner content.
+ * USWDS handles typography and theme colors.
+ */
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.wc-site-footer {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  margin-top: 2rem;
+}
+
+
+/* =========================================================
+   MAIN FOOTER AREA
+   ========================================================= */
+
+.wc-site-footer__main {
+  width: 100%;
+
+  padding-top: 2rem;
+  padding-bottom: 2.25rem;
+}
+
+.wc-site-footer__grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 3rem;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.wc-site-footer__brand {
+  min-width: 0;
+}
+
+.wc-site-footer__logo {
+  display: block;
+
+  width: 13rem;
+  max-width: 100%;
+
+  margin-bottom: 1rem;
+
+  opacity: 0.38;
+
+  filter: grayscale(1) brightness(2.2);
+}
+
+.wc-site-footer__description {
+  max-width: 22rem;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.wc-site-footer__heading {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+
+  color: #ffffff;
+
+  line-height: 1.1;
+}
+
+
+/* =========================================================
+   LINK COLUMNS
+   ========================================================= */
+
+.wc-site-footer__links {
+  margin: 0;
+
+  padding-left: 1rem;
+}
+
+.wc-site-footer__links li {
+  margin-bottom: 0.5rem;
+}
+
+.wc-site-footer__link,
+.wc-site-footer__link:link,
+.wc-site-footer__link:visited {
+  color: #ffffff !important;
+
+  line-height: 1.25;
+
+  text-decoration: none;
+}
+
+.wc-site-footer__link:hover,
+.wc-site-footer__link:focus {
+  color: #ffffff !important;
+
+  text-decoration: underline;
+
+  text-underline-offset: 2px;
+}
+
+
+/* =========================================================
+   LOWER UTILITY BAR
+   ========================================================= */
+
+.wc-site-footer__utility {
+  width: 100%;
+
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+
+  background: #1e3a70;
+}
+
+.wc-site-footer__utility-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  gap: 0;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.wc-site-footer__utility-item {
+  display: flex;
+  align-items: center;
+}
+
+.wc-site-footer__utility-item + .wc-site-footer__utility-item::before {
+  content: "/";
+
+  margin-left: 0.45rem;
+  margin-right: 0.45rem;
+
+  color: rgb(255 255 255 / 70%);
+}
+
+.wc-site-footer__utility-link,
+.wc-site-footer__utility-link:link,
+.wc-site-footer__utility-link:visited {
+  color: #ffffff !important;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+.wc-site-footer__utility-link:hover,
+.wc-site-footer__utility-link:focus {
+  color: #ffffff !important;
+
+  text-decoration: underline;
+
+  text-underline-offset: 2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 63.99em) {
+
+  .wc-site-footer__grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap: 2rem;
+  }
+
+  .wc-site-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-site-footer__main {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .wc-site-footer__grid {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+  .wc-site-footer__brand {
+    grid-column: auto;
+  }
+
+  .wc-site-footer__utility-links {
+    justify-content: flex-start;
+
+    row-gap: 0.5rem;
+  }
+
+}
