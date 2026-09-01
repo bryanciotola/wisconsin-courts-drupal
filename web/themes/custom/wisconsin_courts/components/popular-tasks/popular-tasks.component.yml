@@ -1,0 +1,54 @@
+name: 'Popular Tasks'
+description: 'Homepage list of frequently used court tasks.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    heading:
+      title: 'Heading'
+      type: string
+
+    task_1_text:
+      title: 'Task 1 text'
+      type: string
+
+    task_1_url:
+      title: 'Task 1 URL'
+      $ref: 'ui-patterns://url'
+
+    task_2_text:
+      title: 'Task 2 text'
+      type: string
+
+    task_2_url:
+      title: 'Task 2 URL'
+      $ref: 'ui-patterns://url'
+
+    task_3_text:
+      title: 'Task 3 text'
+      type: string
+
+    task_3_url:
+      title: 'Task 3 URL'
+      $ref: 'ui-patterns://url'
+
+    task_4_text:
+      title: 'Task 4 text'
+      type: string
+
+    task_4_url:
+      title: 'Task 4 URL'
+      $ref: 'ui-patterns://url'
+
+    task_5_text:
+      title: 'Task 5 text'
+      type: string
+
+    task_5_url:
+      title: 'Task 5 URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}

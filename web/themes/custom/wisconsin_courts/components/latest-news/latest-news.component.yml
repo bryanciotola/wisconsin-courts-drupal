@@ -1,0 +1,58 @@
+name: 'Latest News'
+description: 'Homepage list of recent news and opinions.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    heading:
+      title: 'Heading'
+      type: string
+
+    news_1_title:
+      title: 'News item 1 title'
+      type: string
+
+    news_1_date:
+      title: 'News item 1 date'
+      type: string
+
+    news_1_url:
+      title: 'News item 1 URL'
+      $ref: 'ui-patterns://url'
+
+    news_2_title:
+      title: 'News item 2 title'
+      type: string
+
+    news_2_date:
+      title: 'News item 2 date'
+      type: string
+
+    news_2_url:
+      title: 'News item 2 URL'
+      $ref: 'ui-patterns://url'
+
+    news_3_title:
+      title: 'News item 3 title'
+      type: string
+
+    news_3_date:
+      title: 'News item 3 date'
+      type: string
+
+    news_3_url:
+      title: 'News item 3 URL'
+      $ref: 'ui-patterns://url'
+
+    more_text:
+      title: 'More link text'
+      type: string
+
+    more_url:
+      title: 'More link URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}

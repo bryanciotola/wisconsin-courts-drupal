@@ -1,0 +1,94 @@
+{% set task_items = [
+  {
+    text: task_1_text,
+    url: task_1_url
+  },
+  {
+    text: task_2_text,
+    url: task_2_url
+  },
+  {
+    text: task_3_text,
+    url: task_3_url
+  },
+  {
+    text: task_4_text,
+    url: task_4_url
+  },
+  {
+    text: task_5_text,
+    url: task_5_url
+  }
+] %}
+
+<aside
+  class="
+    bg-base-lightest
+    border
+    border-base-lighter
+    radius-md
+    padding-4
+  "
+>
+
+  <h2
+    class="
+      font-heading-lg
+      text-primary-darker
+      text-bold
+      margin-top-0
+      margin-bottom-3
+    "
+  >
+    {{ heading|default('Popular tasks') }}
+  </h2>
+
+  <div>
+
+    {% for item in task_items %}
+      {% if item.text and item.url %}
+
+        <a
+          href="{{ item.url }}"
+          class="
+            display-flex
+            flex-align-center
+            flex-justify
+            text-primary
+            text-bold
+            text-no-underline
+            padding-y-2
+            border-top
+            border-base-lighter
+          "
+        >
+
+          <span>
+            {{ item.text }}
+          </span>
+
+          <svg
+            aria-hidden="true"
+            class="flex-no-shrink margin-left-2"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M9 6L15 12L9 18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+        </a>
+
+      {% endif %}
+    {% endfor %}
+
+  </div>
+
+</aside>

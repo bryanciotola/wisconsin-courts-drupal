@@ -1,0 +1,102 @@
+name: 'Homepage Updates'
+description: 'Homepage section containing latest news and opinions alongside popular tasks.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    news_heading:
+      title: 'News heading'
+      type: string
+
+    news_1_title:
+      title: 'News item 1 title'
+      type: string
+
+    news_1_date:
+      title: 'News item 1 date'
+      type: string
+
+    news_1_url:
+      title: 'News item 1 URL'
+      $ref: 'ui-patterns://url'
+
+    news_2_title:
+      title: 'News item 2 title'
+      type: string
+
+    news_2_date:
+      title: 'News item 2 date'
+      type: string
+
+    news_2_url:
+      title: 'News item 2 URL'
+      $ref: 'ui-patterns://url'
+
+    news_3_title:
+      title: 'News item 3 title'
+      type: string
+
+    news_3_date:
+      title: 'News item 3 date'
+      type: string
+
+    news_3_url:
+      title: 'News item 3 URL'
+      $ref: 'ui-patterns://url'
+
+    news_more_text:
+      title: 'News more link text'
+      type: string
+
+    news_more_url:
+      title: 'News more URL'
+      $ref: 'ui-patterns://url'
+
+    tasks_heading:
+      title: 'Tasks heading'
+      type: string
+
+    task_1_text:
+      title: 'Task 1 text'
+      type: string
+
+    task_1_url:
+      title: 'Task 1 URL'
+      $ref: 'ui-patterns://url'
+
+    task_2_text:
+      title: 'Task 2 text'
+      type: string
+
+    task_2_url:
+      title: 'Task 2 URL'
+      $ref: 'ui-patterns://url'
+
+    task_3_text:
+      title: 'Task 3 text'
+      type: string
+
+    task_3_url:
+      title: 'Task 3 URL'
+      $ref: 'ui-patterns://url'
+
+    task_4_text:
+      title: 'Task 4 text'
+      type: string
+
+    task_4_url:
+      title: 'Task 4 URL'
+      $ref: 'ui-patterns://url'
+
+    task_5_text:
+      title: 'Task 5 text'
+      type: string
+
+    task_5_url:
+      title: 'Task 5 URL'
+      $ref: 'ui-patterns://url'
+
+libraryOverrides:
+  css: {}

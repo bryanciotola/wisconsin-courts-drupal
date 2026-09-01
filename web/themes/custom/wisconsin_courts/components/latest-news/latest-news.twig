@@ -1,0 +1,126 @@
+{% set news_items = [
+  {
+    title: news_1_title,
+    date: news_1_date,
+    url: news_1_url
+  },
+  {
+    title: news_2_title,
+    date: news_2_date,
+    url: news_2_url
+  },
+  {
+    title: news_3_title,
+    date: news_3_date,
+    url: news_3_url
+  }
+] %}
+
+<section class="bg-white">
+
+  <h2
+    class="
+      font-heading-xl
+      text-primary-darker
+      text-bold
+      margin-top-0
+      margin-bottom-3
+    "
+  >
+    {{ heading|default('Latest news and opinions') }}
+  </h2>
+
+  <div class="border-top border-base-lighter">
+
+    {% for item in news_items %}
+      {% if item.title and item.url %}
+
+        <article
+          class="
+            grid-row
+            grid-gap-2
+            padding-y-3
+            border-bottom
+            border-base-lighter
+          "
+        >
+
+          <div
+            class="
+              tablet:grid-col-3
+              text-base
+              font-sans-2xs
+              text-bold
+              text-uppercase
+            "
+          >
+            {{ item.date }}
+          </div>
+
+          <div class="tablet:grid-col-9">
+
+            <a
+              href="{{ item.url }}"
+              class="
+                text-primary
+                text-bold
+                text-no-underline
+              "
+            >
+              {{ item.title }}
+            </a>
+
+          </div>
+
+        </article>
+
+      {% endif %}
+    {% endfor %}
+
+  </div>
+
+  {% if more_text and more_url %}
+
+    <div class="margin-top-3">
+
+      <a
+        href="{{ more_url }}"
+        class="
+          display-inline-flex
+          flex-align-center
+          text-primary
+          text-bold
+          text-no-underline
+        "
+      >
+        <span>{{ more_text }}</span>
+
+        <svg
+          aria-hidden="true"
+          class="margin-left-1"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M5 12H19"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M13 6L19 12L13 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+    </div>
+
+  {% endif %}
+
+</section>
