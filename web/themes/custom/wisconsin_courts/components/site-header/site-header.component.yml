@@ -1,5 +1,5 @@
 name: 'Site Header'
-description: 'Wisconsin Court System sitewide header with utility navigation and primary navigation.'
+description: 'Responsive Wisconsin Court System site header.'
 group: 'Wisconsin Courts'
 
 props:
@@ -113,6 +113,3 @@ props:
     primary_7_url:
       title: 'Primary link 7 URL'
       $ref: 'ui-patterns://url'
-
-libraryOverrides:
-  css: {}

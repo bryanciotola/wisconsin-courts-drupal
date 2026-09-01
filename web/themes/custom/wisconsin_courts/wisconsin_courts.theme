@@ -9,7 +9,34 @@
  * Implements hook_preprocess().
  */
 function wisconsin_courts_preprocess(&$variables) {
-  // Set the path to the base theme.
+  // Set the path to the active theme.
   $variables['active_theme_path'] = base_path() . \Drupal::theme()->getActiveTheme()->getPath();
   $variables['uswds_images'] = $variables['active_theme_path'] . '/assets/uswds/images/';
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function wisconsin_courts_preprocess_region(&$variables) {
+  if (($variables['region'] ?? '') === 'header_top') {
+
+    /*
+     * UI Suite USWDS adds .usa-navbar to the header_top region.
+     *
+     * Our header_top region contains full-width components such as
+     * the site alert and custom site header, so remove that class.
+     * Individual components provide their own inner .grid-container.
+     */
+    if (
+      isset($variables['attributes']['class']) &&
+      is_array($variables['attributes']['class'])
+    ) {
+      $variables['attributes']['class'] = array_values(
+        array_diff(
+          $variables['attributes']['class'],
+          ['usa-navbar']
+        )
+      );
+    }
+  }
 }

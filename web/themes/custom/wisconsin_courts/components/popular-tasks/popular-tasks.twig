@@ -1,94 +1,124 @@
-{% set task_items = [
+{% set sprite_path = base_path ~ 'themes/custom/wisconsin_courts/assets/uswds/images/sprite.svg' %}
+
+{% set tasks = [
   {
-    text: task_1_text,
-    url: task_1_url
+    title: task_1_title,
+    description: task_1_description,
+    url: task_1_url,
+    icon: 'account_balance'
   },
   {
-    text: task_2_text,
-    url: task_2_url
+    title: task_2_title,
+    description: task_2_description,
+    url: task_2_url,
+    icon: 'account_box'
   },
   {
-    text: task_3_text,
-    url: task_3_url
+    title: task_3_title,
+    description: task_3_description,
+    url: task_3_url,
+    icon: 'do_not_disturb'
   },
   {
-    text: task_4_text,
-    url: task_4_url
+    title: task_4_title,
+    description: task_4_description,
+    url: task_4_url,
+    icon: 'topic'
   },
   {
-    text: task_5_text,
-    url: task_5_url
+    title: task_5_title,
+    description: task_5_description,
+    url: task_5_url,
+    icon: 'groups'
+  },
+  {
+    title: task_6_title,
+    description: task_6_description,
+    url: task_6_url,
+    icon: 'attach_money'
   }
 ] %}
 
-<aside
-  class="
-    bg-base-lightest
-    border
-    border-base-lighter
-    radius-md
-    padding-4
-  "
->
+<div class="wc-popular-tasks-wrapper">
 
-  <h2
+  <aside
     class="
-      font-heading-lg
-      text-primary-darker
-      text-bold
-      margin-top-0
-      margin-bottom-3
+      wc-popular-tasks
+      bg-primary-lighter
+      radius-md
     "
   >
-    {{ heading|default('Popular tasks') }}
-  </h2>
 
-  <div>
+    <h2 class="wc-popular-tasks__heading">
+      {{ heading|default('Popular tasks') }}
+    </h2>
 
-    {% for item in task_items %}
-      {% if item.text and item.url %}
+    <div class="wc-popular-tasks__list">
 
-        <a
-          href="{{ item.url }}"
-          class="
-            display-flex
-            flex-align-center
-            flex-justify
-            text-primary
-            text-bold
-            text-no-underline
-            padding-y-2
-            border-top
-            border-base-lighter
-          "
-        >
+      {% for item in tasks %}
 
-          <span>
-            {{ item.text }}
-          </span>
+        {% if item.title %}
 
-          <svg
-            aria-hidden="true"
-            class="flex-no-shrink margin-left-2"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
+          <a
+            href="{{ item.url|default('#') }}"
+            class="
+              wc-popular-tasks__item
+              text-no-underline
+              {% if not loop.last %}
+                border-bottom
+                border-base-lighter
+              {% endif %}
+            "
           >
-            <path
-              d="M9 6L15 12L9 18"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
 
-        </a>
+            <span
+              class="
+                wc-popular-tasks__icon
+                text-primary
+              "
+              aria-hidden="true"
+            >
+              <svg
+                class="usa-icon usa-icon--size-5"
+                aria-hidden="true"
+                focusable="false"
+                role="img"
+              >
+                <use href="{{ sprite_path }}#{{ item.icon }}"></use>
+              </svg>
+            </span>
 
-      {% endif %}
-    {% endfor %}
+            <span class="wc-popular-tasks__content">
 
-  </div>
+              <span class="wc-popular-tasks__title">
+                {{ item.title }}
+              </span>
 
-</aside>
+              {% if item.description %}
+
+                <span class="wc-popular-tasks__description">
+                  {{ item.description }}
+                </span>
+
+              {% endif %}
+
+            </span>
+
+            <span
+              class="wc-popular-tasks__arrow text-primary"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+
+          </a>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+  </aside>
+
+</div>

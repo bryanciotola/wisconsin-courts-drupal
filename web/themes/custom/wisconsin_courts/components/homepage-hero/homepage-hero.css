@@ -1,0 +1,587 @@
+/*
+ * Wisconsin Courts homepage hero.
+ *
+ * Mobile-first responsive layout:
+ * phone -> tablet -> desktop.
+ */
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.wc-homepage-hero {
+  width: 100%;
+  overflow: hidden;
+
+  background-color: #f4f8fb;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(244, 248, 251, 0.98) 0%,
+      rgba(244, 248, 251, 0.96) 55%,
+      rgba(244, 248, 251, 0.82) 78%,
+      rgba(244, 248, 251, 0.68) 100%
+    ),
+    var(--wc-homepage-hero-image);
+
+  background-position: 68% center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wc-homepage-hero__inner {
+  display: flex;
+  align-items: center;
+
+  min-height: 24rem;
+
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.wc-homepage-hero__content {
+  width: 100%;
+}
+
+.wc-homepage-hero__heading {
+  max-width: 34rem;
+
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  color: #16385c;
+
+  font-size: clamp(2.5rem, 11vw, 3.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.wc-homepage-hero__intro {
+  max-width: 34rem;
+
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+
+  color: #3d4651;
+
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.wc-homepage-hero__search-area {
+  width: 100%;
+  max-width: 38.75rem;
+}
+
+.wc-homepage-hero__search-form {
+  width: 100%;
+  margin: 0;
+}
+
+.wc-homepage-hero__search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+
+  width: 100%;
+  min-height: 3.375rem;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #9da9b5;
+  border-radius: 0.3125rem;
+
+  box-shadow: 0 2px 5px rgb(0 0 0 / 6%);
+}
+
+.wc-homepage-hero__search-input {
+  box-sizing: border-box;
+
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  height: 3.25rem;
+
+  margin: 0;
+  padding: 0 1rem;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  font-size: 1rem;
+}
+
+.wc-homepage-hero__search-button {
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.4rem;
+
+  width: auto;
+  min-width: 7rem;
+  min-height: 3.25rem;
+
+  margin: 0;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  border-radius: 0;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SPECIALIZED SEARCHES
+   ========================================================= */
+
+.wc-homepage-hero__specialized {
+  margin-top: 0.75rem;
+}
+
+.wc-homepage-hero__specialized-label {
+  margin-bottom: 0.4rem;
+}
+
+.wc-homepage-hero__specialized-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.4rem;
+}
+
+.wc-homepage-hero__specialized-link {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 1.875rem;
+
+  padding: 0.3rem 0.6rem;
+
+  line-height: 1.15;
+}
+
+
+/* =========================================================
+   QUICK ACTION CARDS
+   ========================================================= */
+
+.wc-homepage-actions-wrapper {
+  position: relative;
+
+  z-index: 10;
+
+  margin-top: 1rem;
+}
+
+.wc-homepage-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #d9dee5;
+  border-radius: 0.5rem;
+
+  box-shadow: 0 5px 16px rgb(0 0 0 / 12%);
+}
+
+.wc-homepage-action {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  min-width: 0;
+  min-height: 5.5rem;
+
+  padding: 1rem;
+
+  border-bottom: 1px solid #e3e6ea;
+}
+
+.wc-homepage-action:last-child {
+  border-bottom: 0;
+}
+
+.wc-homepage-action__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.875rem;
+  height: 2.875rem;
+
+  flex: 0 0 2.875rem;
+
+  border-radius: 50%;
+
+  color: #fff;
+  background: #24589a;
+}
+
+.wc-homepage-action__icon--live {
+  background: #6b6b6b;
+}
+
+.wc-homepage-action__icon--efile {
+  background: #c9a35f;
+}
+
+.wc-homepage-action__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.wc-homepage-action__title {
+  margin-bottom: 0.2rem;
+
+  line-height: 1.15;
+}
+
+.wc-homepage-action__description {
+  line-height: 1.3;
+}
+
+.wc-homepage-action__arrow {
+  flex: 0 0 auto;
+
+  font-size: 1.25rem;
+}
+
+
+/* =========================================================
+   INFORMATION FOR
+   Mobile/default
+   ========================================================= */
+
+.wc-homepage-audience-wrapper {
+  margin-top: 1rem;
+}
+
+.wc-homepage-audience {
+  overflow: hidden;
+
+  border-radius: 0.45rem;
+
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+
+.wc-homepage-audience__label {
+  padding: 1rem 1.25rem 0.75rem;
+
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.wc-homepage-audience__links {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.wc-homepage-audience__link {
+  display: flex;
+  align-items: center;
+
+  gap: 0.7rem;
+
+  min-height: 3.25rem;
+
+  padding: 0.7rem 1.25rem;
+
+  border-top: 1px solid rgb(255 255 255 / 28%);
+
+  font-family:
+    "Source Sans Pro Web",
+    "Helvetica Neue",
+    Helvetica,
+    Roboto,
+    Arial,
+    sans-serif;
+
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.wc-homepage-audience__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.8rem;
+  height: 1.8rem;
+
+  flex: 0 0 1.8rem;
+}
+
+.wc-homepage-audience__icon-svg {
+  display: block;
+
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.wc-homepage-audience__text {
+  min-width: 0;
+}
+
+.wc-homepage-hero__after {
+  height: 1rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 40em) {
+
+  .wc-homepage-hero__inner {
+    min-height: 26rem;
+  }
+
+  .wc-homepage-hero__heading {
+    font-size: clamp(3rem, 7vw, 4rem);
+  }
+
+
+  /* Quick actions: 2 x 2 */
+
+  .wc-homepage-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wc-homepage-action {
+    border-right: 1px solid #e3e6ea;
+  }
+
+  .wc-homepage-action:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .wc-homepage-action:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+
+  /* Information links: two columns */
+
+  .wc-homepage-audience__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 64em) {
+
+  /* Hero */
+
+  .wc-homepage-hero {
+    overflow: visible;
+
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(244, 248, 251, 1) 0%,
+        rgba(244, 248, 251, 1) 29%,
+        rgba(244, 248, 251, 0.97) 37%,
+        rgba(244, 248, 251, 0.82) 47%,
+        rgba(244, 248, 251, 0.42) 59%,
+        rgba(244, 248, 251, 0.10) 71%,
+        rgba(244, 248, 251, 0) 83%
+      ),
+      var(--wc-homepage-hero-image);
+
+    background-position: center right;
+  }
+
+  .wc-homepage-hero__inner {
+    min-height: 26.875rem;
+
+    padding-top: 2rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .wc-homepage-hero__heading {
+    max-width: 37.5rem;
+
+    font-size: clamp(3rem, 5vw, 4.1rem);
+  }
+
+  .wc-homepage-hero__intro {
+    max-width: 36.25rem;
+
+    font-size: 1.2rem;
+  }
+
+
+  /* Quick actions */
+
+  .wc-homepage-actions-wrapper {
+    margin-top: -3rem;
+  }
+
+  .wc-homepage-actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .wc-homepage-action {
+    min-height: 6.5rem;
+
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  /*
+   * Keep the first line of every action title aligned.
+   * Multi-line titles grow downward instead of shifting upward.
+   */
+
+  .wc-homepage-action__content {
+    align-self: flex-start;
+  }
+
+  /*
+   * Short centered dividers between action cards.
+   */
+
+  .wc-homepage-action + .wc-homepage-action::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 1px;
+    height: 4rem;
+
+    background: #dfe1e2;
+
+    transform: translateY(-50%);
+  }
+
+
+  /* =======================================================
+     DESKTOP INFORMATION FOR BAR
+     ======================================================= */
+
+  .wc-homepage-audience {
+    display: flex;
+    align-items: center;
+
+    min-height: 3.4rem;
+
+    padding-left: 1.7rem;
+    padding-right: 1.4rem;
+  }
+
+  .wc-homepage-audience__label {
+    flex: 0 0 auto;
+
+    margin-right: 1rem;
+
+    padding: 0;
+
+    font-size: 0.95rem;
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+  .wc-homepage-audience__links {
+    display: flex;
+    align-items: center;
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+  }
+
+  .wc-homepage-audience__link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.45rem;
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+    min-height: 3.4rem;
+
+    padding: 0.4rem 0.75rem;
+
+    border-top: 0;
+
+    font-size: 0.88rem;
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+  /*
+   * Short vertical separators.
+   */
+
+  .wc-homepage-audience__link + .wc-homepage-audience__link::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 1px;
+    height: 1.15rem;
+
+    background: rgb(255 255 255 / 55%);
+
+    transform: translateY(-50%);
+  }
+
+
+  /* Official USWDS icons */
+
+  .wc-homepage-audience__icon {
+    width: 1.65rem;
+    height: 1.65rem;
+
+    flex: 0 0 1.65rem;
+  }
+
+  .wc-homepage-audience__icon-svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+}

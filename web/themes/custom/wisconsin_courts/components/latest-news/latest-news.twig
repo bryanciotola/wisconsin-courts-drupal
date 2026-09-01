@@ -1,126 +1,198 @@
 {% set news_items = [
   {
-    title: news_1_title,
     date: news_1_date,
+    title: news_1_title,
     url: news_1_url
   },
   {
-    title: news_2_title,
     date: news_2_date,
+    title: news_2_title,
     url: news_2_url
   },
   {
-    title: news_3_title,
     date: news_3_date,
+    title: news_3_title,
     url: news_3_url
   }
 ] %}
 
-<section class="bg-white">
+<section class="wc-latest-news">
 
-  <h2
-    class="
-      font-heading-xl
-      text-primary-darker
-      text-bold
-      margin-top-0
-      margin-bottom-3
-    "
-  >
+  <h2 class="wc-latest-news__heading">
     {{ heading|default('Latest news and opinions') }}
   </h2>
 
-  <div class="border-top border-base-lighter">
+  <div class="wc-latest-news__nav">
 
-    {% for item in news_items %}
-      {% if item.title and item.url %}
+    <div
+      class="wc-latest-news__tabs"
+      aria-label="News categories"
+    >
 
-        <article
-          class="
-            grid-row
-            grid-gap-2
-            padding-y-3
-            border-bottom
-            border-base-lighter
-          "
-        >
+      <span class="wc-latest-news__tab wc-latest-news__tab--active">
+        News
+      </span>
 
-          <div
-            class="
-              tablet:grid-col-3
-              text-base
-              font-sans-2xs
-              text-bold
-              text-uppercase
-            "
+      <span class="wc-latest-news__tab">
+        Opinions
+      </span>
+
+      <span class="wc-latest-news__tab">
+        Both
+      </span>
+
+    </div>
+
+    {% if all_news_text and all_news_url %}
+
+      <a
+        href="{{ all_news_url }}"
+        class="wc-latest-news__view-all"
+      >
+        {{ all_news_text }}
+        <span aria-hidden="true">›</span>
+      </a>
+
+    {% endif %}
+
+  </div>
+
+  {% if featured_title %}
+
+    <article class="wc-latest-news__featured">
+
+      <div class="wc-latest-news__featured-image-wrapper">
+
+        {% if featured_image %}
+
+          <img
+            src="{{ featured_image }}"
+            alt="{{ featured_image_alt|default('') }}"
+            class="wc-latest-news__featured-image"
           >
-            {{ item.date }}
+
+        {% endif %}
+
+      </div>
+
+      <div class="wc-latest-news__featured-content">
+
+        {% if featured_label %}
+
+          <div class="wc-latest-news__badge-wrapper">
+
+            <span class="wc-latest-news__badge">
+              {{ featured_label }}
+            </span>
+
           </div>
 
-          <div class="tablet:grid-col-9">
+        {% endif %}
 
-            <a
-              href="{{ item.url }}"
-              class="
-                text-primary
-                text-bold
-                text-no-underline
-              "
-            >
-              {{ item.title }}
+        <h3 class="wc-latest-news__featured-title">
+
+          {% if featured_url %}
+
+            <a href="{{ featured_url }}">
+              {{ featured_title }}
             </a>
 
+          {% else %}
+
+            {{ featured_title }}
+
+          {% endif %}
+
+        </h3>
+
+        {% if featured_date %}
+
+          <div class="wc-latest-news__featured-date">
+            {{ featured_date }}
           </div>
+
+        {% endif %}
+
+        {% if featured_summary %}
+
+          <div class="wc-latest-news__featured-summary">
+            {{ featured_summary }}
+          </div>
+
+        {% endif %}
+
+        {% if featured_url %}
+
+          <a
+            href="{{ featured_url }}"
+            class="wc-latest-news__read-more"
+          >
+            Read full story
+            <span aria-hidden="true">›</span>
+          </a>
+
+        {% endif %}
+
+      </div>
+
+    </article>
+
+  {% endif %}
+
+  <div class="wc-latest-news__list">
+
+    {% for item in news_items %}
+
+      {% if item.title %}
+
+        <article class="wc-latest-news__item">
+
+          <div class="wc-latest-news__item-content">
+
+            {% if item.date %}
+
+              <div class="wc-latest-news__item-date">
+                {{ item.date }}
+              </div>
+
+            {% endif %}
+
+            {% if item.url %}
+
+              <a
+                href="{{ item.url }}"
+                class="wc-latest-news__item-title"
+              >
+                {{ item.title }}
+              </a>
+
+            {% else %}
+
+              <div class="wc-latest-news__item-title">
+                {{ item.title }}
+              </div>
+
+            {% endif %}
+
+          </div>
+
+          {% if item.url %}
+
+            <span
+              class="wc-latest-news__item-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+
+          {% endif %}
 
         </article>
 
       {% endif %}
+
     {% endfor %}
 
   </div>
-
-  {% if more_text and more_url %}
-
-    <div class="margin-top-3">
-
-      <a
-        href="{{ more_url }}"
-        class="
-          display-inline-flex
-          flex-align-center
-          text-primary
-          text-bold
-          text-no-underline
-        "
-      >
-        <span>{{ more_text }}</span>
-
-        <svg
-          aria-hidden="true"
-          class="margin-left-1"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M5 12H19"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M13 6L19 12L13 18"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-
-    </div>
-
-  {% endif %}
 
 </section>

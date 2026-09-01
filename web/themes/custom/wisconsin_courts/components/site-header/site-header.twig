@@ -16,37 +16,23 @@
 ] %}
 
 <header
-  style="
-    position: relative;
-    z-index: 20;
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #dfe3e7;
+  class="
+    wc-site-header
+    bg-white
+    border-bottom
+    border-base-lighter
   "
 >
 
   <div class="grid-container">
 
-    <div
-      style="
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-        min-height: 86px;
-        padding-top: 0.8rem;
-        padding-bottom: 0.65rem;
-      "
-    >
+    <div class="wc-site-header__top">
 
       <a
         href="{{ home_url|default('/') }}"
-        style="
-          display: inline-flex;
-          align-items: center;
-          flex: 0 0 auto;
-          min-width: 0;
-          text-decoration: none;
+        class="
+          wc-site-header__brand
+          text-no-underline
         "
       >
 
@@ -55,24 +41,16 @@
           <img
             src="{{ logo_image }}"
             alt="{{ logo_alt|default(site_name|default('Wisconsin Court System')) }}"
-            style="
-              display: block;
-              width: auto;
-              max-width: 315px;
-              max-height: 72px;
-              object-fit: contain;
-              object-position: left center;
-            "
+            class="wc-site-header__logo"
           >
 
         {% else %}
 
           <span
-            style="
-              color: #173f67;
-              font-size: 1.6rem;
-              font-weight: 700;
-              white-space: nowrap;
+            class="
+              font-heading-lg
+              text-primary-darker
+              text-bold
             "
           >
             {{ site_name|default('Wisconsin Court System') }}
@@ -83,48 +61,37 @@
       </a>
 
       <nav
+        class="wc-site-header__utility"
         aria-label="Utility navigation"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 1.35rem;
-          flex: 1;
-          min-width: 0;
-        "
       >
 
         {% for item in utility_links %}
           {% if item.text and item.url %}
+
             <a
               href="{{ item.url }}"
-              style="
-                color: #274766;
-                font-size: 0.82rem;
-                font-weight: 600;
-                line-height: 1.15;
-                text-decoration: none;
-                white-space: nowrap;
+              class="
+                font-sans-3xs
+                text-primary-darker
+                text-semibold
+                text-no-underline
               "
             >
               {{ item.text }}
             </a>
+
           {% endif %}
         {% endfor %}
 
         {% if search_url %}
+
           <a
             href="{{ search_url }}"
             aria-label="Search"
-            style="
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              width: 32px;
-              height: 32px;
-              flex: 0 0 32px;
-              color: #173f67;
-              text-decoration: none;
+            class="
+              wc-site-header__search
+              text-primary-darker
+              text-no-underline
             "
           >
             <svg
@@ -149,7 +116,77 @@
               />
             </svg>
           </a>
+
         {% endif %}
+
+      </nav>
+
+      <button
+        class="
+          wc-site-header__menu-button
+          usa-button
+          usa-button--unstyled
+          text-primary-darker
+          text-bold
+        "
+        type="button"
+        aria-expanded="false"
+        aria-controls="wc-site-header-mobile-nav"
+      >
+        <span class="wc-site-header__menu-label">Menu</span>
+
+        <svg
+          aria-hidden="true"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M4 7H20M4 12H20M4 17H20"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div
+    class="
+      wc-site-header__primary-row
+      border-top
+      border-base-lighter
+    "
+  >
+
+    <div class="grid-container">
+
+      <nav
+        class="wc-site-header__primary"
+        aria-label="Primary navigation"
+      >
+
+        {% for item in primary_links %}
+          {% if item.text and item.url %}
+
+            <a
+              href="{{ item.url }}"
+              class="
+                font-sans-2xs
+                text-primary-darker
+                text-bold
+                text-no-underline
+              "
+            >
+              {{ item.text }}
+            </a>
+
+          {% endif %}
+        {% endfor %}
 
       </nav>
 
@@ -158,52 +195,84 @@
   </div>
 
   <div
-    style="
-      border-top: 1px solid #edf0f3;
-      background: #ffffff;
+    id="wc-site-header-mobile-nav"
+    class="
+      wc-site-header__mobile-nav
+      border-top
+      border-base-lighter
+      bg-white
     "
+    hidden
   >
 
     <div class="grid-container">
 
-      <nav
-        aria-label="Primary navigation"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 2rem;
-          width: 100%;
-          min-height: 52px;
-          padding-left: 1rem;
-          padding-right: 1rem;
-        "
-      >
+      <nav aria-label="Mobile navigation">
 
-        {% for item in primary_links %}
-          {% if item.text and item.url %}
+        <div class="wc-site-header__mobile-primary">
+
+          {% for item in primary_links %}
+            {% if item.text and item.url %}
+
+              <a
+                href="{{ item.url }}"
+                class="
+                  wc-site-header__mobile-link
+                  font-sans-sm
+                  text-primary-darker
+                  text-bold
+                  text-no-underline
+                  border-bottom
+                  border-base-lighter
+                "
+              >
+                {{ item.text }}
+                <span aria-hidden="true">›</span>
+              </a>
+
+            {% endif %}
+          {% endfor %}
+
+        </div>
+
+        <div class="wc-site-header__mobile-utility">
+
+          {% for item in utility_links %}
+            {% if item.text and item.url %}
+
+              <a
+                href="{{ item.url }}"
+                class="
+                  wc-site-header__mobile-utility-link
+                  font-sans-xs
+                  text-primary-darker
+                  text-no-underline
+                "
+              >
+                {{ item.text }}
+              </a>
+
+            {% endif %}
+          {% endfor %}
+
+          {% if search_url %}
+
             <a
-              href="{{ item.url }}"
-              style="
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                flex: 0 0 auto;
-                padding-top: 0.9rem;
-                padding-bottom: 0.9rem;
-                color: #173f67;
-                font-size: 0.88rem;
-                font-weight: 700;
-                line-height: 1.1;
-                text-decoration: none;
-                white-space: nowrap;
-                border-bottom: 3px solid transparent;
+              href="{{ search_url }}"
+              class="
+                wc-site-header__mobile-utility-link
+                font-sans-xs
+                text-primary-darker
+                text-semibold
+                text-no-underline
               "
             >
-              {{ item.text }}
+              Search
             </a>
+
           {% endif %}
-        {% endfor %}
+
+        </div>
 
       </nav>
 

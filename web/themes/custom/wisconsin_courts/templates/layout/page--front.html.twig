@@ -1,0 +1,50 @@
+{% extends '@ui_suite_uswds/layout/page.html.twig' %}
+
+{#
+  Front page override.
+
+  The UI Suite USWDS base theme normally wraps page.content in a
+  .grid-container. That is appropriate for standard interior pages,
+  but the homepage contains full-width sections whose individual
+  components provide their own inner .grid-container.
+
+  Removing the outer container here allows:
+  - hero backgrounds to span the viewport
+  - alert/header backgrounds to remain full-width
+  - component content to align consistently inside its own grid-container
+#}
+
+{% block main %}
+  <main
+    class="main-content usa-layout-docs {{ main_classes }}"
+    id="main-content"
+  >
+
+    {% if page.breadcrumb %}
+      <div class="grid-container">
+        {{ include('ui_suite_uswds:grid_row', {
+          first: page.breadcrumb
+        }, with_context = false) }}
+      </div>
+    {% endif %}
+
+    {% if page.highlighted %}
+      <div class="grid-container">
+        {{ include('ui_suite_uswds:grid_row', {
+          first: page.highlighted
+        }, with_context = false) }}
+      </div>
+    {% endif %}
+
+    {% if page.help %}
+      <div class="grid-container">
+        {{ include('ui_suite_uswds:grid_row', {
+          first: page.help
+        }, with_context = false) }}
+      </div>
+    {% endif %}
+
+    {{ page.content }}
+
+  </main>
+{% endblock %}

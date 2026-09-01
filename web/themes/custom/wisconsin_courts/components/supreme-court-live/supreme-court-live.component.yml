@@ -1,0 +1,37 @@
+name: 'Supreme Court Live'
+description: 'Homepage card linking to Wisconsin Supreme Court livestream and calendar information.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    heading:
+      title: 'Heading'
+      type: string
+
+    status_text:
+      title: 'Status'
+      type: string
+
+    image:
+      title: 'Court image'
+      $ref: 'ui-patterns://url'
+
+    image_alt:
+      title: 'Image alt text'
+      type: string
+
+    calendar_link_text:
+      title: 'Calendar link text'
+      type: string
+
+    calendar_link_url:
+      title: 'Calendar link URL'
+      $ref: 'ui-patterns://url'
+
+slots:
+
+  description:
+    title: 'Description'
+    description: 'Short description of Supreme Court livestreams.'

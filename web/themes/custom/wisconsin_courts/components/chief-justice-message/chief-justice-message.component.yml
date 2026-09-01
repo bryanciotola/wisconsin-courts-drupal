@@ -1,0 +1,59 @@
+name: 'Message from the Chief Justice'
+description: 'Homepage card with a Chief Justice portrait, message, and call-to-action button.'
+group: 'Wisconsin Courts'
+
+props:
+  type: object
+  properties:
+
+    heading:
+      title: 'Card title'
+      type: string
+
+    portrait_image:
+      title: 'Portrait image'
+      $ref: 'ui-patterns://url'
+
+    portrait_alt:
+      title: 'Portrait alt text'
+      type: string
+
+    portrait_title:
+      title: 'Title below image'
+      type: string
+
+    portrait_name:
+      title: 'Name below image'
+      type: string
+
+    portrait_size:
+      title: 'Portrait size'
+      type: string
+      enum:
+        - small
+        - medium
+        - large
+      default: medium
+
+    portrait_shape:
+      title: 'Portrait shape'
+      type: string
+      enum:
+        - circle
+        - rounded
+        - square
+      default: circle
+
+    button_text:
+      title: 'Button text'
+      type: string
+
+    button_url:
+      title: 'Button URL'
+      $ref: 'ui-patterns://url'
+
+slots:
+
+  message:
+    title: 'Message'
+    description: 'Message from the Chief Justice.'

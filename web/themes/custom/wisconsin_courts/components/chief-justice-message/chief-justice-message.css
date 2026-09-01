@@ -1,0 +1,185 @@
+/*
+ * Wisconsin Courts
+ * Message from the Chief Justice
+ */
+
+.wc-chief-message {
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.wc-chief-message__layout {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.9rem;
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.wc-chief-message__profile {
+  flex: 0 0 5.75rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.wc-chief-message__portrait {
+  display: block;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+
+/* =========================================================
+   PORTRAIT SIZES
+   ========================================================= */
+
+.wc-chief-message__portrait--small {
+  width: 4.75rem;
+  height: 4.75rem;
+}
+
+.wc-chief-message__portrait--medium {
+  width: 5.75rem;
+  height: 5.75rem;
+}
+
+.wc-chief-message__portrait--large {
+  width: 6.75rem;
+  height: 6.75rem;
+}
+
+
+/* =========================================================
+   PORTRAIT SHAPES
+   ========================================================= */
+
+.wc-chief-message__portrait--circle {
+  border-radius: 50%;
+}
+
+.wc-chief-message__portrait--rounded {
+  border-radius: 0.5rem;
+}
+
+.wc-chief-message__portrait--square {
+  border-radius: 0;
+}
+
+
+/* =========================================================
+   PROFILE LABELS
+   ========================================================= */
+
+.wc-chief-message__profile-title {
+  margin-top: 0.4rem;
+
+  font-size: 0.68rem;
+  line-height: 1.1;
+}
+
+.wc-chief-message__profile-name {
+  margin-top: 0.08rem;
+
+  font-size: 0.7rem;
+  line-height: 1.1;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.wc-chief-message__content {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+.wc-chief-message__heading {
+  margin-bottom: 0.45rem;
+
+  font-size: 1.3rem;
+  line-height: 1.05;
+
+  letter-spacing: -0.015em;
+}
+
+.wc-chief-message__message {
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.wc-chief-message__message p {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+}
+
+.wc-chief-message__message p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.wc-chief-message__button,
+.wc-chief-message__button:link,
+.wc-chief-message__button:visited {
+  min-height: auto;
+
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+
+  padding: 0.5rem 0.8rem;
+
+  background: #ffffff;
+
+  color: #16385c !important;
+
+  font-size: 0.7rem;
+
+  text-decoration: none;
+}
+
+.wc-chief-message__button:hover,
+.wc-chief-message__button:focus {
+  background: #f0f0f0;
+
+  color: #16385c !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-chief-message__layout {
+    flex-direction: column;
+  }
+
+  .wc-chief-message__profile {
+    flex-basis: auto;
+
+    width: 100%;
+  }
+
+}

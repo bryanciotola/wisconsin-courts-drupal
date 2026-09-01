@@ -1,0 +1,255 @@
+/*
+ * Homepage Latest News + Popular Tasks layout.
+ *
+ * The two Layout Builder blocks share one responsive row.
+ */
+
+.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 64rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  column-gap: 1.5rem;
+  align-items: stretch;
+}
+
+.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region {
+  box-sizing: border-box;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region
+  > .block {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+
+/*
+ * Popular Tasks wrapper/card.
+ */
+
+.wc-popular-tasks-wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.wc-popular-tasks {
+  box-sizing: border-box;
+
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100%;
+
+  padding: 1.5rem 1.25rem;
+}
+
+
+/*
+ * Typography.
+ */
+
+.wc-popular-tasks__heading,
+.wc-popular-tasks__title,
+.wc-popular-tasks__description {
+  font-family:
+    "Source Sans Pro Web",
+    "Helvetica Neue",
+    Helvetica,
+    Roboto,
+    Arial,
+    sans-serif;
+
+  font-stretch: normal;
+}
+
+.wc-popular-tasks__heading {
+  margin: 0 0 0.75rem;
+
+  color: #16385c;
+
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+
+  letter-spacing: 0;
+}
+
+
+/*
+ * The task list fills any available extra height.
+ */
+
+.wc-popular-tasks__list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+
+/*
+ * Individual task rows.
+ *
+ * flex: 1 distributes additional card height through
+ * the six rows instead of leaving a blank area at bottom.
+ */
+
+.wc-popular-tasks__item {
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 1rem;
+  align-items: center;
+
+  column-gap: 0.85rem;
+
+  flex: 1 1 auto;
+
+  width: 100%;
+  min-height: 4.75rem;
+
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+
+/*
+ * Official USWDS icons.
+ */
+
+.wc-popular-tasks__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  flex: 0 0 2.5rem;
+}
+
+.wc-popular-tasks__icon .usa-icon {
+  display: block;
+
+  width: 2rem;
+  height: 2rem;
+
+  flex: 0 0 2rem;
+}
+
+
+/*
+ * Task text.
+ */
+
+.wc-popular-tasks__content {
+  display: block;
+  min-width: 0;
+}
+
+.wc-popular-tasks__title {
+  display: block;
+
+  color: #16385c;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+
+  letter-spacing: 0;
+}
+
+.wc-popular-tasks__description {
+  display: block;
+
+  margin-top: 0.3rem;
+
+  color: #454d55;
+
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+
+/*
+ * Right arrow.
+ */
+
+.wc-popular-tasks__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 1rem;
+
+  color: #005ea8;
+
+  font-family:
+    "Source Sans Pro Web",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+/*
+ * Tablet and larger.
+ */
+
+@media (min-width: 40em) {
+
+  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region--first {
+    flex: 0 1 calc(60% - 0.75rem);
+    width: calc(60% - 0.75rem);
+  }
+
+  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region--second {
+    flex: 0 1 calc(40% - 0.75rem);
+    width: calc(40% - 0.75rem);
+  }
+
+}
+
+
+/*
+ * Desktop.
+ */
+
+@media (min-width: 64em) {
+
+  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .wc-popular-tasks {
+    padding: 1.6rem 1.35rem;
+  }
+
+}

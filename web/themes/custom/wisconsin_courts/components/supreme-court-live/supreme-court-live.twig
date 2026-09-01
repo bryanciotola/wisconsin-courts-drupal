@@ -1,0 +1,107 @@
+{% set sprite_path = base_path ~ 'themes/custom/wisconsin_courts/assets/uswds/images/sprite.svg' %}
+
+<section
+  class="
+    wc-supreme-live
+    bg-primary-lighter
+    radius-md
+    padding-3
+  "
+>
+
+  <div class="wc-supreme-live__top">
+
+    <h2
+      class="
+        wc-supreme-live__heading
+        font-heading-lg
+        text-primary-darker
+        text-bold
+        margin-0
+      "
+    >
+      {{ heading|default('Supreme Court Live') }}
+    </h2>
+
+    {% if status_text %}
+      <div
+        class="
+          wc-supreme-live__status
+          bg-base-dark
+          text-white
+          text-bold
+          font-sans-xs
+        "
+      >
+        {{ status_text }}
+      </div>
+    {% endif %}
+
+  </div>
+
+
+  <div class="wc-supreme-live__body">
+
+    <div class="wc-supreme-live__info">
+
+      {% if description %}
+        <div
+          class="
+            wc-supreme-live__description
+            font-sans-sm
+            text-base-darkest
+          "
+        >
+          {{ description }}
+        </div>
+      {% endif %}
+
+
+      {% if calendar_link_text and calendar_link_url %}
+
+        <a
+          href="{{ calendar_link_url }}"
+          class="
+            wc-supreme-live__calendar-link
+            text-primary-darker
+            font-sans-sm
+          "
+        >
+
+          <svg
+            class="usa-icon wc-supreme-live__calendar-icon"
+            aria-hidden="true"
+            focusable="false"
+            role="img"
+          >
+            <use href="{{ sprite_path }}#calendar_today"></use>
+          </svg>
+
+          <span>
+            {{ calendar_link_text }}
+          </span>
+
+        </a>
+
+      {% endif %}
+
+    </div>
+
+
+    {% if image %}
+
+      <div class="wc-supreme-live__image-wrapper">
+
+        <img
+          src="{{ image }}"
+          alt="{{ image_alt|default('') }}"
+          class="wc-supreme-live__image"
+        >
+
+      </div>
+
+    {% endif %}
+
+  </div>
+
+</section>

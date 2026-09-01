@@ -1,5 +1,5 @@
 name: 'Popular Tasks'
-description: 'Homepage list of frequently used court tasks.'
+description: 'Homepage panel containing frequently used Wisconsin Court System tasks.'
 group: 'Wisconsin Courts'
 
 props:
@@ -10,45 +10,74 @@ props:
       title: 'Heading'
       type: string
 
-    task_1_text:
-      title: 'Task 1 text'
+    task_1_title:
+      title: 'Task 1 title'
+      type: string
+
+    task_1_description:
+      title: 'Task 1 description'
       type: string
 
     task_1_url:
       title: 'Task 1 URL'
       $ref: 'ui-patterns://url'
 
-    task_2_text:
-      title: 'Task 2 text'
+    task_2_title:
+      title: 'Task 2 title'
+      type: string
+
+    task_2_description:
+      title: 'Task 2 description'
       type: string
 
     task_2_url:
       title: 'Task 2 URL'
       $ref: 'ui-patterns://url'
 
-    task_3_text:
-      title: 'Task 3 text'
+    task_3_title:
+      title: 'Task 3 title'
+      type: string
+
+    task_3_description:
+      title: 'Task 3 description'
       type: string
 
     task_3_url:
       title: 'Task 3 URL'
       $ref: 'ui-patterns://url'
 
-    task_4_text:
-      title: 'Task 4 text'
+    task_4_title:
+      title: 'Task 4 title'
+      type: string
+
+    task_4_description:
+      title: 'Task 4 description'
       type: string
 
     task_4_url:
       title: 'Task 4 URL'
       $ref: 'ui-patterns://url'
 
-    task_5_text:
-      title: 'Task 5 text'
+    task_5_title:
+      title: 'Task 5 title'
+      type: string
+
+    task_5_description:
+      title: 'Task 5 description'
       type: string
 
     task_5_url:
       title: 'Task 5 URL'
       $ref: 'ui-patterns://url'
 
-libraryOverrides:
-  css: {}
+    task_6_title:
+      title: 'Task 6 title'
+      type: string
+
+    task_6_description:
+      title: 'Task 6 description'
+      type: string
+
+    task_6_url:
+      title: 'Task 6 URL'
+      $ref: 'ui-patterns://url'

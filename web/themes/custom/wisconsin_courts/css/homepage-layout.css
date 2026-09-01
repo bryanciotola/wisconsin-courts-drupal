@@ -1,0 +1,96 @@
+/*
+ * Wisconsin Courts homepage layout.
+ *
+ * Full-width homepage sections are allowed by page--front.html.twig.
+ * Standard content sections opt back into the site's centered width.
+ */
+
+
+/* =========================================================
+   CHIEF JUSTICE + SUPREME COURT LIVE
+   ========================================================= */
+
+.layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live) {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 64rem;
+
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  align-items: stretch;
+}
+
+
+/*
+ * Drupal still owns the 50/50 widths.
+ * Padding inside the regions creates the gutter.
+ */
+
+.layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+  > .layout__region {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+  > .layout__region
+  > .block {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+  > .layout__region--first {
+  padding-right: 0.75rem;
+}
+
+.layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+  > .layout__region--second {
+  padding-left: 0.75rem;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+    > .layout__region--first {
+    padding-right: 0;
+  }
+
+  .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
+    > .layout__region--second {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 64em) {
+
+  .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+}

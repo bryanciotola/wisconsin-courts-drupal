@@ -1,0 +1,103 @@
+{% set portrait_size = portrait_size|default('medium') %}
+{% set portrait_shape = portrait_shape|default('circle') %}
+
+<section
+  class="
+    wc-chief-message
+    bg-primary-dark
+    text-white
+    radius-md
+    padding-3
+  "
+>
+
+  <div class="wc-chief-message__layout">
+
+    <div class="wc-chief-message__profile">
+
+      {% if portrait_image %}
+        <img
+          src="{{ portrait_image }}"
+          alt="{{ portrait_alt|default('') }}"
+          class="
+            wc-chief-message__portrait
+            wc-chief-message__portrait--{{ portrait_size }}
+            wc-chief-message__portrait--{{ portrait_shape }}
+          "
+        >
+      {% endif %}
+
+      {% if portrait_title %}
+        <div
+          class="
+            wc-chief-message__profile-title
+            text-white
+            font-sans-xs
+          "
+        >
+          {{ portrait_title }}
+        </div>
+      {% endif %}
+
+      {% if portrait_name %}
+        <div
+          class="
+            wc-chief-message__profile-name
+            text-white
+            text-bold
+            font-sans-xs
+          "
+        >
+          {{ portrait_name }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="wc-chief-message__content">
+
+      {% if heading %}
+        <h2
+          class="
+            wc-chief-message__heading
+            text-white
+            text-bold
+            font-heading-lg
+            margin-top-0
+          "
+        >
+          {{ heading }}
+        </h2>
+      {% endif %}
+
+      {% if message %}
+        <div
+          class="
+            wc-chief-message__message
+            text-white
+            font-sans-sm
+          "
+        >
+          {{ message }}
+        </div>
+      {% endif %}
+
+      {% if button_text and button_url %}
+        <a
+          href="{{ button_url }}"
+          class="
+            usa-button
+            wc-chief-message__button
+            bg-white
+            text-primary-darker
+          "
+        >
+          {{ button_text }}
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
