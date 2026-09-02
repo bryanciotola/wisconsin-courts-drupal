@@ -108,6 +108,8 @@
 
   margin-top: auto;
 
+  color: #16385c;
+
   font-size: 0.72rem;
   line-height: 1.15;
 
@@ -115,6 +117,21 @@
   text-underline-offset: 2px;
 
   white-space: nowrap;
+
+  transition:
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.wc-supreme-live__calendar-link:hover {
+  color: #005ea8;
+
+  transform: translateX(0.18rem);
+}
+
+.wc-supreme-live__calendar-link:focus-visible {
+  outline: 3px solid #2491ff;
+  outline-offset: 3px;
 }
 
 .wc-supreme-live__calendar-icon {
@@ -122,6 +139,13 @@
   height: 1.35rem;
 
   flex: 0 0 1.35rem;
+
+  transition: transform 0.18s ease;
+}
+
+.wc-supreme-live__calendar-link:hover
+  .wc-supreme-live__calendar-icon {
+  transform: translateY(-1px) scale(1.05);
 }
 
 
@@ -168,6 +192,20 @@
 
   .wc-supreme-live__image {
     height: 10rem;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wc-supreme-live__calendar-link,
+  .wc-supreme-live__calendar-icon {
+    transition-duration: 0.01ms !important;
   }
 
 }

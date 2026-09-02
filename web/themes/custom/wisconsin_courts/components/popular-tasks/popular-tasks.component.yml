@@ -14,20 +14,12 @@ props:
       title: 'Task 1 title'
       type: string
 
-    task_1_description:
-      title: 'Task 1 description'
-      type: string
-
     task_1_url:
       title: 'Task 1 URL'
       $ref: 'ui-patterns://url'
 
     task_2_title:
       title: 'Task 2 title'
-      type: string
-
-    task_2_description:
-      title: 'Task 2 description'
       type: string
 
     task_2_url:
@@ -38,20 +30,12 @@ props:
       title: 'Task 3 title'
       type: string
 
-    task_3_description:
-      title: 'Task 3 description'
-      type: string
-
     task_3_url:
       title: 'Task 3 URL'
       $ref: 'ui-patterns://url'
 
     task_4_title:
       title: 'Task 4 title'
-      type: string
-
-    task_4_description:
-      title: 'Task 4 description'
       type: string
 
     task_4_url:
@@ -62,10 +46,6 @@ props:
       title: 'Task 5 title'
       type: string
 
-    task_5_description:
-      title: 'Task 5 description'
-      type: string
-
     task_5_url:
       title: 'Task 5 URL'
       $ref: 'ui-patterns://url'
@@ -74,10 +54,32 @@ props:
       title: 'Task 6 title'
       type: string
 
-    task_6_description:
-      title: 'Task 6 description'
-      type: string
-
     task_6_url:
       title: 'Task 6 URL'
       $ref: 'ui-patterns://url'
+
+slots:
+
+  task_1_description:
+    title: 'Task 1 description'
+    description: 'Short descriptive text for task 1.'
+
+  task_2_description:
+    title: 'Task 2 description'
+    description: 'Short descriptive text for task 2.'
+
+  task_3_description:
+    title: 'Task 3 description'
+    description: 'Short descriptive text for task 3.'
+
+  task_4_description:
+    title: 'Task 4 description'
+    description: 'Short descriptive text for task 4.'
+
+  task_5_description:
+    title: 'Task 5 description'
+    description: 'Short descriptive text for task 5.'
+
+  task_6_description:
+    title: 'Task 6 description'
+    description: 'Short descriptive text for task 6.'

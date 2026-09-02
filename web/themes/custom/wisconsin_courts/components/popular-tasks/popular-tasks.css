@@ -1,15 +1,19 @@
 /*
- * Homepage Latest News + Popular Tasks layout.
+ * Wisconsin Courts - Popular Tasks
  *
- * The two Layout Builder blocks share one responsive row.
+ * Homepage task panel.
+ *
+ * This file also controls the homepage Latest News / Popular Tasks
+ * Layout Builder row so the Drupal 67/33 layout presents as the
+ * intended wider 60/40 homepage composition.
  */
 
 
 /* =========================================================
-   NEWS + POPULAR TASKS LAYOUT
+   NEWS + POPULAR TASKS HOMEPAGE ROW
    ========================================================= */
 
-.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks) {
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
   box-sizing: border-box;
 
   width: 100%;
@@ -22,40 +26,84 @@
   padding-left: 1rem;
   padding-right: 1rem;
 
-  column-gap: 1.5rem;
+  gap: 1.5rem;
 
   align-items: stretch;
 }
 
-.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
-  > .layout__region {
-  box-sizing: border-box;
 
+/*
+ * Both Layout Builder regions must stretch to the same height.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region {
   display: flex;
   flex-direction: column;
 
   min-width: 0;
 }
 
-.layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+
+/*
+ * Drupal places each component inside a block wrapper.
+ *
+ * The region itself may stretch correctly, but unless this
+ * intermediate block also stretches, the component only grows
+ * as tall as its content.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
   > .layout__region
   > .block {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/*
+ * Established homepage proportion:
+ * Latest News ~60%
+ * Popular Tasks ~40%
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region--first {
+  flex: 0 1 calc(60% - 0.75rem);
+  width: calc(60% - 0.75rem);
+}
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region--second {
+  flex: 0 1 calc(40% - 0.75rem);
+  width: calc(40% - 0.75rem);
 }
 
 
 /* =========================================================
-   POPULAR TASKS CARD
+   POPULAR TASKS WRAPPER
    ========================================================= */
 
 .wc-popular-tasks-wrapper {
+  box-sizing: border-box;
+
   display: flex;
   flex: 1 1 auto;
 
   width: 100%;
+  height: 100%;
+  min-height: 100%;
 }
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
 
 .wc-popular-tasks {
   box-sizing: border-box;
@@ -65,34 +113,30 @@
   flex-direction: column;
 
   width: 100%;
+  height: 100%;
   min-height: 100%;
 
   padding: 1.4rem 1.25rem;
 
   background: #e9eef4;
+
+  color: #1b1b1b;
 }
 
 
 /* =========================================================
-   TYPOGRAPHY
+   HEADING
    ========================================================= */
 
-.wc-popular-tasks__heading,
-.wc-popular-tasks__title,
-.wc-popular-tasks__description {
-  font-stretch: normal;
-}
-
 .wc-popular-tasks__heading {
-  margin: 0 0 0.7rem;
+  margin: 0 0 1rem;
 
   color: #16385c;
 
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   font-weight: 700;
   line-height: 1.08;
-
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
 }
 
 
@@ -105,35 +149,50 @@
   flex: 1 1 auto;
   flex-direction: column;
 
-  width: 100%;
+  min-height: 0;
 }
 
 
 /* =========================================================
-   INDIVIDUAL TASK
+   TASK ROW
    ========================================================= */
 
 .wc-popular-tasks__item {
-  box-sizing: border-box;
+  position: relative;
 
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr) 1rem;
-  align-items: center;
-
-  column-gap: 0.8rem;
-
+  display: flex;
   flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-between;
 
-  width: 100%;
-  min-height: 4.45rem;
+  gap: 1rem;
 
-  padding-top: 0.65rem;
-  padding-bottom: 0.65rem;
+  min-width: 0;
+
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+
+  color: #16385c;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.wc-popular-tasks__item:hover {
+  background: rgb(255 255 255 / 32%);
+}
+
+.wc-popular-tasks__item:focus-visible {
+  z-index: 2;
+
+  outline: 3px solid #2491ff;
+  outline-offset: 2px;
 }
 
 
 /* =========================================================
-   OFFICIAL USWDS ICONS
+   ICON
    ========================================================= */
 
 .wc-popular-tasks__icon {
@@ -141,28 +200,32 @@
   align-items: center;
   justify-content: center;
 
-  width: 2.5rem;
-  height: 2.5rem;
+  flex: 0 0 auto;
 
-  flex: 0 0 2.5rem;
+  color: #2a5298;
+
+  transition:
+    color 0.15s ease,
+    transform 0.18s ease;
 }
 
 .wc-popular-tasks__icon .usa-icon {
   display: block;
+}
 
-  width: 2.05rem;
-  height: 2.05rem;
+.wc-popular-tasks__item:hover .wc-popular-tasks__icon {
+  color: #16385c;
 
-  flex: 0 0 2.05rem;
+  transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   TASK TEXT
+   CONTENT
    ========================================================= */
 
 .wc-popular-tasks__content {
-  display: block;
+  flex: 1 1 auto;
 
   min-width: 0;
 }
@@ -172,63 +235,66 @@
 
   color: #16385c;
 
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.18;
 
-  letter-spacing: 0;
+  transition: color 0.15s ease;
 }
+
+.wc-popular-tasks__item:hover .wc-popular-tasks__title {
+  color: #2a5298;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
 
 .wc-popular-tasks__description {
   display: block;
 
   margin-top: 0.2rem;
 
-  color: #454d55;
+  color: #3d4551;
 
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.35;
+}
+
+.wc-popular-tasks__description p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.wc-popular-tasks__description p + p {
+  margin-top: 0.35rem;
 }
 
 
 /* =========================================================
-   RIGHT ARROW
+   ARROW
    ========================================================= */
 
 .wc-popular-tasks__arrow {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex: 0 0 auto;
 
-  width: 1rem;
+  color: #2a5298;
 
-  color: #005ea8;
-
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1;
+
+  transition:
+    color 0.15s ease,
+    transform 0.18s ease;
 }
 
+.wc-popular-tasks__item:hover .wc-popular-tasks__arrow {
+  color: #16385c;
 
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (min-width: 40em) {
-
-  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--first {
-    flex: 0 1 calc(60% - 0.75rem);
-    width: calc(60% - 0.75rem);
-  }
-
-  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--second {
-    flex: 0 1 calc(40% - 0.75rem);
-    width: calc(40% - 0.75rem);
-  }
-
+  transform: translateX(0.25rem);
 }
 
 
@@ -238,7 +304,7 @@
 
 @media (min-width: 64em) {
 
-  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks) {
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
     max-width: 88rem;
 
     margin-top: 1.25rem;
@@ -246,66 +312,114 @@
     padding-left: 2rem;
     padding-right: 2rem;
 
-    column-gap: 1.75rem;
+    gap: 1.75rem;
   }
 
-  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
     > .layout__region--first {
-    flex-basis: calc(60% - 0.875rem);
+    flex: 0 1 calc(60% - 0.875rem);
     width: calc(60% - 0.875rem);
   }
 
-  .layout--twocol-section:has(.wc-latest-news):has(.wc-popular-tasks)
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
     > .layout__region--second {
-    flex-basis: calc(40% - 0.875rem);
+    flex: 0 1 calc(40% - 0.875rem);
     width: calc(40% - 0.875rem);
   }
 
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-latest-news,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-popular-tasks-wrapper,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-popular-tasks {
+    flex: 1 1 auto;
+
+    height: 100%;
+    min-height: 100%;
+  }
+
   .wc-popular-tasks {
-    padding: 1.45rem 1.35rem;
+    padding: 1.4rem 1.25rem;
   }
 
   .wc-popular-tasks__heading {
-    margin-bottom: 0.65rem;
-
-    font-size: 1.9rem;
+    font-size: 1.65rem;
   }
 
   .wc-popular-tasks__item {
-    grid-template-columns: 2.5rem minmax(0, 1fr) 1rem;
-
-    column-gap: 0.8rem;
-
-    min-height: 4.4rem;
-
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-  }
-
-  .wc-popular-tasks__icon {
-    width: 2.4rem;
-    height: 2.4rem;
-
-    flex-basis: 2.4rem;
-  }
-
-  .wc-popular-tasks__icon .usa-icon {
-    width: 2.05rem;
-    height: 2.05rem;
-
-    flex-basis: 2.05rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
   }
 
   .wc-popular-tasks__title {
-    font-size: 1.1rem;
-    line-height: 1.1;
+    font-size: 1.05rem;
   }
 
   .wc-popular-tasks__description {
-    margin-top: 0.18rem;
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
 
-    font-size: 0.9rem;
-    line-height: 1.22;
+}
+
+
+/* =========================================================
+   STACKED MOBILE LAYOUT
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  /*
+   * Keep the Layout Builder section as flex, but change its
+   * direction from horizontal to vertical.
+   *
+   * Using gap here is more reliable than adding margin to
+   * Drupal's second region.
+   */
+
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.25rem;
+  }
+
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region--first,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region--second {
+    flex: 0 0 auto;
+
+    width: 100%;
+  }
+
+  /*
+   * Mobile cards return to their natural content height.
+   */
+
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region
+    > .block,
+  .wc-popular-tasks-wrapper,
+  .wc-popular-tasks {
+    height: auto;
+    min-height: 0;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wc-popular-tasks *,
+  .wc-popular-tasks *::before,
+  .wc-popular-tasks *::after {
+    transition-duration: 0.01ms !important;
   }
 
 }

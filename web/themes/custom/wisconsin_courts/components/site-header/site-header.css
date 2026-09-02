@@ -61,6 +61,14 @@
   padding: 0.5rem;
 
   flex: 0 0 auto;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.wc-site-header__menu-button:hover {
+  color: #2a5298;
 }
 
 .wc-site-header__mobile-nav {
@@ -81,6 +89,28 @@
 
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    padding-left 0.15s ease,
+    padding-right 0.15s ease;
+}
+
+.wc-site-header__mobile-link:hover {
+  color: #2a5298;
+  background: #f5f8fb;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.wc-site-header__mobile-link span[aria-hidden="true"] {
+  transition: transform 0.15s ease;
+}
+
+.wc-site-header__mobile-link:hover span[aria-hidden="true"] {
+  transform: translateX(0.2rem);
 }
 
 .wc-site-header__mobile-utility {
@@ -95,6 +125,27 @@
 
 .wc-site-header__mobile-utility-link {
   display: block;
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.wc-site-header__mobile-utility-link:hover {
+  color: #2a5298;
+
+  transform: translateX(0.15rem);
+}
+
+
+/* =========================================================
+   ACCESSIBLE FOCUS STATES
+   ========================================================= */
+
+.wc-site-header a:focus-visible,
+.wc-site-header button:focus-visible {
+  outline: 3px solid #2491ff;
+  outline-offset: 3px;
 }
 
 
@@ -156,7 +207,9 @@
   }
 
 
-  /* Utility navigation */
+  /* =======================================================
+     UTILITY NAVIGATION
+     ======================================================= */
 
   .wc-site-header__utility {
     display: flex;
@@ -169,11 +222,48 @@
   }
 
   .wc-site-header__utility a {
+    position: relative;
+
     font-size: 0.92rem;
     line-height: 1;
 
     white-space: nowrap;
+
+    transition: color 0.16s ease;
   }
+
+  .wc-site-header__utility a:not(.wc-site-header__search)::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -0.35rem;
+
+    width: 100%;
+    height: 2px;
+
+    background: #2a5298;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform 0.18s ease;
+  }
+
+  .wc-site-header__utility a:not(.wc-site-header__search):hover {
+    color: #2a5298;
+  }
+
+  .wc-site-header__utility a:not(.wc-site-header__search):hover::after,
+  .wc-site-header__utility a:not(.wc-site-header__search):focus-visible::after {
+    transform: scaleX(1);
+  }
+
+
+  /* =======================================================
+     SEARCH ICON
+     ======================================================= */
 
   .wc-site-header__search {
     display: inline-flex;
@@ -184,10 +274,34 @@
     height: 1.9rem;
 
     flex: 0 0 1.9rem;
+
+    border-radius: 50%;
+
+    transition:
+      color 0.16s ease,
+      background-color 0.16s ease,
+      transform 0.16s ease;
+  }
+
+  .wc-site-header__search:hover {
+    color: #2a5298;
+    background: #eef3f8;
+
+    transform: scale(1.08);
+  }
+
+  .wc-site-header__search svg {
+    transition: transform 0.16s ease;
+  }
+
+  .wc-site-header__search:hover svg {
+    transform: scale(1.05);
   }
 
 
-  /* Primary navigation */
+  /* =======================================================
+     PRIMARY NAVIGATION
+     ======================================================= */
 
   .wc-site-header__primary {
     display: flex;
@@ -200,6 +314,8 @@
   }
 
   .wc-site-header__primary a {
+    position: relative;
+
     display: inline-flex;
     align-items: center;
 
@@ -208,6 +324,36 @@
     line-height: 1;
 
     white-space: nowrap;
+
+    transition: color 0.16s ease;
+  }
+
+  .wc-site-header__primary a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -0.45rem;
+
+    width: 100%;
+    height: 2px;
+
+    background: #2a5298;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform 0.18s ease;
+  }
+
+  .wc-site-header__primary a:hover {
+    color: #2a5298;
+  }
+
+  .wc-site-header__primary a:hover::after,
+  .wc-site-header__primary a:focus-visible::after {
+    transform: scaleX(1);
   }
 
 
@@ -219,6 +365,21 @@
 
   .wc-site-header__mobile-nav {
     display: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wc-site-header *,
+  .wc-site-header *::before,
+  .wc-site-header *::after {
+    transition-duration: 0.01ms !important;
   }
 
 }
