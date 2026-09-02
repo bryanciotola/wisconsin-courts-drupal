@@ -14,7 +14,7 @@
   box-sizing: border-box;
 
   width: 100%;
-  max-width: 64rem;
+  max-width: 88rem;
 
   margin-top: 1.5rem;
   margin-left: auto;
@@ -89,6 +89,8 @@
 @media (min-width: 64em) {
 
   .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live) {
+    max-width: 88rem;
+
     padding-left: 2rem;
     padding-right: 2rem;
   }

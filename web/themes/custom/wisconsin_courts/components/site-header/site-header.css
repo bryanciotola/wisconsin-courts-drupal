@@ -3,12 +3,13 @@
  *
  * Mobile-first:
  * - Mobile/tablet use a collapsible menu.
- * - Desktop navigation appears at 64em.
+ * - Desktop uses one unified header with two stacked nav rows.
  */
 
 .wc-site-header {
   position: relative;
   z-index: 20;
+
   width: 100%;
 }
 
@@ -16,8 +17,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 1rem;
+
   min-height: 4.5rem;
+
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
@@ -25,20 +29,22 @@
 .wc-site-header__brand {
   display: inline-flex;
   align-items: center;
+
   min-width: 0;
 }
 
 .wc-site-header__logo {
   display: block;
+
   width: auto;
   max-width: 15rem;
-  max-height: 3.5rem;
+  height: auto;
+
   object-fit: contain;
   object-position: left center;
 }
 
-.wc-site-header__utility,
-.wc-site-header__primary-row {
+.wc-site-header__desktop-nav {
   display: none;
 }
 
@@ -46,10 +52,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   gap: 0.5rem;
+
   min-height: 2.75rem;
+
   margin: 0;
   padding: 0.5rem;
+
   flex: 0 0 auto;
 }
 
@@ -66,7 +76,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   min-height: 3.25rem;
+
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
@@ -74,7 +86,9 @@
 .wc-site-header__mobile-utility {
   display: flex;
   flex-direction: column;
+
   gap: 0.75rem;
+
   padding-top: 1rem;
   padding-bottom: 1.25rem;
 }
@@ -83,66 +97,124 @@
   display: block;
 }
 
-/*
- * Desktop.
- *
- * At the USWDS desktop breakpoint, restore the full navigation
- * used by the design mockup.
- */
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
 
 @media (min-width: 64em) {
 
+  .wc-site-header__container {
+    width: 100%;
+    max-width: 88rem;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /*
+   * One unified desktop header.
+   *
+   * The logo occupies the left side while utility and
+   * primary navigation form a compact two-row stack.
+   */
+
   .wc-site-header__top {
-    min-height: 5.375rem;
+    min-height: 7.25rem;
+
     padding-top: 0.8rem;
-    padding-bottom: 0.65rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .wc-site-header__brand {
+    flex: 0 0 auto;
   }
 
   .wc-site-header__logo {
-    max-width: 19.6875rem;
-    max-height: 4.5rem;
+    width: 18rem;
+    max-width: none;
+    height: auto;
+    max-height: none;
   }
 
-  .wc-site-header__menu-button {
-    display: none;
+
+  /* =======================================================
+     DESKTOP NAV STACK
+     ======================================================= */
+
+  .wc-site-header__desktop-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+    gap: 1.1rem;
+
+    flex: 1 1 auto;
+
+    min-width: 0;
   }
+
+
+  /* Utility navigation */
 
   .wc-site-header__utility {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 1.35rem;
-    flex: 1 1 auto;
-    min-width: 0;
+
+    gap: 1.5rem;
+
+    width: 100%;
+  }
+
+  .wc-site-header__utility a {
+    font-size: 0.92rem;
+    line-height: 1;
+
+    white-space: nowrap;
   }
 
   .wc-site-header__search {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    flex: 0 0 2rem;
+
+    width: 1.9rem;
+    height: 1.9rem;
+
+    flex: 0 0 1.9rem;
   }
 
-  .wc-site-header__primary-row {
-    display: block;
-  }
+
+  /* Primary navigation */
 
   .wc-site-header__primary {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
     gap: 2rem;
+
     width: 100%;
-    min-height: 3.25rem;
   }
 
   .wc-site-header__primary a {
     display: inline-flex;
     align-items: center;
-    min-height: 3.25rem;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+
     white-space: nowrap;
+  }
+
+
+  /* Mobile controls are hidden on desktop */
+
+  .wc-site-header__menu-button {
+    display: none;
   }
 
   .wc-site-header__mobile-nav {

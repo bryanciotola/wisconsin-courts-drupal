@@ -19,7 +19,7 @@
   display: flex;
   align-items: flex-start;
 
-  gap: 0.9rem;
+  gap: 1.5rem;
 }
 
 
@@ -28,7 +28,7 @@
    ========================================================= */
 
 .wc-chief-message__profile {
-  flex: 0 0 5.75rem;
+  flex: 0 0 8rem;
 
   display: flex;
   flex-direction: column;
@@ -50,18 +50,18 @@
    ========================================================= */
 
 .wc-chief-message__portrait--small {
-  width: 4.75rem;
-  height: 4.75rem;
+  width: 6rem;
+  height: 6rem;
 }
 
 .wc-chief-message__portrait--medium {
-  width: 5.75rem;
-  height: 5.75rem;
+  width: 7.5rem;
+  height: 7.5rem;
 }
 
 .wc-chief-message__portrait--large {
-  width: 6.75rem;
-  height: 6.75rem;
+  width: 8.75rem;
+  height: 8.75rem;
 }
 
 
@@ -87,17 +87,19 @@
    ========================================================= */
 
 .wc-chief-message__profile-title {
-  margin-top: 0.4rem;
+  margin-top: 0.65rem;
 
-  font-size: 0.68rem;
-  line-height: 1.1;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.15;
 }
 
 .wc-chief-message__profile-name {
-  margin-top: 0.08rem;
+  margin-top: 0.15rem;
 
-  font-size: 0.7rem;
-  line-height: 1.1;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.15;
 }
 
 
@@ -112,22 +114,27 @@
 }
 
 .wc-chief-message__heading {
-  margin-bottom: 0.45rem;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
 
-  font-size: 1.3rem;
+  font-size: 2rem;
+  font-weight: 400;
   line-height: 1.05;
 
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
 .wc-chief-message__message {
-  font-size: 0.75rem;
-  line-height: 1.3;
+  max-width: 34rem;
+
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
 .wc-chief-message__message p {
   margin-top: 0;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.7rem;
 }
 
 .wc-chief-message__message p:last-child {
@@ -144,16 +151,17 @@
 .wc-chief-message__button:visited {
   min-height: auto;
 
-  margin-top: 0.75rem;
+  margin-top: 1.25rem;
   margin-bottom: 0;
 
-  padding: 0.5rem 0.8rem;
+  padding: 0.75rem 1.1rem;
 
   background: #ffffff;
 
   color: #16385c !important;
 
-  font-size: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 400;
 
   text-decoration: none;
 }
@@ -163,6 +171,74 @@
   background: #f0f0f0;
 
   color: #16385c !important;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 64em) {
+
+  .wc-chief-message__layout {
+    gap: 1.75rem;
+  }
+
+  .wc-chief-message__profile {
+    flex-basis: 9rem;
+  }
+
+  .wc-chief-message__portrait--small {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+
+  .wc-chief-message__portrait--medium {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .wc-chief-message__portrait--large {
+    width: 9.25rem;
+    height: 9.25rem;
+  }
+
+  .wc-chief-message__profile-title {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .wc-chief-message__profile-name {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .wc-chief-message__heading {
+    margin-bottom: 0.9rem;
+
+    font-size: 2.15rem;
+    font-weight: 400;
+  }
+
+  .wc-chief-message__message {
+    max-width: 36rem;
+
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  .wc-chief-message__button,
+  .wc-chief-message__button:link,
+  .wc-chief-message__button:visited {
+    margin-top: 1.35rem;
+
+    padding: 0.8rem 1.2rem;
+
+    font-size: 0.98rem;
+    font-weight: 400;
+  }
+
 }
 
 

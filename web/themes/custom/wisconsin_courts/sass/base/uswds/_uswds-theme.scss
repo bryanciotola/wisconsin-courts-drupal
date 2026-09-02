@@ -80,6 +80,18 @@ Brand colors:
 
 
   /* =======================================================
+     LAYOUT
+     ======================================================= */
+
+  /*
+   * Use the USWDS widescreen container globally.
+   * This expands standard .grid-container elements to
+   * approximately 1400px instead of the default desktop width.
+   */
+  $theme-grid-container-max-width: "widescreen",
+
+
+  /* =======================================================
      BRAND COLORS
      ======================================================= */
 

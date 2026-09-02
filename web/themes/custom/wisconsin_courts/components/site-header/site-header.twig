@@ -24,7 +24,7 @@
   "
 >
 
-  <div class="grid-container">
+  <div class="grid-container wc-site-header__container">
 
     <div class="wc-site-header__top">
 
@@ -60,66 +60,95 @@
 
       </a>
 
-      <nav
-        class="wc-site-header__utility"
-        aria-label="Utility navigation"
-      >
 
-        {% for item in utility_links %}
-          {% if item.text and item.url %}
+      <div class="wc-site-header__desktop-nav">
+
+        <nav
+          class="wc-site-header__utility"
+          aria-label="Utility navigation"
+        >
+
+          {% for item in utility_links %}
+            {% if item.text and item.url %}
+
+              <a
+                href="{{ item.url }}"
+                class="
+                  text-primary-darker
+                  text-semibold
+                  text-no-underline
+                "
+              >
+                {{ item.text }}
+              </a>
+
+            {% endif %}
+          {% endfor %}
+
+          {% if search_url %}
 
             <a
-              href="{{ item.url }}"
+              href="{{ search_url }}"
+              aria-label="Search"
               class="
-                font-sans-3xs
+                wc-site-header__search
                 text-primary-darker
-                text-semibold
                 text-no-underline
               "
             >
-              {{ item.text }}
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M16.5 16.5L21 21"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
             </a>
 
           {% endif %}
-        {% endfor %}
 
-        {% if search_url %}
+        </nav>
 
-          <a
-            href="{{ search_url }}"
-            aria-label="Search"
-            class="
-              wc-site-header__search
-              text-primary-darker
-              text-no-underline
-            "
-          >
-            <svg
-              aria-hidden="true"
-              width="19"
-              height="19"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-              <path
-                d="M16.5 16.5L21 21"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </a>
 
-        {% endif %}
+        <nav
+          class="wc-site-header__primary"
+          aria-label="Primary navigation"
+        >
 
-      </nav>
+          {% for item in primary_links %}
+            {% if item.text and item.url %}
+
+              <a
+                href="{{ item.url }}"
+                class="
+                  text-primary-darker
+                  text-no-underline
+                "
+              >
+                {{ item.text }}
+              </a>
+
+            {% endif %}
+          {% endfor %}
+
+        </nav>
+
+      </div>
+
 
       <button
         class="
@@ -155,44 +184,6 @@
 
   </div>
 
-  <div
-    class="
-      wc-site-header__primary-row
-      border-top
-      border-base-lighter
-    "
-  >
-
-    <div class="grid-container">
-
-      <nav
-        class="wc-site-header__primary"
-        aria-label="Primary navigation"
-      >
-
-        {% for item in primary_links %}
-          {% if item.text and item.url %}
-
-            <a
-              href="{{ item.url }}"
-              class="
-                font-sans-2xs
-                text-primary-darker
-                text-bold
-                text-no-underline
-              "
-            >
-              {{ item.text }}
-            </a>
-
-          {% endif %}
-        {% endfor %}
-
-      </nav>
-
-    </div>
-
-  </div>
 
   <div
     id="wc-site-header-mobile-nav"
