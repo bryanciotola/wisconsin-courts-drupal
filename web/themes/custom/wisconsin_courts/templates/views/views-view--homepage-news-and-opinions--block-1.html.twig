@@ -5,43 +5,98 @@
  *
  * Converts News story and Opinion nodes from the Drupal View into
  * the item structure expected by the Latest News component.
+ *
+ * News image priority:
+ * 1. Hero image
+ * 2. Right-side image
  */
 #}
 
 {% set news_items = [] %}
 
-{% for result in view.result %}
+{% for row in view.result %}
 
-  {% set node = result._entity %}
+  {% set node = attribute(row, '_entity')|default(null) %}
 
   {% if node %}
 
     {% set bundle = node.bundle() %}
 
-    {#
-      NEWS STORY
-    #}
+
+    {# ======================================================
+       NEWS STORY
+       ====================================================== #}
+
     {% if bundle == 'news_story' %}
 
       {% set image_url = '' %}
       {% set image_alt = '' %}
 
-      {% if node.field_featured_image is not empty and node.field_featured_image.entity %}
+      {#
+        First choice:
+        Hero image
+        Machine name: field_hero_image
+      #}
+      {% if
+        node.field_hero_image is not empty
+        and node.field_hero_image.entity
+      %}
 
-        {% set image_url = file_url(node.field_featured_image.entity.uri.value) %}
-        {% set image_alt = node.field_featured_image.alt|default('') %}
+        {% set image_url =
+          file_url(node.field_hero_image.entity.uri.value)
+        %}
+
+        {% set image_alt =
+          node.field_hero_image.alt|default('')
+        %}
+
+      {#
+        Second choice:
+        Right-side image
+        Machine name: field_featured_image
+      #}
+      {% elseif
+        node.field_featured_image is not empty
+        and node.field_featured_image.entity
+      %}
+
+        {% set image_url =
+          file_url(node.field_featured_image.entity.uri.value)
+        %}
+
+        {% set image_alt =
+          node.field_featured_image.alt|default('')
+        %}
 
       {% endif %}
+
+
+      {% set publication_date = '' %}
+
+      {% if node.field_publication_date.value %}
+
+        {% set publication_date =
+          node.field_publication_date.value|date(
+            'F j, Y',
+            'America/Chicago'
+          )
+        %}
+
+      {% endif %}
+
 
       {% set news_items = news_items|merge([
         {
           type: 'news',
           title: node.label(),
-          date: node.field_publication_date.value
-            ? node.field_publication_date.value|date('F j, Y')
-            : '',
+          date: publication_date,
           summary: node.field_summary.value|default(''),
-          url: path('entity.node.canonical', {'node': node.id()}),
+          url: path(
+            'entity.node.canonical',
+            {
+              node: node.id()
+            }
+          ),
           image: image_url,
           image_alt: image_alt,
           case_number: '',
@@ -50,26 +105,45 @@
       ]) %}
 
 
-    {#
-      OPINION
-    #}
+    {# ======================================================
+       OPINION
+       ====================================================== #}
+
     {% elseif bundle == 'opinion' %}
 
       {% set opinion_url = '' %}
 
-      {% if node.field_opinion_pdf is not empty and node.field_opinion_pdf.entity %}
+      {% if
+        node.field_opinion_pdf is not empty
+        and node.field_opinion_pdf.entity
+      %}
 
-        {% set opinion_url = file_url(node.field_opinion_pdf.entity.uri.value) %}
+        {% set opinion_url =
+          file_url(node.field_opinion_pdf.entity.uri.value)
+        %}
 
       {% endif %}
+
+
+      {% set publication_date = '' %}
+
+      {% if node.field_publication_date.value %}
+
+        {% set publication_date =
+          node.field_publication_date.value|date(
+            'F j, Y',
+            'America/Chicago'
+          )
+        %}
+
+      {% endif %}
+
 
       {% set news_items = news_items|merge([
         {
           type: 'opinion',
           title: node.label(),
-          date: node.field_publication_date.value
-            ? node.field_publication_date.value|date('F j, Y')
-            : '',
+          date: publication_date,
           summary: node.field_summary.value|default(''),
           url: opinion_url,
           image: '',

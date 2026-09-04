@@ -1,8 +1,5 @@
 /**
  * Wisconsin Courts - Latest News and Opinions
- *
- * Handles client-side filtering between:
- * News / Opinions / Both.
  */
 
 (function (Drupal, once) {
@@ -17,6 +14,7 @@
       ).forEach((component) => {
         const tabs = component.querySelectorAll('[data-news-tab]');
         const results = component.querySelector('[data-news-results]');
+        const viewAll = component.querySelector('[data-news-view-all]');
         const sourceItems = component.querySelectorAll('[data-news-item]');
 
         if (!tabs.length || !results || !sourceItems.length) {
@@ -32,7 +30,6 @@
           image: element.dataset.image || '',
           imageAlt: element.dataset.imageAlt || '',
           caseNumber: element.dataset.caseNumber || '',
-          label: element.dataset.label || '',
         }));
 
 
@@ -56,15 +53,9 @@
             `
             : '';
 
-          const labelMarkup = item.label
-            ? `
-              <div class="wc-latest-news__badge-wrapper">
-                <span class="wc-latest-news__badge">
-                  ${escapeHtml(item.label)}
-                </span>
-              </div>
-            `
-            : '';
+          const featuredLabel = item.type === 'opinion'
+            ? 'Featured Opinion'
+            : 'Featured News';
 
           const titleMarkup = item.url
             ? `
@@ -77,7 +68,7 @@
           const caseMarkup = item.caseNumber
             ? `
               <div class="wc-latest-news__case-number">
-                Case ${escapeHtml(item.caseNumber)}
+                ${escapeHtml(item.caseNumber)}
               </div>
             `
             : '';
@@ -121,7 +112,11 @@
 
               <div class="wc-latest-news__featured-content">
 
-                ${labelMarkup}
+                <div class="wc-latest-news__badge-wrapper">
+                  <span class="wc-latest-news__badge">
+                    ${featuredLabel}
+                  </span>
+                </div>
 
                 <h3 class="wc-latest-news__featured-title">
                   ${titleMarkup}
@@ -198,6 +193,24 @@
         };
 
 
+        const updateViewAll = (filter) => {
+          if (!viewAll) {
+            return;
+          }
+
+          if (filter === 'opinions') {
+            viewAll.href = '/opinions';
+            viewAll.innerHTML =
+              'View all opinions <span aria-hidden="true">›</span>';
+          }
+          else {
+            viewAll.href = '/news';
+            viewAll.innerHTML =
+              'View all news <span aria-hidden="true">›</span>';
+          }
+        };
+
+
         const render = (filter) => {
           const filteredItems = items.filter((item) => {
             if (filter === 'both') {
@@ -210,6 +223,8 @@
 
             return item.type === 'news';
           });
+
+          updateViewAll(filter);
 
           if (!filteredItems.length) {
             results.innerHTML = `

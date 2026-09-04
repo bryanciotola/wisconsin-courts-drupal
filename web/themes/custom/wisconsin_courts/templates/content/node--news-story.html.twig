@@ -148,6 +148,35 @@
 
       <div class="wc-news-story__intro{{ right_image_url ? ' wc-news-story__intro--with-image' : '' }}">
 
+
+        {#
+          The right-side image comes before the header in the
+          source so that it can float beside both the intro and
+          the beginning of the article body on desktop.
+        #}
+
+        {% if right_image_url %}
+
+          <figure class="wc-news-story__right-image">
+
+            <img
+              src="{{ right_image_url }}"
+              alt="{{ right_image_alt }}"
+            >
+
+            {% if right_image_caption %}
+
+              <figcaption class="wc-news-story__caption">
+                {{ right_image_caption }}
+              </figcaption>
+
+            {% endif %}
+
+          </figure>
+
+        {% endif %}
+
+
         <header class="wc-news-story__header">
 
           {% if label %}
@@ -178,28 +207,6 @@
 
         </header>
 
-
-        {% if right_image_url %}
-
-          <figure class="wc-news-story__right-image">
-
-            <img
-              src="{{ right_image_url }}"
-              alt="{{ right_image_alt }}"
-            >
-
-            {% if right_image_caption %}
-
-              <figcaption class="wc-news-story__caption">
-                {{ right_image_caption }}
-              </figcaption>
-
-            {% endif %}
-
-          </figure>
-
-        {% endif %}
-
       </div>
 
 
@@ -214,6 +221,23 @@
         </div>
 
       {% endif %}
+
+
+      {# =====================================================
+         BACK TO NEWS
+         ===================================================== #}
+
+      <div class="wc-news-story__back">
+
+        <a
+          href="/news"
+          class="wc-news-story__back-link"
+        >
+          <span aria-hidden="true">‹</span>
+          Back to current headlines
+        </a>
+
+      </div>
 
     </div>
 

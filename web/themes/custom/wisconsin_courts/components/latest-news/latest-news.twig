@@ -2,22 +2,12 @@
 /**
  * @file
  * Wisconsin Courts - Latest News and Opinions
- *
- * Receives a chronologically sorted array of News Story and Opinion items.
- * JavaScript handles switching between News, Opinions, and Both.
  */
 #}
 
 {% set heading = heading|default('Latest news and opinions') %}
 {% set default_tab = default_tab|default('news') %}
 {% set items = items|default([]) %}
-
-{#
-  Build the initial visible set on the server.
-
-  This gives us a usable News view even if JavaScript is unavailable.
-  JavaScript will take over after page load and handle tab switching.
-#}
 
 {% set initial_items = [] %}
 
@@ -34,6 +24,14 @@
   {% endif %}
 
 {% endfor %}
+
+{% set view_all_text = 'View all news' %}
+{% set view_all_url = '/news' %}
+
+{% if default_tab == 'opinions' %}
+  {% set view_all_text = 'View all opinions' %}
+  {% set view_all_url = '/opinions' %}
+{% endif %}
 
 
 <section
@@ -88,17 +86,14 @@
     </div>
 
 
-    {% if all_news_text and all_news_url %}
-
-      <a
-        href="{{ all_news_url }}"
-        class="wc-latest-news__view-all"
-      >
-        {{ all_news_text }}
-        <span aria-hidden="true">›</span>
-      </a>
-
-    {% endif %}
+    <a
+      href="{{ view_all_url }}"
+      class="wc-latest-news__view-all"
+      data-news-view-all
+    >
+      {{ view_all_text }}
+      <span aria-hidden="true">›</span>
+    </a>
 
   </div>
 
@@ -112,7 +107,6 @@
     {% if initial_items|length %}
 
       {% set featured = initial_items|first %}
-
 
       <article class="wc-latest-news__featured">
 
@@ -133,17 +127,19 @@
 
         <div class="wc-latest-news__featured-content">
 
-          {% if featured.label %}
+          <div class="wc-latest-news__badge-wrapper">
 
-            <div class="wc-latest-news__badge-wrapper">
+            <span class="wc-latest-news__badge">
 
-              <span class="wc-latest-news__badge">
-                {{ featured.label }}
-              </span>
+              {% if featured.type == 'opinion' %}
+                Featured Opinion
+              {% else %}
+                Featured News
+              {% endif %}
 
-            </div>
+            </span>
 
-          {% endif %}
+          </div>
 
 
           <h3 class="wc-latest-news__featured-title">
@@ -166,7 +162,7 @@
           {% if featured.case_number %}
 
             <div class="wc-latest-news__case-number">
-              Case {{ featured.case_number }}
+              {{ featured.case_number }}
             </div>
 
           {% endif %}
@@ -289,14 +285,6 @@
   </div>
 
 
-  {#
-    Hidden source data.
-
-    JavaScript reads these elements whenever a visitor changes tabs.
-    They stay in chronological order because the Drupal View supplies
-    them in Publication date descending order.
-  #}
-
   <div class="wc-latest-news__data" hidden>
 
     {% for item in items %}
@@ -311,7 +299,6 @@
         data-image="{{ item.image|default('')|e('html_attr') }}"
         data-image-alt="{{ item.image_alt|default('')|e('html_attr') }}"
         data-case-number="{{ item.case_number|default('')|e('html_attr') }}"
-        data-label="{{ item.label|default('')|e('html_attr') }}"
       ></div>
 
     {% endfor %}

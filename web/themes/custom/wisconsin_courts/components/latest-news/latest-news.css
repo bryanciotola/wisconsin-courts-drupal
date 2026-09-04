@@ -1,12 +1,9 @@
 /*
- * Wisconsin Courts - Latest News
- *
- * Mobile-first homepage news and opinions component.
+ * Wisconsin Courts - Latest News and Opinions
  */
 
 .wc-latest-news {
   box-sizing: border-box;
-
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -17,7 +14,6 @@
   padding: 1.25rem;
 
   background: #fff;
-
   border: 1px solid #dfe1e2;
   border-radius: 0.5rem;
 
@@ -52,7 +48,7 @@
 
   gap: 1rem;
 
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.15rem;
 
   border-bottom: 1px solid #dfe1e2;
 }
@@ -60,20 +56,16 @@
 .wc-latest-news__tabs {
   display: flex;
   align-items: flex-end;
-
-  gap: 0;
 }
 
 .wc-latest-news__tab {
-  position: relative;
-
   display: inline-flex;
   align-items: center;
 
   min-height: 2.35rem;
 
   margin: 0;
-  padding: 0 0.75rem 0.5rem;
+  padding: 0 0.75rem 0.55rem;
 
   appearance: none;
 
@@ -85,9 +77,8 @@
 
   cursor: pointer;
 
-  font-family: inherit;
+  font: inherit;
   font-size: 0.92rem;
-  font-weight: 400;
   line-height: 1;
 
   transition:
@@ -101,7 +92,6 @@
 
 .wc-latest-news__tab:hover {
   color: #005ea8;
-
   transform: translateY(-1px);
 }
 
@@ -112,7 +102,6 @@
 
 .wc-latest-news__tab--active {
   color: #005ea8;
-
   font-weight: 700;
 
   border-bottom: 2px solid #005ea8;
@@ -122,18 +111,15 @@
   display: inline-flex;
   align-items: center;
 
-  gap: 0.25rem;
+  gap: 0.3rem;
 
   padding-bottom: 0.6rem;
 
   color: #16385c;
 
   font-size: 0.92rem;
-  font-weight: 400;
-  line-height: 1;
 
   text-decoration: none;
-
   white-space: nowrap;
 
   transition:
@@ -143,8 +129,7 @@
 
 .wc-latest-news__view-all:hover {
   color: #005ea8;
-
-  transform: translateX(0.2rem);
+  transform: translateX(0.15rem);
 }
 
 .wc-latest-news__view-all:focus-visible {
@@ -161,9 +146,9 @@
   display: grid;
   grid-template-columns: 1fr;
 
-  gap: 1.15rem;
+  gap: 1.2rem;
 
-  padding-bottom: 1.4rem;
+  padding: 0.25rem 0 1.5rem;
 
   border-bottom: 1px solid #dfe1e2;
 }
@@ -176,10 +161,13 @@
   display: block;
 
   width: 100%;
+  height: 100%;
 
   aspect-ratio: 4 / 3;
 
   object-fit: cover;
+
+  border-radius: 0.15rem;
 }
 
 .wc-latest-news__featured-content {
@@ -187,46 +175,38 @@
 }
 
 .wc-latest-news__badge-wrapper {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.9rem;
 }
 
 .wc-latest-news__badge {
   display: inline-flex;
   align-items: center;
 
-  padding: 0.28rem 0.6rem;
+  padding: 0.3rem 0.6rem;
 
   background: #d9eaf7;
-
   border-radius: 0.4rem;
 
   color: #244a70;
 
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 600;
   line-height: 1;
 }
 
 .wc-latest-news__featured-title {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.6rem;
 
   color: #16385c;
 
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.16;
+  line-height: 1.2;
 }
 
 .wc-latest-news__featured-title a {
-  position: relative;
-
   color: inherit;
-
   text-decoration: none;
-
-  transition:
-    color 0.16s ease,
-    transform 0.16s ease;
 }
 
 .wc-latest-news__featured-title a:hover {
@@ -245,16 +225,14 @@
 
   font-size: 0.8rem;
   font-weight: 600;
-  line-height: 1.2;
 }
 
 .wc-latest-news__featured-date {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.75rem;
 
   color: #565c65;
 
   font-size: 0.82rem;
-  line-height: 1.2;
 }
 
 .wc-latest-news__featured-summary {
@@ -262,68 +240,47 @@
 
   color: #3d4551;
 
-  font-size: 0.84rem;
-  font-weight: 400;
-  line-height: 1.4;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 
 /* =========================================================
-   READ FULL STORY CTA
+   FEATURED CTA
    ========================================================= */
 
 .wc-latest-news__read-more {
   display: inline-flex;
   align-items: center;
 
-  gap: 0.35rem;
+  gap: 0.3rem;
 
-  margin-top: 0.15rem;
+  color: #16385c;
 
-  padding: 0.45rem 0.7rem;
-
-  border: 1px solid #2a5298;
-  border-radius: 0.3rem;
-
-  color: #1e3a70;
-  background: #fff;
-
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  line-height: 1;
 
   text-decoration: none;
+  border-bottom: 1px solid currentColor;
 
   transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease,
-    color 0.15s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+    color 0.16s ease,
+    transform 0.16s ease;
 }
 
 .wc-latest-news__read-more:hover {
-  background: #e9f0f8;
-
-  border-color: #005ea8;
-
   color: #005ea8;
-
-  text-decoration: none;
-
-  transform: translateY(-2px);
-
-  box-shadow: 0 3px 7px rgb(0 0 0 / 12%);
+  transform: translateX(0.15rem);
 }
 
 .wc-latest-news__read-more:focus-visible {
   outline: 3px solid #2491ff;
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 
 /* =========================================================
-   LOWER NEWS ITEMS
+   LOWER STORIES
    ========================================================= */
 
 .wc-latest-news__list {
@@ -340,8 +297,7 @@
 
   gap: 1.25rem;
 
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+  padding: 1rem 0;
 
   border-bottom: 1px solid #dfe1e2;
 }
@@ -356,7 +312,6 @@
   color: #565c65;
 
   font-size: 0.78rem;
-  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -367,7 +322,6 @@
 
   font-size: 0.76rem;
   font-weight: 600;
-  line-height: 1.2;
 }
 
 .wc-latest-news__item-title {
@@ -383,7 +337,7 @@
     Arial,
     sans-serif;
 
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.3;
 
@@ -396,7 +350,6 @@
 
 .wc-latest-news__item-title:hover {
   color: #005ea8;
-
   transform: translateX(0.15rem);
 }
 
@@ -410,18 +363,14 @@
 
   color: #005ea8;
 
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;
 
-  transition:
-    color 0.16s ease,
-    transform 0.18s ease;
+  transition: transform 0.18s ease;
 }
 
 .wc-latest-news__item:hover .wc-latest-news__item-arrow {
-  color: #2a5298;
-
   transform: translateX(0.3rem);
 }
 
@@ -437,7 +386,19 @@
   color: #565c65;
 
   font-size: 0.9rem;
-  line-height: 1.4;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-latest-news__featured-image-wrapper {
+    max-width: 100%;
+  }
+
 }
 
 
@@ -449,10 +410,12 @@
 
   .wc-latest-news__featured:has(.wc-latest-news__featured-image-wrapper) {
     grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
+      minmax(15rem, 0.95fr)
+      minmax(0, 1.05fr);
 
-    gap: 1.4rem;
+    align-items: center;
+
+    gap: 1.6rem;
   }
 
 }
@@ -469,86 +432,35 @@
   }
 
   .wc-latest-news__heading {
-    margin-bottom: 1.05rem;
-
     font-size: 1.8rem;
   }
 
   .wc-latest-news__featured:has(.wc-latest-news__featured-image-wrapper) {
     grid-template-columns:
-      minmax(0, 1.05fr)
-      minmax(0, 0.95fr);
+      minmax(17rem, 0.95fr)
+      minmax(0, 1.05fr);
 
-    gap: 1.7rem;
+    gap: 1.8rem;
 
-    padding-bottom: 1.55rem;
-  }
-
-  .wc-latest-news__featured-content {
-    max-width: 27rem;
-  }
-
-  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
-    .wc-latest-news__featured-content {
-    max-width: 100%;
+    padding-bottom: 1.65rem;
   }
 
   .wc-latest-news__featured-title {
-    max-width: 25rem;
-
     font-size: 1.1rem;
-    line-height: 1.18;
-  }
-
-  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
-    .wc-latest-news__featured-title {
-    max-width: 38rem;
   }
 
   .wc-latest-news__featured-summary {
-    max-width: 27rem;
-
     font-size: 0.9rem;
-    line-height: 1.42;
-  }
-
-  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
-    .wc-latest-news__featured-summary {
-    max-width: 38rem;
-  }
-
-  .wc-latest-news__read-more {
-    padding: 0.5rem 0.75rem;
-
-    font-size: 0.86rem;
   }
 
   .wc-latest-news__item {
     min-height: 5rem;
-
-    padding-top: 0.95rem;
-    padding-bottom: 0.95rem;
-  }
-
-  .wc-latest-news__item-content {
-    width: 100%;
-    max-width: 24rem;
   }
 
   .wc-latest-news__item-title {
-    max-width: 23rem;
-
-    font-family:
-      Calibri,
-      Carlito,
-      Aptos,
-      "Segoe UI",
-      Arial,
-      sans-serif;
+    max-width: 24rem;
 
     font-size: 0.92rem;
-    font-weight: 600;
-    line-height: 1.32;
   }
 
 }
