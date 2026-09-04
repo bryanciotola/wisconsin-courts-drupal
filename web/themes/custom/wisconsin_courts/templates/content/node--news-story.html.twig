@@ -1,0 +1,222 @@
+{#
+/**
+ * @file
+ * Wisconsin Courts - News Story node template.
+ *
+ * Supports:
+ * - Hero image only
+ * - Right-side image only
+ * - Hero image + right-side image
+ */
+#}
+
+{% set publication_date = '' %}
+
+{% set right_image_url = '' %}
+{% set right_image_alt = '' %}
+{% set right_image_caption = '' %}
+
+{% set hero_image_url = '' %}
+{% set hero_image_alt = '' %}
+{% set hero_image_caption = '' %}
+
+
+{# =========================================================
+   PUBLICATION DATE
+   ========================================================= #}
+
+{% if node.field_publication_date.value %}
+
+  {% set publication_date =
+    node.field_publication_date.value|date(
+      'F j, Y',
+      'America/Chicago'
+    )
+  %}
+
+{% endif %}
+
+
+{# =========================================================
+   RIGHT-SIDE IMAGE
+   ========================================================= #}
+
+{% if
+  node.field_featured_image is not empty
+  and node.field_featured_image.entity
+%}
+
+  {% set right_image_url =
+    file_url(node.field_featured_image.entity.uri.value)
+  %}
+
+  {% set right_image_alt =
+    node.field_featured_image.alt|default('')
+  %}
+
+{% endif %}
+
+{% if node.field_right_side_image_caption.value %}
+
+  {% set right_image_caption =
+    node.field_right_side_image_caption.value
+  %}
+
+{% endif %}
+
+
+{# =========================================================
+   HERO IMAGE
+   ========================================================= #}
+
+{% if
+  node.field_hero_image is not empty
+  and node.field_hero_image.entity
+%}
+
+  {% set hero_image_url =
+    file_url(node.field_hero_image.entity.uri.value)
+  %}
+
+  {% set hero_image_alt =
+    node.field_hero_image.alt|default('')
+  %}
+
+{% endif %}
+
+{% if node.field_hero_image_caption.value %}
+
+  {% set hero_image_caption =
+    node.field_hero_image_caption.value
+  %}
+
+{% endif %}
+
+
+{# =========================================================
+   BODY
+   ========================================================= #}
+
+{% set body_content = content.field_body|default([]) %}
+
+{% if body_content %}
+
+  {% set body_content = body_content|merge({
+    '#label_display': 'hidden'
+  }) %}
+
+{% endif %}
+
+
+<article{{ attributes.addClass('wc-news-story') }}>
+
+  <div class="wc-news-story__site-container">
+
+    <div class="wc-news-story__article">
+
+
+      {# =====================================================
+         HERO IMAGE
+         ===================================================== #}
+
+      {% if hero_image_url %}
+
+        <figure class="wc-news-story__hero">
+
+          <img
+            src="{{ hero_image_url }}"
+            alt="{{ hero_image_alt }}"
+            class="wc-news-story__hero-image"
+          >
+
+          {% if hero_image_caption %}
+
+            <figcaption class="wc-news-story__caption">
+              {{ hero_image_caption }}
+            </figcaption>
+
+          {% endif %}
+
+        </figure>
+
+      {% endif %}
+
+
+      {# =====================================================
+         ARTICLE INTRO
+         ===================================================== #}
+
+      <div class="wc-news-story__intro{{ right_image_url ? ' wc-news-story__intro--with-image' : '' }}">
+
+        <header class="wc-news-story__header">
+
+          {% if label %}
+
+            <h1 class="wc-news-story__title">
+              {{ label }}
+            </h1>
+
+          {% endif %}
+
+
+          {% if publication_date %}
+
+            <div class="wc-news-story__date">
+              {{ publication_date }}
+            </div>
+
+          {% endif %}
+
+
+          {% if node.field_summary.value %}
+
+            <div class="wc-news-story__summary">
+              {{ node.field_summary.value }}
+            </div>
+
+          {% endif %}
+
+        </header>
+
+
+        {% if right_image_url %}
+
+          <figure class="wc-news-story__right-image">
+
+            <img
+              src="{{ right_image_url }}"
+              alt="{{ right_image_alt }}"
+            >
+
+            {% if right_image_caption %}
+
+              <figcaption class="wc-news-story__caption">
+                {{ right_image_caption }}
+              </figcaption>
+
+            {% endif %}
+
+          </figure>
+
+        {% endif %}
+
+      </div>
+
+
+      {# =====================================================
+         BODY
+         ===================================================== #}
+
+      {% if body_content %}
+
+        <div class="wc-news-story__body">
+          {{ body_content }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</article>

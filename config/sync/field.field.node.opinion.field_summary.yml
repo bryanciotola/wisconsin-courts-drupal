@@ -1,0 +1,19 @@
+uuid: d31bc9a2-cb13-43cc-b91e-3c16810476ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.opinion
+id: node.opinion.field_summary
+field_name: field_summary
+entity_type: node
+bundle: opinion
+label: Summary
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

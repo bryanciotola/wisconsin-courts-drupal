@@ -1,0 +1,47 @@
+uuid: 4f0907f1-c08c-4fc6-95ad-4ee2ecd8bd44
+langcode: en
+status: true
+dependencies:
+  module:
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - wisconsin_courts
+id: wisconsin_courts_sitefooter
+theme: wisconsin_courts
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'ui_patterns:wisconsin_courts:site-footer'
+settings:
+  id: 'ui_patterns:wisconsin_courts:site-footer'
+  label: 'Site Footer'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'wisconsin_courts:site-footer'
+    variant_id: null
+    props:
+      attributes:
+        source_id: attributes
+        node_id: ''
+        source:
+          value: ''
+      logo:
+        source_id: media_image_url
+        node_id: ''
+        source:
+          media: '7'
+          image_style: ''
+      logo_alt:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: ''
+      description:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: "The Wisconsin Court System protects individuals' rights, privileges and liberties, maintains the rule of law, and provides a for"
+    slots: {  }
+visibility: {  }

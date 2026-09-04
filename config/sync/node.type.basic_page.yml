@@ -1,0 +1,18 @@
+uuid: bdaa09e8-817c-43c8-bc14-781ca9a92912
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Basic page'
+type: basic_page
+description: 'Basic static pages'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

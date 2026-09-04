@@ -1,0 +1,26 @@
+uuid: 4fb1eb6c-1019-4623-b351-d6e7bccd1371
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: pvxqS5SvKRjGV2-Wc0i5yVO46z3BY3qJFanlpJAYfxE
+id: ui_suite_uswds_page_title
+theme: ui_suite_uswds
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

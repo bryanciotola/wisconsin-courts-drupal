@@ -1,0 +1,17 @@
+uuid: 3b398b54-7018-4732-aaa1-c828612f6b4b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'News story'
+type: news_story
+description: 'News stories and announcements published by the Wisconsin Court System.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

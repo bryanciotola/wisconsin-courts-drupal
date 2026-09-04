@@ -1,0 +1,131 @@
+{#
+/**
+ * @file
+ * Wisconsin Courts - Opinions listing page.
+ */
+#}
+
+<div class="wc-opinions-listing">
+
+  <div class="wc-opinions-listing__container">
+
+    <header class="wc-opinions-listing__header">
+
+      <h1 class="wc-opinions-listing__heading">
+        Opinions
+      </h1>
+
+      <p class="wc-opinions-listing__intro">
+        Published opinions from the Wisconsin Court System.
+      </p>
+
+    </header>
+
+
+    <div class="wc-opinions-listing__items">
+
+      {% for row in view.result %}
+
+        {% set node = attribute(row, '_entity')|default(null) %}
+
+        {% if node %}
+
+          {% set publication_date = '' %}
+          {% set opinion_url = '' %}
+
+          {% if node.field_publication_date.value %}
+
+            {% set publication_date =
+              node.field_publication_date.value|date(
+                'F j, Y',
+                'America/Chicago'
+              )
+            %}
+
+          {% endif %}
+
+
+          {% if
+            node.field_opinion_pdf is not empty
+            and node.field_opinion_pdf.entity
+          %}
+
+            {% set opinion_url =
+              file_url(node.field_opinion_pdf.entity.uri.value)
+            %}
+
+          {% endif %}
+
+
+          <article class="wc-opinions-listing__item">
+
+            {% if publication_date %}
+
+              <div class="wc-opinions-listing__date">
+                {{ publication_date }}
+              </div>
+
+            {% endif %}
+
+
+            <h2 class="wc-opinions-listing__title">
+              {{ node.label() }}
+            </h2>
+
+
+            {% if node.field_case_number.value %}
+
+              <div class="wc-opinions-listing__number">
+                {{ node.field_case_number.value }}
+              </div>
+
+            {% endif %}
+
+
+            {% if node.field_summary.value %}
+
+              <p class="wc-opinions-listing__summary">
+                {{ node.field_summary.value }}
+              </p>
+
+            {% endif %}
+
+
+            {% if opinion_url %}
+
+              <a
+                href="{{ opinion_url }}"
+                class="wc-opinions-listing__pdf-link"
+              >
+                View opinion PDF
+                <span aria-hidden="true">›</span>
+              </a>
+
+            {% endif %}
+
+          </article>
+
+        {% endif %}
+
+      {% else %}
+
+        <p class="wc-opinions-listing__empty">
+          No opinions are currently available.
+        </p>
+
+      {% endfor %}
+
+    </div>
+
+
+    {% if pager %}
+
+      <div class="wc-opinions-listing__pager">
+        {{ pager }}
+      </div>
+
+    {% endif %}
+
+  </div>
+
+</div>

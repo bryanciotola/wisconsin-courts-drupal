@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Wisconsin Courts default page template.
+ *
+ * Uses the UI Suite USWDS page structure while replacing the
+ * contributed theme's default footer with the Wisconsin Courts
+ * custom footer placed in the footer_bottom region.
+ */
+#}
+
+{% extends '@ui_suite_uswds/layout/page.html.twig' %}
+
+
+{% block footer %}
+
+  {% if page.footer_bottom %}
+
+    {{ page.footer_bottom }}
+
+  {% endif %}
+
+{% endblock %}

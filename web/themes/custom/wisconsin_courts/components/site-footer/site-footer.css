@@ -2,8 +2,7 @@
  * Wisconsin Courts
  * Site Footer
  *
- * Full-width footer with centered inner content.
- * USWDS handles typography and theme colors.
+ * Full-width footer with site-aligned inner content.
  */
 
 
@@ -17,6 +16,8 @@
   width: 100%;
 
   margin-top: 2.25rem;
+
+  background: #12284c;
 }
 
 
@@ -26,9 +27,21 @@
 
 .wc-site-footer__main {
   width: 100%;
+}
+
+.wc-site-footer__main-inner {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 88rem;
+
+  margin-right: auto;
+  margin-left: auto;
 
   padding-top: 4.25rem;
+  padding-right: 2rem;
   padding-bottom: 4.75rem;
+  padding-left: 2rem;
 }
 
 .wc-site-footer__grid {
@@ -132,10 +145,22 @@
 .wc-site-footer__utility {
   width: 100%;
 
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
-
   background: #1e3a70;
+}
+
+.wc-site-footer__utility-inner {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 88rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  padding-top: 0.9rem;
+  padding-right: 2rem;
+  padding-bottom: 0.9rem;
+  padding-left: 2rem;
 }
 
 .wc-site-footer__utility-links {
@@ -192,9 +217,11 @@
 
 @media (max-width: 63.99em) {
 
-  .wc-site-footer__main {
+  .wc-site-footer__main-inner {
     padding-top: 3.25rem;
+    padding-right: 1.5rem;
     padding-bottom: 3.5rem;
+    padding-left: 1.5rem;
   }
 
   .wc-site-footer__grid {
@@ -207,6 +234,11 @@
 
   .wc-site-footer__brand {
     grid-column: 1 / -1;
+  }
+
+  .wc-site-footer__utility-inner {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
 
 }
@@ -222,9 +254,11 @@
     margin-top: 2rem;
   }
 
-  .wc-site-footer__main {
+  .wc-site-footer__main-inner {
     padding-top: 3rem;
+    padding-right: 1rem;
     padding-bottom: 3.25rem;
+    padding-left: 1rem;
   }
 
   .wc-site-footer__grid {
@@ -239,6 +273,11 @@
 
   .wc-site-footer__logo {
     width: 13.5rem;
+  }
+
+  .wc-site-footer__utility-inner {
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 
   .wc-site-footer__utility-links {

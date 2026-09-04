@@ -1,0 +1,88 @@
+uuid: a2445de4-2653-46d7-a873-3dc6b37abe58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_story.field_body
+    - field.field.node.news_story.field_featured_image
+    - field.field.node.news_story.field_hero_image
+    - field.field.node.news_story.field_hero_image_caption
+    - field.field.node.news_story.field_publication_date
+    - field.field.node.news_story.field_right_side_image_caption
+    - field.field.node.news_story.field_summary
+    - node.type.news_story
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.news_story.default
+targetEntityType: node
+bundle: news_story
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_featured_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_hero_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_hero_image_caption:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_publication_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_right_side_image_caption:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

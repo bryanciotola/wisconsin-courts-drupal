@@ -1,0 +1,396 @@
+/*
+ * Wisconsin Courts - News Story
+ */
+
+.wc-news-story {
+  width: 100%;
+  color: #1b1b1b;
+}
+
+.wc-news-story__site-container {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 88rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 1.5rem 1rem 3rem;
+}
+
+.wc-news-story__article {
+  width: 100%;
+  max-width: 68rem;
+
+  margin-right: auto;
+  margin-left: 0;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+   ========================================================= */
+
+.wc-news-story__hero {
+  width: 100%;
+  max-width: 68rem;
+
+  margin: 0 0 1.5rem;
+}
+
+.wc-news-story__hero-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 0.2rem;
+}
+
+.wc-news-story__caption {
+  margin-top: 0.45rem;
+
+  color: #565c65;
+
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.wc-news-story__intro {
+  width: 100%;
+  max-width: 68rem;
+
+  margin-bottom: 1.75rem;
+}
+
+.wc-news-story__header {
+  min-width: 0;
+}
+
+.wc-news-story__title {
+  max-width: 68rem;
+
+  margin: 0 0 0.75rem;
+
+  color: #16385c;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.wc-news-story__date {
+  margin-bottom: 1rem;
+
+  color: #565c65;
+
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.wc-news-story__summary {
+  max-width: 68rem;
+
+  color: #3d4551;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   RIGHT-SIDE IMAGE
+   ========================================================= */
+
+.wc-news-story__right-image {
+  width: 100%;
+
+  margin: 1.25rem 0 0;
+}
+
+.wc-news-story__right-image img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 0.2rem;
+}
+
+
+/* =========================================================
+   ARTICLE BODY
+   ========================================================= */
+
+.wc-news-story__body {
+  width: 100%;
+  max-width: 68rem;
+
+  color: #1b1b1b;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.wc-news-story__body p {
+  margin-top: 0;
+  margin-bottom: 1.1rem;
+}
+
+.wc-news-story__body h2,
+.wc-news-story__body h3,
+.wc-news-story__body h4 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+
+  color: #16385c;
+
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wc-news-story__body h2 {
+  font-size: 1.45rem;
+}
+
+.wc-news-story__body h3 {
+  font-size: 1.25rem;
+}
+
+.wc-news-story__body h4 {
+  font-size: 1.08rem;
+}
+
+.wc-news-story__body img {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+}
+
+.wc-news-story__body a {
+  color: #005ea8;
+
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.wc-news-story__body a:hover {
+  color: #16385c;
+}
+
+.wc-news-story__body a:focus-visible {
+  outline: 3px solid #2491ff;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-news-story__site-container {
+    padding-top: 1.25rem;
+    padding-right: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+  }
+
+  .wc-news-story__hero {
+    margin-bottom: 1.5rem;
+  }
+
+  .wc-news-story__hero-image {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .wc-news-story__caption {
+    font-size: 0.74rem;
+  }
+
+  .wc-news-story__intro {
+    margin-bottom: 1.75rem;
+  }
+
+  .wc-news-story__title {
+    font-size: 1.85rem;
+    line-height: 1.08;
+  }
+
+  .wc-news-story__date {
+    margin-bottom: 0.9rem;
+
+    font-size: 0.86rem;
+  }
+
+  .wc-news-story__summary {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .wc-news-story__right-image {
+    margin-top: 1.25rem;
+  }
+
+  .wc-news-story__right-image img {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .wc-news-story__body {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 40em) {
+
+  .wc-news-story__site-container {
+    padding-top: 3rem;
+    padding-right: 2rem;
+    padding-bottom: 4.5rem;
+    padding-left: 2rem;
+  }
+
+  .wc-news-story__title {
+    font-size: 2.5rem;
+  }
+
+  .wc-news-story__summary {
+    font-size: 1.16rem;
+  }
+
+  .wc-news-story__hero {
+    margin-bottom: 2.5rem;
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 64em) {
+
+  .wc-news-story__site-container {
+    padding-top: 3.75rem;
+    padding-bottom: 5rem;
+  }
+
+  .wc-news-story__hero {
+    max-width: 68rem;
+
+    margin-bottom: 3rem;
+  }
+
+  .wc-news-story__hero-image {
+    width: 100%;
+
+    aspect-ratio: 16 / 7;
+
+    object-fit: cover;
+  }
+
+  .wc-news-story__intro {
+    max-width: 68rem;
+  }
+
+  .wc-news-story__intro--with-image {
+    display: grid;
+
+    max-width: 68rem;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(20rem, 24rem);
+
+    align-items: start;
+
+    gap: 3rem;
+
+    margin-bottom: 2.5rem;
+  }
+
+  .wc-news-story__title {
+    font-size: 2.75rem;
+  }
+
+  .wc-news-story__summary {
+    max-width: 68rem;
+  }
+
+  .wc-news-story__body {
+    max-width: 68rem;
+  }
+
+  .wc-news-story__right-image {
+    margin: 0;
+  }
+
+  .wc-news-story__right-image img {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    object-fit: cover;
+  }
+
+}
+
+
+/* =========================================================
+   WIDE DESKTOP
+   ========================================================= */
+
+@media (min-width: 80em) {
+
+  .wc-news-story__intro--with-image {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(22rem, 26rem);
+
+    gap: 3.5rem;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wc-news-story *,
+  .wc-news-story *::before,
+  .wc-news-story *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+}

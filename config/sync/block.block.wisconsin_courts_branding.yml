@@ -1,0 +1,25 @@
+uuid: 9e0c15fc-f7c8-40e7-a1c8-19019998d4dd
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - wisconsin_courts
+_core:
+  default_config_hash: UhcI10wjBovmJzWvHKMnMEAABXnHhF-pc5f8yARNhZY
+id: wisconsin_courts_branding
+theme: wisconsin_courts
+region: header_top
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

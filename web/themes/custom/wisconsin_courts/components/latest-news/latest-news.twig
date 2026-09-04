@@ -1,47 +1,92 @@
-{% set news_items = [
-  {
-    date: news_1_date,
-    title: news_1_title,
-    url: news_1_url
-  },
-  {
-    date: news_2_date,
-    title: news_2_title,
-    url: news_2_url
-  },
-  {
-    date: news_3_date,
-    title: news_3_title,
-    url: news_3_url
-  }
-] %}
+{#
+/**
+ * @file
+ * Wisconsin Courts - Latest News and Opinions
+ *
+ * Receives a chronologically sorted array of News Story and Opinion items.
+ * JavaScript handles switching between News, Opinions, and Both.
+ */
+#}
 
-<section class="wc-latest-news">
+{% set heading = heading|default('Latest news and opinions') %}
+{% set default_tab = default_tab|default('news') %}
+{% set items = items|default([]) %}
+
+{#
+  Build the initial visible set on the server.
+
+  This gives us a usable News view even if JavaScript is unavailable.
+  JavaScript will take over after page load and handle tab switching.
+#}
+
+{% set initial_items = [] %}
+
+{% for item in items %}
+
+  {% if
+    default_tab == 'both'
+    or (default_tab == 'news' and item.type == 'news')
+    or (default_tab == 'opinions' and item.type == 'opinion')
+  %}
+
+    {% set initial_items = initial_items|merge([item]) %}
+
+  {% endif %}
+
+{% endfor %}
+
+
+<section
+  class="wc-latest-news"
+  data-wc-latest-news
+  data-default-tab="{{ default_tab }}"
+>
 
   <h2 class="wc-latest-news__heading">
-    {{ heading|default('Latest news and opinions') }}
+    {{ heading }}
   </h2>
+
 
   <div class="wc-latest-news__nav">
 
     <div
       class="wc-latest-news__tabs"
+      role="tablist"
       aria-label="News categories"
     >
 
-      <span class="wc-latest-news__tab wc-latest-news__tab--active">
+      <button
+        type="button"
+        class="wc-latest-news__tab{{ default_tab == 'news' ? ' wc-latest-news__tab--active' : '' }}"
+        role="tab"
+        aria-selected="{{ default_tab == 'news' ? 'true' : 'false' }}"
+        data-news-tab="news"
+      >
         News
-      </span>
+      </button>
 
-      <span class="wc-latest-news__tab">
+      <button
+        type="button"
+        class="wc-latest-news__tab{{ default_tab == 'opinions' ? ' wc-latest-news__tab--active' : '' }}"
+        role="tab"
+        aria-selected="{{ default_tab == 'opinions' ? 'true' : 'false' }}"
+        data-news-tab="opinions"
+      >
         Opinions
-      </span>
+      </button>
 
-      <span class="wc-latest-news__tab">
+      <button
+        type="button"
+        class="wc-latest-news__tab{{ default_tab == 'both' ? ' wc-latest-news__tab--active' : '' }}"
+        role="tab"
+        aria-selected="{{ default_tab == 'both' ? 'true' : 'false' }}"
+        data-news-tab="both"
+      >
         Both
-      </span>
+      </button>
 
     </div>
+
 
     {% if all_news_text and all_news_url %}
 
@@ -57,139 +102,217 @@
 
   </div>
 
-  {% if featured_title %}
 
-    <article class="wc-latest-news__featured">
+  <div
+    class="wc-latest-news__results"
+    data-news-results
+    aria-live="polite"
+  >
 
-      <div class="wc-latest-news__featured-image-wrapper">
+    {% if initial_items|length %}
 
-        {% if featured_image %}
+      {% set featured = initial_items|first %}
 
-          <img
-            src="{{ featured_image }}"
-            alt="{{ featured_image_alt|default('') }}"
-            class="wc-latest-news__featured-image"
-          >
 
-        {% endif %}
+      <article class="wc-latest-news__featured">
 
-      </div>
+        {% if featured.image %}
 
-      <div class="wc-latest-news__featured-content">
+          <div class="wc-latest-news__featured-image-wrapper">
 
-        {% if featured_label %}
-
-          <div class="wc-latest-news__badge-wrapper">
-
-            <span class="wc-latest-news__badge">
-              {{ featured_label }}
-            </span>
+            <img
+              src="{{ featured.image }}"
+              alt="{{ featured.image_alt|default('') }}"
+              class="wc-latest-news__featured-image"
+            >
 
           </div>
 
         {% endif %}
 
-        <h3 class="wc-latest-news__featured-title">
 
-          {% if featured_url %}
+        <div class="wc-latest-news__featured-content">
 
-            <a href="{{ featured_url }}">
-              {{ featured_title }}
-            </a>
+          {% if featured.label %}
 
-          {% else %}
+            <div class="wc-latest-news__badge-wrapper">
 
-            {{ featured_title }}
+              <span class="wc-latest-news__badge">
+                {{ featured.label }}
+              </span>
+
+            </div>
 
           {% endif %}
 
-        </h3>
 
-        {% if featured_date %}
+          <h3 class="wc-latest-news__featured-title">
 
-          <div class="wc-latest-news__featured-date">
-            {{ featured_date }}
-          </div>
+            {% if featured.url %}
 
-        {% endif %}
-
-        {% if featured_summary %}
-
-          <div class="wc-latest-news__featured-summary">
-            {{ featured_summary }}
-          </div>
-
-        {% endif %}
-
-        {% if featured_url %}
-
-          <a
-            href="{{ featured_url }}"
-            class="wc-latest-news__read-more"
-          >
-            Read full story
-            <span aria-hidden="true">›</span>
-          </a>
-
-        {% endif %}
-
-      </div>
-
-    </article>
-
-  {% endif %}
-
-  <div class="wc-latest-news__list">
-
-    {% for item in news_items %}
-
-      {% if item.title %}
-
-        <article class="wc-latest-news__item">
-
-          <div class="wc-latest-news__item-content">
-
-            {% if item.date %}
-
-              <div class="wc-latest-news__item-date">
-                {{ item.date }}
-              </div>
-
-            {% endif %}
-
-            {% if item.url %}
-
-              <a
-                href="{{ item.url }}"
-                class="wc-latest-news__item-title"
-              >
-                {{ item.title }}
+              <a href="{{ featured.url }}">
+                {{ featured.title }}
               </a>
 
             {% else %}
 
-              <div class="wc-latest-news__item-title">
-                {{ item.title }}
-              </div>
+              {{ featured.title }}
 
             {% endif %}
 
-          </div>
+          </h3>
 
-          {% if item.url %}
 
-            <span
-              class="wc-latest-news__item-arrow"
-              aria-hidden="true"
-            >
-              ›
-            </span>
+          {% if featured.case_number %}
+
+            <div class="wc-latest-news__case-number">
+              Case {{ featured.case_number }}
+            </div>
 
           {% endif %}
 
-        </article>
 
-      {% endif %}
+          {% if featured.date %}
+
+            <div class="wc-latest-news__featured-date">
+              {{ featured.date }}
+            </div>
+
+          {% endif %}
+
+
+          {% if featured.summary %}
+
+            <div class="wc-latest-news__featured-summary">
+              {{ featured.summary }}
+            </div>
+
+          {% endif %}
+
+
+          {% if featured.url %}
+
+            <a
+              href="{{ featured.url }}"
+              class="wc-latest-news__read-more"
+            >
+
+              {% if featured.type == 'opinion' %}
+                View opinion
+              {% else %}
+                Read full story
+              {% endif %}
+
+              <span aria-hidden="true">›</span>
+
+            </a>
+
+          {% endif %}
+
+        </div>
+
+      </article>
+
+
+      <div class="wc-latest-news__list">
+
+        {% for item in initial_items|slice(1, 3) %}
+
+          <article class="wc-latest-news__item">
+
+            <div class="wc-latest-news__item-content">
+
+              {% if item.date %}
+
+                <div class="wc-latest-news__item-date">
+                  {{ item.date }}
+                </div>
+
+              {% endif %}
+
+
+              {% if item.case_number %}
+
+                <div class="wc-latest-news__item-case-number">
+                  {{ item.case_number }}
+                </div>
+
+              {% endif %}
+
+
+              {% if item.url %}
+
+                <a
+                  href="{{ item.url }}"
+                  class="wc-latest-news__item-title"
+                >
+                  {{ item.title }}
+                </a>
+
+              {% else %}
+
+                <div class="wc-latest-news__item-title">
+                  {{ item.title }}
+                </div>
+
+              {% endif %}
+
+            </div>
+
+
+            {% if item.url %}
+
+              <span
+                class="wc-latest-news__item-arrow"
+                aria-hidden="true"
+              >
+                ›
+              </span>
+
+            {% endif %}
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+
+    {% else %}
+
+      <p class="wc-latest-news__empty">
+        No items are currently available.
+      </p>
+
+    {% endif %}
+
+  </div>
+
+
+  {#
+    Hidden source data.
+
+    JavaScript reads these elements whenever a visitor changes tabs.
+    They stay in chronological order because the Drupal View supplies
+    them in Publication date descending order.
+  #}
+
+  <div class="wc-latest-news__data" hidden>
+
+    {% for item in items %}
+
+      <div
+        data-news-item
+        data-type="{{ item.type|e('html_attr') }}"
+        data-title="{{ item.title|e('html_attr') }}"
+        data-date="{{ item.date|default('')|e('html_attr') }}"
+        data-summary="{{ item.summary|default('')|e('html_attr') }}"
+        data-url="{{ item.url|default('')|e('html_attr') }}"
+        data-image="{{ item.image|default('')|e('html_attr') }}"
+        data-image-alt="{{ item.image_alt|default('')|e('html_attr') }}"
+        data-case-number="{{ item.case_number|default('')|e('html_attr') }}"
+        data-label="{{ item.label|default('')|e('html_attr') }}"
+      ></div>
 
     {% endfor %}
 

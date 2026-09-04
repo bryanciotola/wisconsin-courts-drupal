@@ -1,0 +1,95 @@
+{#
+/**
+ * @file
+ * Homepage News and Opinions View.
+ *
+ * Converts News story and Opinion nodes from the Drupal View into
+ * the item structure expected by the Latest News component.
+ */
+#}
+
+{% set news_items = [] %}
+
+{% for result in view.result %}
+
+  {% set node = result._entity %}
+
+  {% if node %}
+
+    {% set bundle = node.bundle() %}
+
+    {#
+      NEWS STORY
+    #}
+    {% if bundle == 'news_story' %}
+
+      {% set image_url = '' %}
+      {% set image_alt = '' %}
+
+      {% if node.field_featured_image is not empty and node.field_featured_image.entity %}
+
+        {% set image_url = file_url(node.field_featured_image.entity.uri.value) %}
+        {% set image_alt = node.field_featured_image.alt|default('') %}
+
+      {% endif %}
+
+      {% set news_items = news_items|merge([
+        {
+          type: 'news',
+          title: node.label(),
+          date: node.field_publication_date.value
+            ? node.field_publication_date.value|date('F j, Y')
+            : '',
+          summary: node.field_summary.value|default(''),
+          url: path('entity.node.canonical', {'node': node.id()}),
+          image: image_url,
+          image_alt: image_alt,
+          case_number: '',
+          label: 'News'
+        }
+      ]) %}
+
+
+    {#
+      OPINION
+    #}
+    {% elseif bundle == 'opinion' %}
+
+      {% set opinion_url = '' %}
+
+      {% if node.field_opinion_pdf is not empty and node.field_opinion_pdf.entity %}
+
+        {% set opinion_url = file_url(node.field_opinion_pdf.entity.uri.value) %}
+
+      {% endif %}
+
+      {% set news_items = news_items|merge([
+        {
+          type: 'opinion',
+          title: node.label(),
+          date: node.field_publication_date.value
+            ? node.field_publication_date.value|date('F j, Y')
+            : '',
+          summary: node.field_summary.value|default(''),
+          url: opinion_url,
+          image: '',
+          image_alt: '',
+          case_number: node.field_case_number.value|default(''),
+          label: 'Opinion'
+        }
+      ]) %}
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+
+
+{% include 'wisconsin_courts:latest-news' with {
+  heading: 'Latest news and opinions',
+  default_tab: 'news',
+  all_news_text: 'View all',
+  all_news_url: '/news',
+  items: news_items
+} only %}

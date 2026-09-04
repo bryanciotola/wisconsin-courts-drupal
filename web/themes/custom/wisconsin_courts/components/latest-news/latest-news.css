@@ -1,7 +1,7 @@
 /*
  * Wisconsin Courts - Latest News
  *
- * Mobile-first homepage news component.
+ * Mobile-first homepage news and opinions component.
  */
 
 .wc-latest-news {
@@ -72,10 +72,20 @@
 
   min-height: 2.35rem;
 
+  margin: 0;
   padding: 0 0.75rem 0.5rem;
+
+  appearance: none;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 
   color: #16385c;
 
+  cursor: pointer;
+
+  font-family: inherit;
   font-size: 0.92rem;
   font-weight: 400;
   line-height: 1;
@@ -93,6 +103,11 @@
   color: #005ea8;
 
   transform: translateY(-1px);
+}
+
+.wc-latest-news__tab:focus-visible {
+  outline: 3px solid #2491ff;
+  outline-offset: 2px;
 }
 
 .wc-latest-news__tab--active {
@@ -223,6 +238,16 @@
   outline-offset: 3px;
 }
 
+.wc-latest-news__case-number {
+  margin-bottom: 0.45rem;
+
+  color: #565c65;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .wc-latest-news__featured-date {
   margin-bottom: 0.7rem;
 
@@ -335,6 +360,16 @@
   line-height: 1.2;
 }
 
+.wc-latest-news__item-case-number {
+  margin-bottom: 0.3rem;
+
+  color: #565c65;
+
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .wc-latest-news__item-title {
   display: block;
 
@@ -392,12 +427,27 @@
 
 
 /* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.wc-latest-news__empty {
+  margin: 0;
+  padding: 1.5rem 0;
+
+  color: #565c65;
+
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
    TABLET
    ========================================================= */
 
 @media (min-width: 40em) {
 
-  .wc-latest-news__featured {
+  .wc-latest-news__featured:has(.wc-latest-news__featured-image-wrapper) {
     grid-template-columns:
       minmax(0, 1fr)
       minmax(0, 1fr);
@@ -424,7 +474,7 @@
     font-size: 1.8rem;
   }
 
-  .wc-latest-news__featured {
+  .wc-latest-news__featured:has(.wc-latest-news__featured-image-wrapper) {
     grid-template-columns:
       minmax(0, 1.05fr)
       minmax(0, 0.95fr);
@@ -438,6 +488,11 @@
     max-width: 27rem;
   }
 
+  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
+    .wc-latest-news__featured-content {
+    max-width: 100%;
+  }
+
   .wc-latest-news__featured-title {
     max-width: 25rem;
 
@@ -445,11 +500,21 @@
     line-height: 1.18;
   }
 
+  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
+    .wc-latest-news__featured-title {
+    max-width: 38rem;
+  }
+
   .wc-latest-news__featured-summary {
     max-width: 27rem;
 
     font-size: 0.9rem;
     line-height: 1.42;
+  }
+
+  .wc-latest-news__featured:not(:has(.wc-latest-news__featured-image-wrapper))
+    .wc-latest-news__featured-summary {
+    max-width: 38rem;
   }
 
   .wc-latest-news__read-more {

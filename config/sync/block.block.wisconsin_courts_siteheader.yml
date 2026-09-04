@@ -1,0 +1,167 @@
+uuid: afe3e290-e0bc-48c6-96e9-b5f1dbb94768
+langcode: en
+status: true
+dependencies:
+  module:
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - wisconsin_courts
+id: wisconsin_courts_siteheader
+theme: wisconsin_courts
+region: header_top
+weight: 0
+provider: null
+plugin: 'ui_patterns:wisconsin_courts:site-header'
+settings:
+  id: 'ui_patterns:wisconsin_courts:site-header'
+  label: 'Site Header'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'wisconsin_courts:site-header'
+    variant_id: null
+    props:
+      attributes:
+        source_id: attributes
+        node_id: ''
+        source:
+          value: ''
+      site_name:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Wisconsin Court System'
+      home_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      logo_image:
+        source_id: media_image_url
+        node_id: ''
+        source:
+          media: '2'
+          image_style: ''
+      logo_alt:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: ''
+      utility_1_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: Courts
+      utility_1_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      utility_2_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Court System'
+      utility_2_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      utility_3_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: Self-Help
+      utility_3_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      utility_4_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Role-Based Resources'
+      utility_4_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      search_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_1_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Find Cases'
+      primary_1_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_2_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Find Courts'
+      primary_2_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_3_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Find Forms'
+      primary_3_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_4_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: eFile
+      primary_4_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_5_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Pay Fees/Fines'
+      primary_5_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_6_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Find Opinions'
+      primary_6_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+      primary_7_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'View Rules'
+      primary_7_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+    slots: {  }
+visibility: {  }

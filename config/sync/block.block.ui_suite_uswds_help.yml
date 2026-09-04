@@ -1,0 +1,22 @@
+uuid: c2f9e333-7ad5-4e56-a0f9-038d0b74e970
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: 951eSn1MkqRzvYkcEyPj8VfjcNg5Ahf3OUQCU8kjY3M
+id: ui_suite_uswds_help
+theme: ui_suite_uswds
+region: help
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

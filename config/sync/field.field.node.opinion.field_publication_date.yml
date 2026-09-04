@@ -1,0 +1,21 @@
+uuid: 9e639b18-9843-40ca-a863-842a6dae1122
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publication_date
+    - node.type.opinion
+  module:
+    - datetime
+id: node.opinion.field_publication_date
+field_name: field_publication_date
+entity_type: node
+bundle: opinion
+label: 'Publication date'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,58 @@
+uuid: c8455376-d9cb-4471-9135-53e6cb4c05ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.opinion.field_case_number
+    - field.field.node.opinion.field_opinion_pdf
+    - field.field.node.opinion.field_publication_date
+    - field.field.node.opinion.field_summary
+    - node.type.opinion
+  module:
+    - datetime
+    - file
+    - user
+id: node.opinion.default
+targetEntityType: node
+bundle: opinion
+mode: default
+content:
+  field_case_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_opinion_pdf:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_publication_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

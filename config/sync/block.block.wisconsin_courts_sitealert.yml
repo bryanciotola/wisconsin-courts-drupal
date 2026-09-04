@@ -1,0 +1,46 @@
+uuid: 1f8dd3b2-f4c1-4223-9c06-fe7cb5e877ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - wisconsin_courts
+id: wisconsin_courts_sitealert
+theme: wisconsin_courts
+region: header_top
+weight: 0
+provider: null
+plugin: 'ui_patterns:wisconsin_courts:site-alert'
+settings:
+  id: 'ui_patterns:wisconsin_courts:site-alert'
+  label: 'Site Alert'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'wisconsin_courts:site-alert'
+    variant_id: null
+    props:
+      attributes:
+        source_id: attributes
+        node_id: ''
+        source:
+          value: ''
+      alert_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Racine County Courthouse closed today, July 23, 2026.'
+      alert_link_text:
+        source_id: textfield
+        node_id: ''
+        source:
+          value: 'Learn more about this closure'
+      alert_link_url:
+        source_id: url
+        node_id: ''
+        source:
+          value: 'https://drupal-uswds.ddev.site/'
+    slots: {  }
+visibility: {  }

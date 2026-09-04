@@ -1,0 +1,22 @@
+uuid: e1a6c256-7113-4ae7-af4f-a3bd8e312daf
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: i2V0Xx1Wp62B89DeXRiTOZ4R9KDpn_GHyYWVhoZC7qk
+id: ui_suite_uswds_local_tasks
+theme: ui_suite_uswds
+region: content
+weight: 20
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

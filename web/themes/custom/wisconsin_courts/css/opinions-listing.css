@@ -1,0 +1,277 @@
+/*
+ * Wisconsin Courts - Opinions Listing
+ */
+
+.wc-opinions-listing {
+  width: 100%;
+
+  color: #1b1b1b;
+}
+
+.wc-opinions-listing__container {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 88rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 2rem 1rem 4rem;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.wc-opinions-listing__header {
+  width: 100%;
+  max-width: 68rem;
+
+  margin-bottom: 2rem;
+}
+
+.wc-opinions-listing__heading {
+  margin: 0 0 0.65rem;
+
+  color: #16385c;
+
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.wc-opinions-listing__intro {
+  max-width: 48rem;
+
+  margin: 0;
+
+  color: #3d4551;
+
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.wc-opinions-listing__items {
+  width: 100%;
+  max-width: 68rem;
+}
+
+.wc-opinions-listing__item {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  border-top: 1px solid #dfe1e2;
+}
+
+.wc-opinions-listing__item:last-child {
+  border-bottom: 1px solid #dfe1e2;
+}
+
+.wc-opinions-listing__date {
+  margin-bottom: 0.45rem;
+
+  color: #565c65;
+
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+.wc-opinions-listing__title {
+  margin: 0 0 0.4rem;
+
+  color: #16385c;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wc-opinions-listing__number {
+  margin-bottom: 0.75rem;
+
+  color: #565c65;
+
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.wc-opinions-listing__summary {
+  max-width: 58rem;
+
+  margin: 0 0 0.9rem;
+
+  color: #3d4551;
+
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.wc-opinions-listing__pdf-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.3rem;
+
+  color: #1e3a70;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.wc-opinions-listing__pdf-link:hover {
+  color: #005ea8;
+
+  transform: translateX(0.15rem);
+}
+
+.wc-opinions-listing__pdf-link:focus-visible {
+  outline: 3px solid #2491ff;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.wc-opinions-listing__empty {
+  margin: 0;
+
+  color: #565c65;
+
+  font-size: 1rem;
+}
+
+
+/* =========================================================
+   PAGER
+   ========================================================= */
+
+.wc-opinions-listing__pager {
+  width: 100%;
+  max-width: 68rem;
+
+  margin-top: 2rem;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 40em) {
+
+  .wc-opinions-listing__container {
+    padding-top: 3rem;
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+    padding-left: 2rem;
+  }
+
+  .wc-opinions-listing__heading {
+    font-size: 2.5rem;
+  }
+
+  .wc-opinions-listing__intro {
+    font-size: 1.08rem;
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 64em) {
+
+  .wc-opinions-listing__container {
+    padding-top: 3.75rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .wc-opinions-listing__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .wc-opinions-listing__heading {
+    font-size: 2.75rem;
+  }
+
+  .wc-opinions-listing__item {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .wc-opinions-listing__title {
+    font-size: 1.4rem;
+  }
+
+  .wc-opinions-listing__summary {
+    font-size: 1rem;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-opinions-listing__container {
+    padding-top: 1.5rem;
+    padding-right: 1rem;
+    padding-bottom: 3.5rem;
+    padding-left: 1rem;
+  }
+
+  .wc-opinions-listing__heading {
+    font-size: 1.9rem;
+  }
+
+  .wc-opinions-listing__item {
+    padding-top: 1.35rem;
+    padding-bottom: 1.35rem;
+  }
+
+  .wc-opinions-listing__title {
+    font-size: 1.2rem;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wc-opinions-listing *,
+  .wc-opinions-listing *::before,
+  .wc-opinions-listing *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+}
