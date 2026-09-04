@@ -2,91 +2,11 @@
  * Wisconsin Courts - Popular Tasks
  *
  * Homepage task panel.
- *
- * This file also controls the homepage Latest News / Popular Tasks
- * Layout Builder row so the Drupal 67/33 layout presents as the
- * intended wider 60/40 homepage composition.
  */
 
 
 /* =========================================================
-   NEWS + POPULAR TASKS HOMEPAGE ROW
-   ========================================================= */
-
-.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
-  box-sizing: border-box;
-
-  width: 100%;
-  max-width: 64rem;
-
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  gap: 1.5rem;
-
-  align-items: stretch;
-}
-
-
-/*
- * Both Layout Builder regions must stretch to the same height.
- */
-
-.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-  > .layout__region {
-  display: flex;
-  flex-direction: column;
-
-  min-width: 0;
-}
-
-
-/*
- * Drupal places each component inside a block wrapper.
- *
- * The region itself may stretch correctly, but unless this
- * intermediate block also stretches, the component only grows
- * as tall as its content.
- */
-
-.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-  > .layout__region
-  > .block {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-
-  width: 100%;
-  min-width: 0;
-  min-height: 0;
-}
-
-
-/*
- * Established homepage proportion:
- * Latest News ~60%
- * Popular Tasks ~40%
- */
-
-.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-  > .layout__region--first {
-  flex: 0 1 calc(60% - 0.75rem);
-  width: calc(60% - 0.75rem);
-}
-
-.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-  > .layout__region--second {
-  flex: 0 1 calc(40% - 0.75rem);
-  width: calc(40% - 0.75rem);
-}
-
-
-/* =========================================================
-   POPULAR TASKS WRAPPER
+   WRAPPER
    ========================================================= */
 
 .wc-popular-tasks-wrapper {
@@ -97,7 +17,6 @@
 
   width: 100%;
   height: 100%;
-  min-height: 100%;
 }
 
 
@@ -114,7 +33,6 @@
 
   width: 100%;
   height: 100%;
-  min-height: 100%;
 
   padding: 1.4rem 1.25rem;
 
@@ -299,45 +217,24 @@
 
 
 /* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 39.99em) {
+
+  .wc-popular-tasks-wrapper,
+  .wc-popular-tasks {
+    height: auto;
+  }
+
+}
+
+
+/* =========================================================
    DESKTOP
    ========================================================= */
 
 @media (min-width: 64em) {
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
-    max-width: 88rem;
-
-    margin-top: 1.25rem;
-
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    gap: 1.75rem;
-  }
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--first {
-    flex: 0 1 calc(60% - 0.875rem);
-    width: calc(60% - 0.875rem);
-  }
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--second {
-    flex: 0 1 calc(40% - 0.875rem);
-    width: calc(40% - 0.875rem);
-  }
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    .wc-latest-news,
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    .wc-popular-tasks-wrapper,
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    .wc-popular-tasks {
-    flex: 1 1 auto;
-
-    height: 100%;
-    min-height: 100%;
-  }
 
   .wc-popular-tasks {
     padding: 1.4rem 1.25rem;
@@ -359,52 +256,6 @@
   .wc-popular-tasks__description {
     font-size: 0.86rem;
     line-height: 1.35;
-  }
-
-}
-
-
-/* =========================================================
-   STACKED MOBILE LAYOUT
-   ========================================================= */
-
-@media (max-width: 39.99em) {
-
-  /*
-   * Keep the Layout Builder section as flex, but change its
-   * direction from horizontal to vertical.
-   *
-   * Using gap here is more reliable than adding margin to
-   * Drupal's second region.
-   */
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
-    display: flex;
-    flex-direction: column;
-
-    gap: 1.25rem;
-  }
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--first,
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region--second {
-    flex: 0 0 auto;
-
-    width: 100%;
-  }
-
-  /*
-   * Mobile cards return to their natural content height.
-   */
-
-  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
-    > .layout__region
-    > .block,
-  .wc-popular-tasks-wrapper,
-  .wc-popular-tasks {
-    height: auto;
-    min-height: 0;
   }
 
 }

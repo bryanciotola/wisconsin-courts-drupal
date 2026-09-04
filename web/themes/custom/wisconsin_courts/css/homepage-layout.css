@@ -7,6 +7,121 @@
 
 
 /* =========================================================
+   LATEST NEWS + POPULAR TASKS
+   ========================================================= */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
+  box-sizing: border-box;
+
+  display: grid;
+
+  width: 100%;
+  max-width: 88rem;
+
+  margin-top: 1.5rem;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  margin-left: auto;
+
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  grid-template-columns:
+    minmax(0, 3fr)
+    minmax(0, 2fr);
+
+  gap: 1.5rem;
+
+  align-items: stretch;
+}
+
+
+/*
+ * Let CSS Grid control the two-column proportions instead of
+ * Drupal's built-in 67/33 flex-basis values.
+ *
+ * Each region also becomes a flex column so everything inside
+ * can stretch vertically to the full grid-row height.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+
+  flex: none;
+
+  padding: 0;
+}
+
+
+/*
+ * Drupal block wrapper.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region
+  > .block {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/*
+ * Drupal can insert another wrapper inside a block depending
+ * on how the block/component is rendered.
+ *
+ * Stretch that wrapper too so the component beneath it gets
+ * a real full-height parent.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  > .layout__region
+  > .block
+  > * {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/*
+ * The two actual homepage components now receive the full
+ * height of their respective grid cells.
+ */
+
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  .wc-latest-news,
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  .wc-popular-tasks-wrapper,
+.layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+  .wc-popular-tasks {
+  box-sizing: border-box;
+
+  flex: 1 1 auto;
+
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+
+/* =========================================================
    CHIEF JUSTICE + SUPREME COURT LIVE
    ========================================================= */
 
@@ -17,20 +132,19 @@
   max-width: 88rem;
 
   margin-top: 1.5rem;
-  margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
+  margin-left: auto;
 
-  padding-left: 1rem;
   padding-right: 1rem;
+  padding-left: 1rem;
 
   align-items: stretch;
 }
 
 
 /*
- * Drupal still owns the 50/50 widths.
- * Padding inside the regions creates the gutter.
+ * Drupal still owns the 50/50 widths for this row.
  */
 
 .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
@@ -68,6 +182,36 @@
 
 @media (max-width: 39.99em) {
 
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks) {
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 1rem;
+  }
+
+
+  /*
+   * Once stacked, cards return to natural content height.
+   */
+
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region
+    > .block,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    > .layout__region
+    > .block
+    > *,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-latest-news,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-popular-tasks-wrapper,
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks)
+    .wc-popular-tasks {
+    height: auto;
+  }
+
+
   .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
     > .layout__region--first {
     padding-right: 0;
@@ -76,6 +220,7 @@
   .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live)
     > .layout__region--second {
     padding-left: 0;
+
     margin-top: 1rem;
   }
 
@@ -88,11 +233,12 @@
 
 @media (min-width: 64em) {
 
+  .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks),
   .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live) {
     max-width: 88rem;
 
-    padding-left: 2rem;
     padding-right: 2rem;
+    padding-left: 2rem;
   }
 
 }

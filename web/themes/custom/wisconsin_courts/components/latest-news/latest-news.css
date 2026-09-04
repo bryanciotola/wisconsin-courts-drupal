@@ -2,14 +2,20 @@
  * Wisconsin Courts - Latest News and Opinions
  */
 
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
 .wc-latest-news {
   box-sizing: border-box;
+
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
 
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 
   padding: 1.25rem;
 
@@ -92,6 +98,7 @@
 
 .wc-latest-news__tab:hover {
   color: #005ea8;
+
   transform: translateY(-1px);
 }
 
@@ -129,6 +136,7 @@
 
 .wc-latest-news__view-all:hover {
   color: #005ea8;
+
   transform: translateX(0.15rem);
 }
 
@@ -139,11 +147,25 @@
 
 
 /* =========================================================
+   RESULTS
+   ========================================================= */
+
+.wc-latest-news__results {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  min-height: 0;
+}
+
+
+/* =========================================================
    FEATURED STORY
    ========================================================= */
 
 .wc-latest-news__featured {
   display: grid;
+
   grid-template-columns: 1fr;
 
   gap: 1.2rem;
@@ -206,6 +228,7 @@
 
 .wc-latest-news__featured-title a {
   color: inherit;
+
   text-decoration: none;
 }
 
@@ -270,6 +293,7 @@
 
 .wc-latest-news__read-more:hover {
   color: #005ea8;
+
   transform: translateX(0.15rem);
 }
 
@@ -287,6 +311,8 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+
+  min-height: 0;
 }
 
 .wc-latest-news__item {
@@ -296,6 +322,8 @@
   justify-content: space-between;
 
   gap: 1.25rem;
+
+  min-height: 0;
 
   padding: 1rem 0;
 
@@ -350,6 +378,7 @@
 
 .wc-latest-news__item-title:hover {
   color: #005ea8;
+
   transform: translateX(0.15rem);
 }
 
@@ -394,6 +423,10 @@
    ========================================================= */
 
 @media (max-width: 39.99em) {
+
+  .wc-latest-news {
+    height: auto;
+  }
 
   .wc-latest-news__featured-image-wrapper {
     max-width: 100%;
