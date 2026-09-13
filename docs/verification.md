@@ -55,9 +55,9 @@ full USWDS bundle in the footer library.
   handwritten CSS scope. Main categories: blank lines (534), Prettier formatting
   (213), property order (145), plus quotes, indentation and color notation.
   No bulk reformat was applied; builds and appearance checks passed separately.
-- A fresh Composer install plus complete database/files restore on another
-  environment has not been executed. Integrity checks are not a restore test.
-  The recipient must follow the README restoration sequence.
+- A fresh install on the target PostgreSQL environment has not been executed.
+  The checked-in `core.extension.yml` reflects the local MariaDB driver, so the
+  developer must reconcile `mysql`/`pgsql` during setup.
 - Managed uploads exist, but external resources, destination links, search,
   media contents, and editorial accuracy are not fully validated.
 - Full SDC variants, Layout Builder AJAX lifecycle, field access/cache behavior,
@@ -66,9 +66,10 @@ full USWDS bundle in the footer library.
 - Production hosting, email, credentials, and private-file restoration were
   outside this local handoff.
 
-## Local transfer
+## Optional local snapshot
 
-Prepared `.handoff/transfer-20260913T214442Z/`:
+Prepared `.handoff/transfer-20260913T214442Z/` while auditing the MariaDB
+reference site:
 
 - `site.sql.gz`: matching database, approximately 1.2 MB.
 - `public-files.tar.gz`: original uploads, approximately 14 MB.
@@ -79,6 +80,6 @@ The export omits regenerable CSS/JS/PHP caches, image derivatives, and obsolete
 `files/sync` configuration. It includes unmanaged original uploads too.
 No private files were configured in this site's inventory.
 
-Artifacts and test logs are ignored by Git. Transfer the archive directory
-privately along with the repository/branch. Refresh it with
-`bash scripts/export-handoff.sh` if content or uploads change.
+Artifacts and test logs are ignored by Git. This snapshot is kept only for local
+reference and is not part of the GitHub/PostgreSQL handoff. Refresh it with
+`bash scripts/export-handoff.sh` if the local reference content changes.

@@ -48,10 +48,11 @@ inherited theme libraries, exported configuration, and local content on
    the deprecated Sass legacy API and older browser targets. Upgrade separately
    from approved design work. UI Patterns Settings is an alpha dependency.
 
-6. **Reproduction.** A matching database and uploads are required; configuration
-   import alone is insufficient. No content-seeding recipe exists. Fonts depend
-   on Google. Subdirectory hosting, private file transfer, email delivery,
-   production credentials and hosting were not configured or tested.
+6. **Reproduction.** The handoff covers the repository, exported configuration,
+   theme, and components. The site owner will rebuild the prototype content and
+   homepage Layout Builder override after the PostgreSQL site is running. Fonts
+   depend on Google. Subdirectory hosting, email delivery, production credentials,
+   and hosting were not configured or tested.
 
 ## Official references
 
