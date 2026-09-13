@@ -1,0 +1,18 @@
+// Shared values for the approved Wisconsin Courts design.
+// Brand hex values are intentional USWDS theme exceptions. Do not approximate
+// them to a nearby system color: that would change the approved appearance.
+$primary: #1e3a70;
+$accent: #2a5298;
+$primary-dark: #182f5c;
+$primary-darker: #112142;
+$heading: #16385c;
+$alert: #173f67;
+$text: #1b1b1b;
+$text-secondary: #3d4551;
+$text-muted: #565c65;
+$border: #dfe1e2;
+$link-hover: #005ea8;
+$focus: #2491ff;
+// Custom sections intentionally use 88rem; USWDS widescreen is 1400px.
+// Keep these separate until the design team approves unifying the containers.
+$content-max: 88rem;

@@ -1,35 +1,15 @@
+{# Fixed styles live beside this template; alert content stays in block configuration. #}
 <div
   role="status"
-  style="
-    width: 100%;
-    background: #173f67;
-    color: #ffffff;
-  "
+  class="wc-site-alert"
 >
   <div
-    class="grid-container"
-    style="
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      min-height: 32px;
-      padding-top: 0.3rem;
-      padding-bottom: 0.3rem;
-      text-align: center;
-      font-size: 0.78rem;
-      line-height: 1.2;
-    "
+    class="grid-container wc-site-alert__inner"
   >
 
     <span
       aria-hidden="true"
-      style="
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 auto;
-      "
+      class="wc-site-alert__icon"
     >
       <svg
         width="16"
@@ -67,11 +47,7 @@
     {% if alert_link_text and alert_link_url %}
       <a
         href="{{ alert_link_url }}"
-        style="
-          color: #ffffff;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-        "
+        class="wc-site-alert__link"
       >
         {{ alert_link_text }}
       </a>

@@ -16,7 +16,7 @@
   display: grid;
 
   width: 100%;
-  max-width: 88rem;
+  max-width: var(--wc-content-max);
 
   margin-top: 1.5rem;
   margin-right: auto;
@@ -129,7 +129,7 @@
   box-sizing: border-box;
 
   width: 100%;
-  max-width: 88rem;
+  max-width: var(--wc-content-max);
 
   margin-top: 1.5rem;
   margin-right: auto;
@@ -235,7 +235,7 @@
 
   .layout--twocol-section--67-33:has(.wc-latest-news):has(.wc-popular-tasks),
   .layout--twocol-section--50-50:has(.wc-chief-message):has(.wc-supreme-live) {
-    max-width: 88rem;
+    max-width: var(--wc-content-max);
 
     padding-right: 2rem;
     padding-left: 2rem;

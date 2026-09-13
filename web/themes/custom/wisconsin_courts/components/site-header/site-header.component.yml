@@ -113,3 +113,9 @@ props:
     primary_7_url:
       title: 'Primary link 7 URL'
       $ref: 'ui-patterns://url'
+
+# Required by the component JavaScript, including Layout Builder/AJAX renders.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

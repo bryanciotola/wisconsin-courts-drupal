@@ -1,0 +1,33 @@
+/* Exact values extracted from the approved inline alert styles. */
+
+.wc-site-alert {
+  width: 100%;
+  background: var(--wc-color-alert);
+  color: #ffffff;
+}
+
+.wc-site-alert__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 32px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.wc-site-alert__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.wc-site-alert__link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

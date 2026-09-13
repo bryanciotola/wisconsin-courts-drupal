@@ -1,5 +1,4 @@
 global-styling:
-  version: 1.0.0
 
   css:
     base:
@@ -19,8 +18,13 @@ global-styling:
 
   js:
     assets/uswds/js/uswds.min.js: {}
-    assets/uswds/js/uswds-init.min.js: {}
 
   dependencies:
     - core/drupal
-    - core/jquery
+    - wisconsin_courts/uswds-init
+
+# USWDS requires its small initializer before the page body is rendered.
+uswds-init:
+  header: true
+  js:
+    assets/uswds/js/uswds-init.min.js: { minified: true }

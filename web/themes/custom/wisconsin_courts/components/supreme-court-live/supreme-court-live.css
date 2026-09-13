@@ -108,7 +108,7 @@
 
   margin-top: auto;
 
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   font-size: 0.72rem;
   line-height: 1.15;
@@ -124,13 +124,13 @@
 }
 
 .wc-supreme-live__calendar-link:hover {
-  color: #005ea8;
+  color: var(--wc-color-link-hover);
 
   transform: translateX(0.18rem);
 }
 
 .wc-supreme-live__calendar-link:focus-visible {
-  outline: 3px solid #2491ff;
+  outline: 3px solid var(--wc-color-focus);
   outline-offset: 3px;
 }
 

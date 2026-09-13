@@ -51,7 +51,7 @@
   margin-top: 0;
   margin-bottom: 1rem;
 
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   font-size: clamp(2.5rem, 11vw, 3.4rem);
   line-height: 0.98;
@@ -107,7 +107,7 @@
 }
 
 .wc-homepage-hero__search:focus-within {
-  border-color: #2a5298;
+  border-color: var(--wc-color-accent);
 
   box-shadow:
     0 0 0 2px rgb(42 82 152 / 16%),
@@ -200,7 +200,7 @@
 }
 
 .wc-homepage-hero__specialized-link:hover {
-  color: #16385c;
+  color: var(--wc-color-heading);
   background: #f4f7fb;
 
   border-color: #8ba6c5;
@@ -211,7 +211,7 @@
 }
 
 .wc-homepage-hero__specialized-link:focus-visible {
-  outline: 3px solid #2491ff;
+  outline: 3px solid var(--wc-color-focus);
   outline-offset: 2px;
 }
 
@@ -269,7 +269,7 @@
 .wc-homepage-action:focus-visible {
   z-index: 2;
 
-  outline: 3px solid #2491ff;
+  outline: 3px solid var(--wc-color-focus);
   outline-offset: -3px;
 }
 
@@ -327,7 +327,7 @@
 }
 
 .wc-homepage-action:hover .wc-homepage-action__title {
-  color: #2a5298;
+  color: var(--wc-color-accent);
 }
 
 .wc-homepage-action__description {
@@ -499,7 +499,7 @@
   .wc-homepage-actions-wrapper,
   .wc-homepage-audience-wrapper {
     width: 100%;
-    max-width: 88rem;
+    max-width: var(--wc-content-max);
 
     padding-left: 2rem;
     padding-right: 2rem;
@@ -679,7 +679,7 @@
     width: 1px;
     height: 4.15rem;
 
-    background: #dfe1e2;
+    background: var(--wc-color-border);
 
     transform: translateY(-50%);
   }

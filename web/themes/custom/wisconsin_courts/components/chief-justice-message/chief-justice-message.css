@@ -158,7 +158,7 @@
 
   background: #ffffff;
 
-  color: #16385c !important;
+  color: var(--wc-color-heading) !important;
 
   font-size: 0.95rem;
   font-weight: 400;
@@ -170,7 +170,7 @@
 .wc-chief-message__button:focus {
   background: #f0f0f0;
 
-  color: #16385c !important;
+  color: var(--wc-color-heading) !important;
 }
 
 

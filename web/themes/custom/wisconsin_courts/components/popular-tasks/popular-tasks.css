@@ -38,7 +38,7 @@
 
   background: #e9eef4;
 
-  color: #1b1b1b;
+  color: var(--wc-color-text);
 }
 
 
@@ -49,7 +49,7 @@
 .wc-popular-tasks__heading {
   margin: 0 0 1rem;
 
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   font-size: 1.65rem;
   font-weight: 700;
@@ -90,7 +90,7 @@
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   transition:
     background-color 0.15s ease,
@@ -104,7 +104,7 @@
 .wc-popular-tasks__item:focus-visible {
   z-index: 2;
 
-  outline: 3px solid #2491ff;
+  outline: 3px solid var(--wc-color-focus);
   outline-offset: 2px;
 }
 
@@ -120,7 +120,7 @@
 
   flex: 0 0 auto;
 
-  color: #2a5298;
+  color: var(--wc-color-accent);
 
   transition:
     color 0.15s ease,
@@ -132,7 +132,7 @@
 }
 
 .wc-popular-tasks__item:hover .wc-popular-tasks__icon {
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   transform: translateY(-1px);
 }
@@ -151,7 +151,7 @@
 .wc-popular-tasks__title {
   display: block;
 
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   font-size: 1.05rem;
   font-weight: 700;
@@ -161,7 +161,7 @@
 }
 
 .wc-popular-tasks__item:hover .wc-popular-tasks__title {
-  color: #2a5298;
+  color: var(--wc-color-accent);
 }
 
 
@@ -174,7 +174,7 @@
 
   margin-top: 0.2rem;
 
-  color: #3d4551;
+  color: var(--wc-color-text-secondary);
 
   font-size: 0.86rem;
   font-weight: 400;
@@ -198,7 +198,7 @@
 .wc-popular-tasks__arrow {
   flex: 0 0 auto;
 
-  color: #2a5298;
+  color: var(--wc-color-accent);
 
   font-size: 1.2rem;
   font-weight: 700;
@@ -210,7 +210,7 @@
 }
 
 .wc-popular-tasks__item:hover .wc-popular-tasks__arrow {
-  color: #16385c;
+  color: var(--wc-color-heading);
 
   transform: translateX(0.25rem);
 }

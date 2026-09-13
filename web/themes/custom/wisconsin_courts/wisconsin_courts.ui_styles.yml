@@ -1,2 +1,2 @@
-/* eslint yml/no-empty-document: 0 */
-# Define custom UI Styles.
+# Reserved for UI Styles definitions. No custom UI Styles are registered yet.
+{}

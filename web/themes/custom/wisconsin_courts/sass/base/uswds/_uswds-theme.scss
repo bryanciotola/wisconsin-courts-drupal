@@ -1,3 +1,5 @@
+@use "../tokens";
+
 /*
 ----------------------------------------
 Wisconsin Courts USWDS theme settings
@@ -98,20 +100,20 @@ Brand colors:
   /*
    * Official Wisconsin Courts primary blue.
    */
-  $theme-color-primary: #1e3a70,
+  $theme-color-primary: tokens.$primary,
 
   /*
    * Official Wisconsin Courts accent blue.
    */
-  $theme-color-primary-vivid: #2a5298,
-  $theme-color-accent-cool: #2a5298,
+  $theme-color-primary-vivid: tokens.$accent,
+  $theme-color-accent-cool: tokens.$accent,
 
   /*
    * Interaction shades derived from the primary blue.
    * The two official brand colors above remain the anchors.
    */
-  $theme-color-primary-dark: #182f5c,
-  $theme-color-primary-darker: #112142,
+  $theme-color-primary-dark: tokens.$primary-dark,
+  $theme-color-primary-darker: tokens.$primary-darker,
 
 
   /* =======================================================

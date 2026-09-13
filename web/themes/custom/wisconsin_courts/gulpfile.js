@@ -1,75 +1,64 @@
 const uswds = require('@uswds/compile');
-
-// Custom variables
-const pkg = require('./package.json');
-const { series, watch, src } = require('gulp');
-const gulp = require('gulp');
+const { execFile } = require('node:child_process');
+const { series, watch, src, dest } = require('gulp');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify-es').default;
+const pkg = require('./package.json');
 
-/**
- * USWDS version
- */
 uswds.settings.version = 3;
-
-/**
- * Path settings
- * Set as many as you need
- */
-
-// Where to output custom assets.
-uswds.paths.dist.css = './assets/css';
+uswds.paths.dist.css = pkg.paths.dist.css;
 uswds.paths.dist.fonts = './assets/uswds/fonts';
 uswds.paths.dist.img = './assets/uswds/images';
 uswds.paths.dist.js = './assets/uswds/js';
-
-// Note this path is only used during init which is recommended to run once.
-uswds.paths.src.projectSass = './assets/uswds/sass';
-
-// // Custom scss files
+uswds.paths.dist.components = './assets/uswds/components';
+uswds.paths.src.projectSass = './sass';
+// The starterkit has nested entry points. This glob preserves assets/css/base/*.
+// Do not run uswds.init: dist.theme is a compilation glob, not a copy target.
 uswds.paths.dist.theme = './sass/**/*';
 
-/**
- * Fully delete the assets folder.
- */
-function cleanUswds() {
-  return import('del').then((del) => del.deleteSync([pkg.paths.dist.uswds]));
+// Keep the compiler's existing browser targets to preserve generated CSS.
+// Changing browser support or USWDS versions requires a separate visual review.
+function checkCss(done) {
+  execFile(process.execPath, ['scripts/check-css.cjs'], (error, stdout, stderr) => {
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+    done(error);
+  });
 }
 
-/**
- * Delete js folder.
- */
-function cleanJs() {
-  return import('del').then((del) => del.deleteSync([pkg.paths.dist.js]));
-}
-
-/**
- * Delete CSS folder.
- */
 function cleanCss() {
-  return import('del').then((del) => del.deleteSync([pkg.paths.dist.css]));
+  return import('del').then((del) => del.deleteAsync([pkg.paths.dist.css]));
+}
+
+function cleanJs() {
+  return import('del').then((del) => del.deleteAsync([pkg.paths.dist.js]));
 }
 
 function buildJs() {
+  // SDC component JS is loaded directly by Drupal; this is only for js/*.js.
   return src(pkg.paths.js)
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest(pkg.paths.dist.js));
+    .pipe(dest(pkg.paths.dist.js));
 }
 
-// USWDS build exports.
-exports.init = uswds.init;
-exports.updateUswds = uswds.updateUswds;
+// Validate before cleaning so a Sass error cannot erase the last working CSS.
+const compileCss = series(checkCss, cleanCss, uswds.compileSass);
+const compileJs = series(cleanJs, buildJs);
+const compileAll = series(compileJs, compileCss);
+// Copy over the pinned USWDS assets; do not delete source or custom assets.
+const build = series(uswds.copyAssets, compileAll);
 
-// Custom exports.
-exports.copyUswds = series(cleanUswds, uswds.copyAssets);
-exports.compileCss = series(cleanCss, uswds.compileSass);
-exports.compileJs = series(cleanJs, buildJs);
-exports.compileAll = series(this.compileJs, this.compileCss);
-
-exports.watch = series(this.compileAll, () => {
-  watch(pkg.paths.scss, series([this.compileSass]));
-  watch(pkg.paths.js, series([this.compileJs]));
+exports.compileCss = compileCss;
+exports.compileJs = compileJs;
+exports.compileAll = compileAll;
+exports.copyUswds = uswds.copyAssets;
+exports.updateUswds = build;
+exports.init = (done) => done(new Error(
+  'This theme is already initialized. Use npm ci and npm run build; see README.md.',
+));
+exports.watch = series(compileAll, () => {
+  watch(pkg.paths.scss, compileCss);
+  watch(pkg.paths.js, compileJs);
 });
-
-exports.default = series(this.copyUswds, this.compileAll);
+exports.default = build;

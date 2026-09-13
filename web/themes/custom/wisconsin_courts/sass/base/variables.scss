@@ -1,0 +1,17 @@
+// Compiled to assets/css/base/variables.css and loaded globally.
+// Component CSS is authored directly, so expose the Sass tokens at runtime.
+@use 'tokens';
+
+:root {
+  --wc-color-primary: #{tokens.$primary};
+  --wc-color-accent: #{tokens.$accent};
+  --wc-color-heading: #{tokens.$heading};
+  --wc-color-alert: #{tokens.$alert};
+  --wc-color-text: #{tokens.$text};
+  --wc-color-text-secondary: #{tokens.$text-secondary};
+  --wc-color-text-muted: #{tokens.$text-muted};
+  --wc-color-border: #{tokens.$border};
+  --wc-color-link-hover: #{tokens.$link-hover};
+  --wc-color-focus: #{tokens.$focus};
+  --wc-content-max: #{tokens.$content-max};
+}

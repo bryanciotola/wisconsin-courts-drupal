@@ -19,6 +19,7 @@ props:
         - both
       default: news
 
+    # Legacy saved props; category-specific links currently come from Twig/JS.
     all_news_text:
       title: 'View all link text'
       type: string
@@ -71,3 +72,9 @@ props:
           label:
             title: 'Label'
             type: string
+
+# Required by the component JavaScript, including Layout Builder/AJAX renders.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

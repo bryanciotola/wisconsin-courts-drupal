@@ -33,7 +33,7 @@
   box-sizing: border-box;
 
   width: 100%;
-  max-width: 88rem;
+  max-width: var(--wc-content-max);
 
   margin-right: auto;
   margin-left: auto;
@@ -145,14 +145,14 @@
 .wc-site-footer__utility {
   width: 100%;
 
-  background: #1e3a70;
+  background: var(--wc-color-primary);
 }
 
 .wc-site-footer__utility-inner {
   box-sizing: border-box;
 
   width: 100%;
-  max-width: 88rem;
+  max-width: var(--wc-content-max);
 
   margin-right: auto;
   margin-left: auto;

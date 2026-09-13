@@ -2,7 +2,7 @@
  * Wisconsin Courts - Latest News and Opinions
  */
 
-(function (Drupal, once) {
+(function wisconsinCourtsLatestNews(Drupal, once) {
   'use strict';
 
   Drupal.behaviors.wisconsinCourtsLatestNews = {
@@ -10,7 +10,7 @@
       once(
         'wisconsin-courts-latest-news',
         '[data-wc-latest-news]',
-        context
+        context,
       ).forEach((component) => {
         const tabs = component.querySelectorAll('[data-news-tab]');
         const results = component.querySelector('[data-news-results]');
@@ -32,13 +32,12 @@
           caseNumber: element.dataset.caseNumber || '',
         }));
 
-
         const escapeHtml = (value) => {
           const div = document.createElement('div');
           div.textContent = value || '';
-          return div.innerHTML;
+          // Values are interpolated into both text and quoted HTML attributes.
+          return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         };
-
 
         const renderFeatured = (item) => {
           const imageMarkup = item.image
@@ -53,9 +52,8 @@
             `
             : '';
 
-          const featuredLabel = item.type === 'opinion'
-            ? 'Featured Opinion'
-            : 'Featured News';
+          const featuredLabel =
+            item.type === 'opinion' ? 'Featured Opinion' : 'Featured News';
 
           const titleMarkup = item.url
             ? `
@@ -89,9 +87,8 @@
             `
             : '';
 
-          const ctaText = item.type === 'opinion'
-            ? 'View opinion'
-            : 'Read full story';
+          const ctaText =
+            item.type === 'opinion' ? 'View opinion' : 'Read full story';
 
           const ctaMarkup = item.url
             ? `
@@ -132,7 +129,6 @@
             </article>
           `;
         };
-
 
         const renderListItem = (item) => {
           const dateMarkup = item.date
@@ -192,7 +188,6 @@
           `;
         };
 
-
         const updateViewAll = (filter) => {
           if (!viewAll) {
             return;
@@ -202,14 +197,12 @@
             viewAll.href = '/opinions';
             viewAll.innerHTML =
               'View all opinions <span aria-hidden="true">›</span>';
-          }
-          else {
+          } else {
             viewAll.href = '/news';
             viewAll.innerHTML =
               'View all news <span aria-hidden="true">›</span>';
           }
         };
-
 
         const render = (filter) => {
           const filteredItems = items.filter((item) => {
@@ -251,7 +244,6 @@
           `;
         };
 
-
         tabs.forEach((tab) => {
           tab.addEventListener('click', () => {
             const filter = tab.dataset.newsTab;
@@ -259,15 +251,9 @@
             tabs.forEach((otherTab) => {
               const active = otherTab === tab;
 
-              otherTab.classList.toggle(
-                'wc-latest-news__tab--active',
-                active
-              );
+              otherTab.classList.toggle('wc-latest-news__tab--active', active);
 
-              otherTab.setAttribute(
-                'aria-selected',
-                active ? 'true' : 'false'
-              );
+              otherTab.setAttribute('aria-selected', active ? 'true' : 'false');
             });
 
             render(filter);

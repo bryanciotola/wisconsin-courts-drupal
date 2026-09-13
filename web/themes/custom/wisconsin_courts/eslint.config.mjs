@@ -144,6 +144,25 @@ export default [
   // YAML
   ...yamlConfig,
 
-  // Custom rules **at the end** so they override previous configs
+  // Custom rules override the inherited presets.
   customRulesConfig,
+  // Drupal SDC scripts are classic scripts, not ES modules.
+  {
+    files: ['components/**/*.js'],
+    languageOptions: { sourceType: 'script' },
+    rules: { strict: ['error', 'function'] },
+  },
+  // Build checks run once in Node; synchronous traversal is intentional here.
+  {
+    files: ['scripts/**/*.cjs'],
+    rules: {
+      'n/no-sync': 'off',
+      'no-console': 'off',
+      'no-restricted-syntax': 'off',
+      'import-x/no-extraneous-dependencies': [
+        'error',
+        { devDependencies: true },
+      ],
+    },
+  },
 ];

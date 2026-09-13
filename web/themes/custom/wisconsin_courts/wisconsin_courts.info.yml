@@ -1,7 +1,7 @@
 name: 'Wisconsin Courts'
 type: theme
-description: 'UI Suite USWDS subtheme subtheme based on UI Suite USWDS theme.'
-core_version_requirement: ^10 || ^11
+description: 'Wisconsin Courts components and branding built on UI Suite USWDS.'
+core_version_requirement: ^11.3
 'base theme': ui_suite_uswds
 logo: logo.png
 screenshot: screenshot.png

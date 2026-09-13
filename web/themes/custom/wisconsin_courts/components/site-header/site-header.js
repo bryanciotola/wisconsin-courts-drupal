@@ -1,61 +1,59 @@
-(() => {
-  const initializeHeaders = () => {
-    document.querySelectorAll('.wc-site-header').forEach((header) => {
-      if (header.dataset.mobileMenuInitialized === 'true') {
-        return;
-      }
+// Drupal behaviors also attach after AJAX and Layout Builder updates.
+(function wisconsinCourtsHeader(Drupal, once) {
+  'use strict';
 
-      const button = header.querySelector('.wc-site-header__menu-button');
-      const menu = header.querySelector('.wc-site-header__mobile-nav');
-      const label = header.querySelector('.wc-site-header__menu-label');
+  Drupal.behaviors.wisconsinCourtsHeader = {
+    attach(context) {
+      once('wc-site-header', '.wc-site-header', context).forEach((header) => {
+        const button = header.querySelector('.wc-site-header__menu-button');
+        const menu = header.querySelector('.wc-site-header__mobile-nav');
+        const label = header.querySelector('.wc-site-header__menu-label');
 
-      if (!button || !menu) {
-        return;
-      }
-
-      header.dataset.mobileMenuInitialized = 'true';
-
-      const closeMenu = () => {
-        menu.hidden = true;
-        button.setAttribute('aria-expanded', 'false');
-
-        if (label) {
-          label.textContent = 'Menu';
+        if (!button || !menu) {
+          return;
         }
-      };
 
-      const openMenu = () => {
-        menu.hidden = false;
-        button.setAttribute('aria-expanded', 'true');
+        const closeMenu = () => {
+          menu.hidden = true;
+          button.setAttribute('aria-expanded', 'false');
 
-        if (label) {
-          label.textContent = 'Close';
-        }
-      };
+          if (label) {
+            label.textContent = 'Menu';
+          }
+        };
 
-      button.addEventListener('click', () => {
-        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        const openMenu = () => {
+          menu.hidden = false;
+          button.setAttribute('aria-expanded', 'true');
 
-        if (isOpen) {
-          closeMenu();
-        }
-        else {
-          openMenu();
-        }
+          if (label) {
+            label.textContent = 'Close';
+          }
+        };
+
+        button.addEventListener('click', () => {
+          const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        header.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !menu.hidden) {
+            closeMenu();
+            button.focus();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.matchMedia('(min-width: 64em)').matches) {
+            closeMenu();
+          }
+        });
       });
-
-      window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 64em)').matches) {
-          closeMenu();
-        }
-      });
-    });
+    },
   };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeHeaders);
-  }
-  else {
-    initializeHeaders();
-  }
-})();
+})(Drupal, once);

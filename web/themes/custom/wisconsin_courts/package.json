@@ -1,7 +1,7 @@
 {
-  "name": "ui_suite_uswds_starterkit",
+  "name": "wisconsin-courts",
   "version": "1.0.0",
-  "description": "Custom theme for using USWDS library",
+  "description": "Wisconsin Courts Drupal theme assets",
   "license": "ISC",
   "private": true,
   "scripts": {
@@ -12,11 +12,12 @@
     "build:js": "gulp compileJs",
     "build:all": "gulp compileAll",
     "watch": "gulp watch",
-    "lint:css": "stylelint \"**/*.scss\"",
-    "lint:css:fix": "stylelint \"**/*.scss\" --fix",
+    "lint:css": "stylelint \"sass/**/*.scss\" \"css/**/*.css\" \"components/**/*.css\"",
+    "lint:css:fix": "npm run lint:css -- --fix",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint --fix .",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "check:css": "node scripts/check-css.cjs"
   },
   "paths": {
     "dist": {

@@ -18,6 +18,7 @@ props:
       title: 'Background image'
       $ref: 'ui-patterns://url'
 
+    # Retained for saved UI Patterns mappings; the approved input has no placeholder.
     search_placeholder:
       title: 'Search placeholder'
       type: string
