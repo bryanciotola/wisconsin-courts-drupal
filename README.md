@@ -6,10 +6,7 @@ theme used for the approved prototype.
 ## Handoff scope
 
 The local reference site runs in DDEV with MariaDB 11.8. The work environment
-will run Drupal on PostgreSQL 16. The developer only needs to get the checked-in
-code, configuration, theme, and components running in that PostgreSQL
-environment. The local database and uploaded files are not part of the GitHub
-handoff.
+will run Drupal on PostgreSQL 16. The goal is to get the checked-in code, configuration, theme, and components running in the PostgreSQL environment. The local database and uploaded files are not part of the GitHub handoff.
 
 `config/sync/core.extension.yml` reflects the MariaDB installation: it enables
 `mysql` and does not enable `pgsql`. Reconcile the database driver during the
