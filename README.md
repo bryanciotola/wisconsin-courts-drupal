@@ -6,7 +6,9 @@ theme used for the approved prototype.
 ## Handoff scope
 
 The local reference site runs in DDEV with MariaDB 11.8. The work environment
-will run Drupal on PostgreSQL 16. The goal is to get the checked-in code, configuration, theme, and components running in the PostgreSQL environment. The local database and uploaded files are not part of the GitHub handoff.
+will run Drupal on PostgreSQL 16. The goal is to get the checked-in code,
+configuration, theme, and components running in the PostgreSQL environment. The
+local database and uploaded files are not part of the GitHub handoff.
 
 `config/sync/core.extension.yml` reflects the MariaDB installation: it enables
 `mysql` and does not enable `pgsql`. Reconcile the database driver during the
@@ -27,9 +29,22 @@ npm run build
 The locks currently resolve Drupal 11.4.5, UI Suite USWDS 4.1.0, USWDS 3.14.0,
 and UI Patterns Settings 3.0.0-alpha1. The theme build uses Node 24 (`.nvmrc`).
 
-Configure Drupal for PostgreSQL, set the configuration directory to
-`config/sync`, and install/import the checked-in configuration through the
-team's normal deployment process. Then run:
+Configure Drupal for PostgreSQL and point Drupal's configuration sync directory
+to the repository's `config/sync` directory before installing or importing
+configuration.
+
+In DDEV, the default `settings.ddev.php` points to
+`sites/default/files/sync`. For the reference DDEV setup, this can be overridden
+in `settings.php` with:
+
+```php
+$settings['config_sync_directory'] = '../config/sync';
+```
+
+Other environments can point the setting to the same checked-in `config/sync`
+directory using their normal configuration.
+
+After Drupal is installed and the checked-in configuration is imported, run:
 
 ```sh
 drush cr
