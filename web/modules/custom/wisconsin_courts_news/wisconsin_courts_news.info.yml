@@ -1,0 +1,8 @@
+name: 'Wisconsin Courts News'
+type: module
+description: 'Provides publishing functionality for Wisconsin Courts News stories.'
+package: 'Wisconsin Courts'
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node
+  - drupal:datetime

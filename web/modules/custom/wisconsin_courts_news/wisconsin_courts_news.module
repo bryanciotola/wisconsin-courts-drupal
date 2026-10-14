@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Provides publishing behavior for Wisconsin Courts News stories.
+ */
+
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_node_presave().
+ */
+function wisconsin_courts_news_node_presave(NodeInterface $node): void {
+
+  // Only run for News stories.
+  if ($node->bundle() !== 'news_story') {
+    return;
+  }
+
+  // Make sure the publication date field exists.
+  if (!$node->hasField('field_publication_date')) {
+    return;
+  }
+
+  // Do nothing if the story is unpublished.
+  if (!$node->isPublished()) {
+    return;
+  }
+
+  // Preserve the original publication date if one already exists.
+  if (!$node->get('field_publication_date')->isEmpty()) {
+    return;
+  }
+
+  // Set the publication date to the current date and time in UTC.
+  $node->set(
+    'field_publication_date',
+    gmdate(
+      DateTimeItemInterface::DATETIME_STORAGE_FORMAT,
+      \Drupal::time()->getRequestTime()
+    )
+  );
+}
