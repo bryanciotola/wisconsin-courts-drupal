@@ -1,0 +1,23 @@
+uuid: f9777ff5-0a96-4496-970b-72f522f99dc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_opinion_url
+    - node.type.opinion
+  module:
+    - link
+id: node.opinion.field_opinion_url
+field_name: field_opinion_url
+entity_type: node
+bundle: opinion
+label: 'Opinion URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

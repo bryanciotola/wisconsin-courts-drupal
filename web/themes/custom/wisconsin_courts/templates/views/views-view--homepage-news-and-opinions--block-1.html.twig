@@ -14,6 +14,11 @@
  *     -> File entity
  *
  * Image captions are stored in field_image_caption.
+ *
+ * Opinion documents can come from:
+ *
+ * 1. An uploaded PDF through Document Media.
+ * 2. An internal or external URL.
  */
 #}
 
@@ -129,20 +134,57 @@
 
 
       {# ----------------------------------------------------
-         OPINION PDF
+         OPINION DOCUMENT
 
-         Retrieve the PDF associated with the opinion.
+         Retrieve an uploaded PDF through Drupal Media.
+
+         Opinion (field_opinion_document)
+           -> Document Media (field_media_document)
+             -> File entity
          ---------------------------------------------------- #}
 
       {% set opinion_url = '' %}
 
       {% if
-        node.field_opinion_pdf is not empty
-        and node.field_opinion_pdf.entity
+        node.field_opinion_document is not empty
+        and node.field_opinion_document.entity
+      %}
+
+        {% set document_media =
+          node.field_opinion_document.entity
+        %}
+
+        {% if
+          document_media.hasField('field_media_document')
+          and document_media.field_media_document is not empty
+          and document_media.field_media_document.entity
+        %}
+
+          {% set opinion_url =
+            file_url(
+              document_media.field_media_document.entity.uri.value
+            )
+          %}
+
+        {% endif %}
+
+      {% endif %}
+
+
+      {# ----------------------------------------------------
+         OPINION URL
+
+         If there is no uploaded document, use the internal
+         or external URL provided by the editor.
+         ---------------------------------------------------- #}
+
+      {% if
+        not opinion_url
+        and node.field_opinion_url is not empty
       %}
 
         {% set opinion_url =
-          file_url(node.field_opinion_pdf.entity.uri.value)
+          node.field_opinion_url.0.getUrl().toString()
         %}
 
       {% endif %}
@@ -170,6 +212,9 @@
          BUILD OPINION ITEM
 
          Opinions do not use featured images.
+
+         The URL points to either an uploaded PDF or
+         the internal/external link provided by the editor.
          ---------------------------------------------------- #}
 
       {% set news_items = news_items|merge([

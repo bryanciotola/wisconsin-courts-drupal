@@ -1,5 +1,9 @@
+
 /**
- * Wisconsin Courts - Latest News and Opinions
+ * Wisconsin Courts - Latest News and Opinions.
+ *
+ * News stories may be featured.
+ * Opinions always appear in a regular list.
  */
 
 (function wisconsinCourtsLatestNews(Drupal, once) {
@@ -32,12 +36,28 @@
           caseNumber: element.dataset.caseNumber || '',
         }));
 
+
+        // ==================================================
+        // ESCAPE HTML
+        //
+        // Protect text and HTML attributes when rendering.
+        // ==================================================
+
         const escapeHtml = (value) => {
           const div = document.createElement('div');
           div.textContent = value || '';
-          // Values are interpolated into both text and quoted HTML attributes.
-          return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+          return div.innerHTML
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
         };
+
+
+        // ==================================================
+        // FEATURED NEWS STORY
+        //
+        // Only News stories can be featured.
+        // ==================================================
 
         const renderFeatured = (item) => {
           const imageMarkup = item.image
@@ -51,9 +71,6 @@
               </div>
             `
             : '';
-
-          const featuredLabel =
-            item.type === 'opinion' ? 'Featured Opinion' : 'Featured News';
 
           const titleMarkup = item.url
             ? `
@@ -87,16 +104,13 @@
             `
             : '';
 
-          const ctaText =
-            item.type === 'opinion' ? 'View opinion' : 'Read full story';
-
           const ctaMarkup = item.url
             ? `
               <a
                 href="${escapeHtml(item.url)}"
                 class="wc-latest-news__read-more"
               >
-                ${ctaText}
+                Read full story
                 <span aria-hidden="true">›</span>
               </a>
             `
@@ -111,7 +125,7 @@
 
                 <div class="wc-latest-news__badge-wrapper">
                   <span class="wc-latest-news__badge">
-                    ${featuredLabel}
+                    Featured News
                   </span>
                 </div>
 
@@ -129,6 +143,16 @@
             </article>
           `;
         };
+
+
+        // ==================================================
+        // REGULAR LIST ITEM
+        //
+        // Used for all Opinions and secondary News stories.
+        //
+        // Opinion summaries are displayed beneath the title.
+        // Secondary News summaries remain hidden.
+        // ==================================================
 
         const renderListItem = (item) => {
           const dateMarkup = item.date
@@ -162,6 +186,15 @@
               </div>
             `;
 
+          const summaryMarkup =
+            item.type === 'opinion' && item.summary
+              ? `
+                <p class="wc-latest-news__item-summary">
+                  ${escapeHtml(item.summary)}
+                </p>
+              `
+              : '';
+
           const arrowMarkup = item.url
             ? `
               <span
@@ -180,6 +213,7 @@
                 ${dateMarkup}
                 ${caseMarkup}
                 ${titleMarkup}
+                ${summaryMarkup}
               </div>
 
               ${arrowMarkup}
@@ -187,6 +221,13 @@
             </article>
           `;
         };
+
+
+        // ==================================================
+        // VIEW ALL LINK
+        //
+        // Update the destination when switching tabs.
+        // ==================================================
 
         const updateViewAll = (filter) => {
           if (!viewAll) {
@@ -203,6 +244,23 @@
               'View all news <span aria-hidden="true">›</span>';
           }
         };
+
+
+        // ==================================================
+        // RENDER SELECTED TAB
+        //
+        // News:
+        //   1 featured News story and up to 3 other stories.
+        //
+        // Opinions:
+        //   Up to 4 regular list items, including summaries.
+        //
+        // Both:
+        //   1 featured News story and up to 3 additional
+        //   News or Opinion items.
+        //
+        // If there is no News story, show a regular list.
+        // ==================================================
 
         const render = (filter) => {
           const filteredItems = items.filter((item) => {
@@ -228,21 +286,53 @@
             return;
           }
 
-          const featured = filteredItems[0];
-          const secondary = filteredItems.slice(1, 4);
+
+          // Find the first News story.
+          // An Opinion must never become the featured item.
+
+          const featured =
+            filteredItems.find((item) => item.type === 'news') || null;
+
+
+          // Exclude the featured News story from the list.
+          // Display four items when no featured story exists.
+
+          const secondary = filteredItems
+            .filter((item) => item !== featured)
+            .slice(0, featured ? 3 : 4);
+
+
+          // Generate the HTML for the featured item, if any.
+
+          const featuredMarkup = featured
+            ? renderFeatured(featured)
+            : '';
+
+
+          // Generate the HTML for the remaining items.
 
           const listMarkup = secondary
             .map((item) => renderListItem(item))
             .join('');
 
+
+          // Replace the currently displayed content.
+
           results.innerHTML = `
-            ${renderFeatured(featured)}
+            ${featuredMarkup}
 
             <div class="wc-latest-news__list">
               ${listMarkup}
             </div>
           `;
         };
+
+
+        // ==================================================
+        // TAB INTERACTIONS
+        //
+        // Switch between News, Opinions, and Both.
+        // ==================================================
 
         tabs.forEach((tab) => {
           tab.addEventListener('click', () => {
@@ -251,9 +341,15 @@
             tabs.forEach((otherTab) => {
               const active = otherTab === tab;
 
-              otherTab.classList.toggle('wc-latest-news__tab--active', active);
+              otherTab.classList.toggle(
+                'wc-latest-news__tab--active',
+                active,
+              );
 
-              otherTab.setAttribute('aria-selected', active ? 'true' : 'false');
+              otherTab.setAttribute(
+                'aria-selected',
+                active ? 'true' : 'false',
+              );
             });
 
             render(filter);

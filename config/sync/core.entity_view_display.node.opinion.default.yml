@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.opinion.field_case_number
-    - field.field.node.opinion.field_opinion_pdf
+    - field.field.node.opinion.field_opinion_document
+    - field.field.node.opinion.field_opinion_url
     - field.field.node.opinion.field_publication_date
     - field.field.node.opinion.field_summary
     - node.type.opinion
   module:
     - datetime
-    - file
+    - link
     - user
 id: node.opinion.default
 targetEntityType: node
@@ -26,13 +27,25 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
-  field_opinion_pdf:
-    type: file_default
+  field_opinion_document:
+    type: entity_reference_label
     label: above
     settings:
-      use_description_as_link_text: true
+      link: true
     third_party_settings: {  }
-    weight: 103
+    weight: 104
+    region: content
+  field_opinion_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 105
     region: content
   field_publication_date:
     type: datetime_default

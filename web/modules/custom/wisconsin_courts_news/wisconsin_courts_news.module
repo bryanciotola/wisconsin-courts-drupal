@@ -2,38 +2,47 @@
 
 /**
  * @file
- * Provides publishing behavior for Wisconsin Courts News stories.
+ * Publishing behavior for Wisconsin Courts News and Opinions.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_node_presave().
+ *
+ * Automatically assigns a publication date the first time
+ * a News story or Opinion is published.
  */
 function wisconsin_courts_news_node_presave(NodeInterface $node): void {
 
-  // Only run for News stories.
-  if ($node->bundle() !== 'news_story') {
+  $supported_types = [
+    'news_story',
+    'opinion',
+  ];
+
+  // Only run for News stories and Opinions.
+  if (!in_array($node->bundle(), $supported_types, TRUE)) {
     return;
   }
 
-  // Make sure the publication date field exists.
+  // Confirm that the publication date field exists.
   if (!$node->hasField('field_publication_date')) {
     return;
   }
 
-  // Do nothing if the story is unpublished.
+  // Unpublished content does not receive a new date.
   if (!$node->isPublished()) {
     return;
   }
 
-  // Preserve the original publication date if one already exists.
+  // Never overwrite an existing publication date.
   if (!$node->get('field_publication_date')->isEmpty()) {
     return;
   }
 
-  // Set the publication date to the current date and time in UTC.
+  // Assign the first publication date in UTC.
   $node->set(
     'field_publication_date',
     gmdate(
@@ -41,4 +50,61 @@ function wisconsin_courts_news_node_presave(NodeInterface $node): void {
       \Drupal::time()->getRequestTime()
     )
   );
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node forms.
+ *
+ * Adds document validation to the Opinion editing form.
+ */
+function wisconsin_courts_news_form_node_form_alter(
+  array &$form,
+  FormStateInterface $form_state,
+  string $form_id
+): void {
+
+  $node = $form_state->getFormObject()->getEntity();
+
+  // Only add this validation to Opinion forms.
+  if (!$node instanceof NodeInterface || $node->bundle() !== 'opinion') {
+    return;
+  }
+
+  $form['#validate'][] = 'wisconsin_courts_news_validate_opinion';
+}
+
+/**
+ * Validates document sources when publishing an Opinion.
+ */
+function wisconsin_courts_news_validate_opinion(
+  array &$form,
+  FormStateInterface $form_state
+): void {
+
+  // Build the Opinion with the submitted form values.
+  $node = $form_state->getFormObject()->buildEntity($form, $form_state);
+
+  // Allow incomplete unpublished drafts.
+  if (!$node->isPublished()) {
+    return;
+  }
+
+  $has_document = !$node->get('field_opinion_document')->isEmpty();
+  $has_url = !$node->get('field_opinion_url')->isEmpty();
+
+  // A published Opinion must have a document or URL.
+  if (!$has_document && !$has_url) {
+    $form_state->setErrorByName(
+      'field_opinion_document',
+      t('Please upload an Opinion document or enter an Opinion URL before publishing.')
+    );
+  }
+
+  // Do not allow both sources at the same time.
+  if ($has_document && $has_url) {
+    $form_state->setErrorByName(
+      'field_opinion_url',
+      t('Please provide either an Opinion document or an Opinion URL, not both.')
+    );
+  }
 }
