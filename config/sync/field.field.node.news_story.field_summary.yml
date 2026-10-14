@@ -9,7 +9,7 @@ id: node.news_story.field_summary
 field_name: field_summary
 entity_type: node
 bundle: news_story
-label: Summary
+label: Preview
 description: ''
 required: true
 translatable: false

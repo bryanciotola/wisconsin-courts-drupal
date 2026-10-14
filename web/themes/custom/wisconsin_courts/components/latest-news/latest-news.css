@@ -1,3 +1,4 @@
+
 /*
  * Wisconsin Courts - Latest News and Opinions
  */
@@ -160,7 +161,7 @@
 
 
 /* =========================================================
-   FEATURED STORY
+   FEATURED NEWS STORY
    ========================================================= */
 
 .wc-latest-news__featured {
@@ -304,7 +305,7 @@
 
 
 /* =========================================================
-   LOWER STORIES
+   REGULAR LIST ITEMS
    ========================================================= */
 
 .wc-latest-news__list {
@@ -350,6 +351,7 @@
 
   font-size: 0.76rem;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .wc-latest-news__item-title {
@@ -386,6 +388,31 @@
   outline: 3px solid var(--wc-color-focus);
   outline-offset: 3px;
 }
+
+
+/* =========================================================
+   OPINION SUMMARIES
+
+   Match the typography of featured News summaries.
+
+   Only Opinions receive this element, as controlled by
+   latest-news.twig and latest-news.js.
+   ========================================================= */
+
+.wc-latest-news__item-summary {
+  margin: 0.5rem 0 0;
+
+  color: var(--wc-color-text-secondary);
+
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   ITEM ARROW
+   ========================================================= */
 
 .wc-latest-news__item-arrow {
   flex: 0 0 auto;
@@ -494,6 +521,10 @@
     max-width: 24rem;
 
     font-size: 0.92rem;
+  }
+
+  .wc-latest-news__item-summary {
+    font-size: 0.9rem;
   }
 
 }

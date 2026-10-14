@@ -1,7 +1,10 @@
+
 {#
 /**
  * @file
  * Wisconsin Courts - Opinions listing page.
+ *
+ * Supports an uploaded PDF through Drupal Media or an Opinion URL.
  */
 #}
 
@@ -32,6 +35,10 @@
 
           {% set publication_date = '' %}
           {% set opinion_url = '' %}
+          {% set opinion_link_text = 'View opinion' %}
+
+
+          {# Publication date. #}
 
           {% if node.field_publication_date.value %}
 
@@ -45,14 +52,52 @@
           {% endif %}
 
 
+          {# Option 1: An uploaded document stored in Drupal Media. #}
+
           {% if
-            node.field_opinion_pdf is not empty
-            and node.field_opinion_pdf.entity
+            node.field_opinion_document is not empty
+            and node.field_opinion_document.entity
+          %}
+
+            {% set document_media =
+              node.field_opinion_document.entity
+            %}
+
+            {% if
+              document_media.hasField('field_media_document')
+              and document_media.field_media_document is not empty
+              and document_media.field_media_document.entity
+            %}
+
+              {% set opinion_url =
+                file_url(
+                  document_media.field_media_document.entity.uri.value
+                )
+              %}
+
+            {% endif %}
+
+          {% endif %}
+
+
+          {# Option 2: An internal or external URL. #}
+
+          {% if
+            not opinion_url
+            and node.field_opinion_url is not empty
           %}
 
             {% set opinion_url =
-              file_url(node.field_opinion_pdf.entity.uri.value)
+              node.field_opinion_url.0.getUrl().toString()
             %}
+
+            {% set custom_link_text =
+              node.field_opinion_url.0.title|default('')
+            %}
+
+            {% if custom_link_text %}
+              {% set opinion_link_text = custom_link_text %}
+            {% endif %}
 
           {% endif %}
 
@@ -69,7 +114,19 @@
 
 
             <h2 class="wc-opinions-listing__title">
-              {{ node.label() }}
+
+              {% if opinion_url %}
+
+                <a href="{{ opinion_url }}">
+                  {{ node.label() }}
+                </a>
+
+              {% else %}
+
+                {{ node.label() }}
+
+              {% endif %}
+
             </h2>
 
 
@@ -97,7 +154,7 @@
                 href="{{ opinion_url }}"
                 class="wc-opinions-listing__pdf-link"
               >
-                View opinion PDF
+                {{ opinion_link_text }}
                 <span aria-hidden="true">›</span>
               </a>
 

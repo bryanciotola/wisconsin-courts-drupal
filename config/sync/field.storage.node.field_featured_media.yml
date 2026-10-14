@@ -1,15 +1,16 @@
-uuid: c3fcf3f7-f953-41d4-a803-7f0c94e323e9
+uuid: e586e71c-470a-4d0d-b36f-aa28fb0cb97b
 langcode: en
 status: true
 dependencies:
   module:
+    - media
     - node
-id: node.field_right_side_image_caption
-field_name: field_right_side_image_caption
+id: node.field_featured_media
+field_name: field_featured_media
 entity_type: node
-type: string_long
+type: entity_reference
 settings:
-  case_sensitive: false
+  target_type: media
 module: core
 locked: false
 cardinality: 1

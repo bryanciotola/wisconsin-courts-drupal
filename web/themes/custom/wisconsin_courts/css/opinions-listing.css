@@ -98,6 +98,26 @@
   line-height: 1.2;
 }
 
+
+/* Opinion title links */
+
+.wc-opinions-listing__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wc-opinions-listing__title a:hover {
+  color: var(--wc-color-link-hover);
+  text-decoration: underline;
+}
+
+.wc-opinions-listing__title a:focus-visible {
+  outline: 3px solid var(--wc-color-focus);
+  outline-offset: 3px;
+  text-decoration: underline;
+}
+
+
 .wc-opinions-listing__number {
   margin-bottom: 0.75rem;
 

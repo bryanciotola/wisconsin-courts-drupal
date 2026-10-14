@@ -1,11 +1,11 @@
-uuid: b9fb5888-1a43-4ddd-9598-3286f01125ff
+uuid: 05da90ab-6ffa-4a6e-9d2c-8570e6db5bd2
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_hero_image_caption
-field_name: field_hero_image_caption
+id: node.field_image_caption
+field_name: field_image_caption
 entity_type: node
 type: string_long
 settings:
