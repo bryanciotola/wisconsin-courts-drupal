@@ -1,0 +1,23 @@
+uuid: 8b978d87-7c7b-4b7f-ac19-f0c0fe300491
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_layout
+    - node.type.news_story
+  module:
+    - options
+id: node.news_story.field_image_layout
+field_name: field_image_layout
+entity_type: node
+bundle: news_story
+label: 'Image layout'
+description: 'Choose how the featured image appears on the news story page.'
+required: true
+translatable: false
+default_value:
+  -
+    value: right_side_image
+default_value_callback: ''
+settings: {  }
+field_type: list_string

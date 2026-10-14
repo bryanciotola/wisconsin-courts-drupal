@@ -4,16 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.news_story.field_body
-    - field.field.node.news_story.field_featured_image
-    - field.field.node.news_story.field_hero_image
-    - field.field.node.news_story.field_hero_image_caption
+    - field.field.node.news_story.field_featured_media
+    - field.field.node.news_story.field_image_caption
+    - field.field.node.news_story.field_image_layout
     - field.field.node.news_story.field_publication_date
-    - field.field.node.news_story.field_right_side_image_caption
     - field.field.node.news_story.field_summary
     - node.type.news_story
   module:
     - datetime
-    - image
+    - options
     - text
     - user
 id: node.news_story.default
@@ -28,34 +27,28 @@ content:
     third_party_settings: {  }
     weight: 104
     region: content
-  field_featured_image:
-    type: image
+  field_featured_media:
+    type: entity_reference_entity_view
     label: above
     settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    weight: 103
+    weight: 108
     region: content
-  field_hero_image:
-    type: image
-    label: above
-    settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 106
-    region: content
-  field_hero_image_caption:
+  field_image_caption:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 109
+    region: content
+  field_image_layout:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
     region: content
   field_publication_date:
     type: datetime_default
@@ -65,13 +58,6 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 101
-    region: content
-  field_right_side_image_caption:
-    type: basic_string
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 105
     region: content
   field_summary:
     type: basic_string

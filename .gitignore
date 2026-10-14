@@ -50,3 +50,6 @@ Thumbs.db
 
 # Local handoff archives and verification output (never commit site data).
 /.handoff/
+
+# Private court documents (managed outside Git).
+/private/

@@ -1,13 +1,29 @@
+
 {#
 /**
  * @file
  * Wisconsin Courts - News listing page.
+ *
+ * Displays News stories in a listing format.
+ *
+ * Images are managed through Drupal Media:
+ *
+ * News story (field_featured_media)
+ *   -> Image Media entity (field_media_image)
+ *     -> Image file
+ *
+ * The listing uses the Featured image as a thumbnail,
+ * regardless of the story's selected image layout.
  */
 #}
 
 <div class="wc-news-listing">
 
   <div class="wc-news-listing__container">
+
+    {# =====================================================
+       PAGE HEADER
+       ===================================================== #}
 
     <header class="wc-news-listing__header">
 
@@ -22,6 +38,10 @@
     </header>
 
 
+    {# =====================================================
+       NEWS STORIES
+       ===================================================== #}
+
     <div class="wc-news-listing__items">
 
       {% for row in view.result %}
@@ -30,12 +50,16 @@
 
         {% if node %}
 
+          {# Default values. #}
+
           {% set publication_date = '' %}
           {% set image_url = '' %}
-          {% set image_alt = '' %}
 
 
-          {# Publication date #}
+          {# -------------------------------------------------
+             PUBLICATION DATE
+             ------------------------------------------------- #}
+
           {% if node.field_publication_date.value %}
 
             {% set publication_date =
@@ -48,37 +72,37 @@
           {% endif %}
 
 
-          {# Prefer the right-side image for listing thumbnails. #}
+          {# -------------------------------------------------
+             FEATURED IMAGE
+
+             Retrieve the Media entity referenced by the
+             News story, then retrieve its image file.
+             ------------------------------------------------- #}
+
           {% if
-            node.field_featured_image is not empty
-            and node.field_featured_image.entity
+            node.field_featured_media is not empty
+            and node.field_featured_media.entity
           %}
 
-            {% set image_url =
-              file_url(node.field_featured_image.entity.uri.value)
+            {% set media = node.field_featured_media.entity %}
+
+            {% if
+              media.field_media_image is not empty
+              and media.field_media_image.entity
             %}
 
-            {% set image_alt =
-              node.field_featured_image.alt|default('')
-            %}
+              {% set image_url =
+                file_url(media.field_media_image.entity.uri.value)
+              %}
 
-
-          {# Fall back to the hero image if no right-side image exists. #}
-          {% elseif
-            node.field_hero_image is not empty
-            and node.field_hero_image.entity
-          %}
-
-            {% set image_url =
-              file_url(node.field_hero_image.entity.uri.value)
-            %}
-
-            {% set image_alt =
-              node.field_hero_image.alt|default('')
-            %}
+            {% endif %}
 
           {% endif %}
 
+
+          {# -------------------------------------------------
+             STORY URL
+             ------------------------------------------------- #}
 
           {% set story_url =
             path(
@@ -90,7 +114,19 @@
           %}
 
 
+          {# =================================================
+             NEWS STORY ITEM
+             ================================================= #}
+
           <article class="wc-news-listing__item{{ image_url ? ' wc-news-listing__item--with-image' : '' }}">
+
+
+            {# -----------------------------------------------
+               IMAGE THUMBNAIL
+
+               Decorative because the linked headline
+               already identifies the article.
+               ----------------------------------------------- #}
 
             {% if image_url %}
 
@@ -107,6 +143,7 @@
                     src="{{ image_url }}"
                     alt=""
                     class="wc-news-listing__image"
+                    loading="lazy"
                   >
 
                 </a>
@@ -116,7 +153,14 @@
             {% endif %}
 
 
+            {# -----------------------------------------------
+               STORY CONTENT
+               ----------------------------------------------- #}
+
             <div class="wc-news-listing__content">
+
+
+              {# Publication date #}
 
               {% if publication_date %}
 
@@ -127,6 +171,8 @@
               {% endif %}
 
 
+              {# News story title #}
+
               <h2 class="wc-news-listing__title">
 
                 <a href="{{ story_url }}">
@@ -135,6 +181,13 @@
 
               </h2>
 
+
+              {#
+                Preview text.
+
+                The field is labeled "Preview" in Drupal,
+                but its machine name is field_summary.
+              #}
 
               {% if node.field_summary.value %}
 
@@ -145,6 +198,8 @@
               {% endif %}
 
 
+              {# Read more link #}
+
               <a
                 href="{{ story_url }}"
                 class="wc-news-listing__read-more"
@@ -152,6 +207,7 @@
                 Read more
                 <span aria-hidden="true">›</span>
               </a>
+
 
             </div>
 
@@ -169,6 +225,10 @@
 
     </div>
 
+
+    {# =====================================================
+       PAGINATION
+       ===================================================== #}
 
     {% if pager %}
 

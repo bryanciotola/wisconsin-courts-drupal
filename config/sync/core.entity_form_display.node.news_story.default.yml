@@ -4,17 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.news_story.field_body
-    - field.field.node.news_story.field_featured_image
-    - field.field.node.news_story.field_hero_image
-    - field.field.node.news_story.field_hero_image_caption
+    - field.field.node.news_story.field_featured_media
+    - field.field.node.news_story.field_image_caption
+    - field.field.node.news_story.field_image_layout
     - field.field.node.news_story.field_publication_date
-    - field.field.node.news_story.field_right_side_image_caption
     - field.field.node.news_story.field_summary
-    - image.style.thumbnail
     - node.type.news_story
   module:
     - datetime
-    - image
+    - media_library
     - path
     - text
 id: node.news_story.default
@@ -24,13 +22,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 9
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 5
     region: content
     settings:
       rows: 9
@@ -38,23 +36,14 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  field_featured_image:
-    type: image_image
-    weight: 5
-    region: content
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-  field_hero_image:
-    type: image_image
+  field_featured_media:
+    type: media_library_widget
     weight: 3
     region: content
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      media_types: {  }
     third_party_settings: {  }
-  field_hero_image_caption:
+  field_image_caption:
     type: string_textarea
     weight: 4
     region: content
@@ -62,19 +51,17 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_image_layout:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_publication_date:
     type: datetime_default
     weight: 1
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_right_side_image_caption:
-    type: string_textarea
-    weight: 6
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
     third_party_settings: {  }
   field_summary:
     type: string_textarea
@@ -86,13 +73,13 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 11
+    weight: 13
     region: content
     settings:
       display_label: true
@@ -107,7 +94,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS

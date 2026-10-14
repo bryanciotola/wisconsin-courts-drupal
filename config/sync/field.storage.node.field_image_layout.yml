@@ -1,0 +1,27 @@
+uuid: e9791ab4-ca8d-481a-b73d-53e1c1a0faea
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_image_layout
+field_name: field_image_layout
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: hero_image
+      label: 'Hero image'
+    -
+      value: right_side_image
+      label: 'Right-side image'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
