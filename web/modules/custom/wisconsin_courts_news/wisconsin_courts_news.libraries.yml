@@ -1,0 +1,4 @@
+pio-dashboard:
+  css:
+    theme:
+      css/pio-dashboard.css: {}

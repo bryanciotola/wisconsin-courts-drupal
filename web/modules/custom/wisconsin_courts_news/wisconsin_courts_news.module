@@ -2,12 +2,14 @@
 
 /**
  * @file
- * Publishing behavior for Wisconsin Courts News and Opinions.
+ * Publishing behavior and PIO dashboard styling for News and Opinions.
  */
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_node_presave().
@@ -107,4 +109,70 @@ function wisconsin_courts_news_validate_opinion(
       t('Please provide either an Opinion document or an Opinion URL, not both.')
     );
   }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Loads the stylesheet for the PIO dashboard.
+ */
+function wisconsin_courts_news_views_pre_render(
+  ViewExecutable $view
+): void {
+
+  if ($view->id() !== 'pio_content_dashboard') {
+    return;
+  }
+
+  $view->element['#attached']['library'][] =
+    'wisconsin_courts_news/pio-dashboard';
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ *
+ * Adds the CSS class used by the dashboard stylesheet.
+ */
+function wisconsin_courts_news_preprocess_views_view(
+  array &$variables
+): void {
+
+  if ($variables['view']->id() !== 'pio_content_dashboard') {
+    return;
+  }
+
+  $variables['attributes']['class'][] = 'pio-dashboard';
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ *
+ * Displays publication status as a badge.
+ */
+function wisconsin_courts_news_preprocess_views_view_field(
+  array &$variables
+): void {
+
+  if (
+    $variables['view']->id() !== 'pio_content_dashboard' ||
+    $variables['field']->field !== 'status'
+  ) {
+    return;
+  }
+
+  $node = $variables['row']->_entity ?? NULL;
+
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  $published = $node->isPublished();
+
+  $variables['output'] = new FormattableMarkup(
+    '<span class="pio-status pio-status--@state">@label</span>',
+    [
+      '@state' => $published ? 'published' : 'unpublished',
+      '@label' => $published ? t('Published') : t('Unpublished'),
+    ]
+  );
 }

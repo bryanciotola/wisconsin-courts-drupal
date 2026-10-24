@@ -1,0 +1,175 @@
+/* PIO dashboard: shared styles for News stories and Opinions. */
+
+.pio-dashboard {
+  --pio-border: #d8e1eb;
+  --pio-heading: #263f57;
+  --pio-muted: #536477;
+  --pio-surface: #f4f7fb;
+}
+
+/* Search area. */
+
+.pio-dashboard .views-exposed-form {
+  margin-block: 0 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--pio-border);
+  border-radius: 0.5rem;
+  background: var(--pio-surface);
+}
+
+.pio-dashboard .views-exposed-form .form--inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.pio-dashboard .views-exposed-form .form-item {
+  float: none;
+  margin: 0;
+}
+
+.pio-dashboard .views-exposed-form .form--inline > .form-item {
+  flex: 1 1 22rem;
+}
+
+.pio-dashboard .views-exposed-form input[name="title"] {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+}
+
+.pio-dashboard .views-exposed-form .form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.pio-dashboard .views-exposed-form .form-actions .button {
+  margin: 0;
+}
+
+/* Content table. */
+
+.pio-dashboard table {
+  width: 100%;
+  margin-block: 0 1.5rem;
+  border: 1px solid var(--pio-border);
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.pio-dashboard table th,
+.pio-dashboard table td {
+  padding: 1rem 1.25rem;
+  text-align: start;
+  vertical-align: middle;
+}
+
+.pio-dashboard table thead th {
+  border-bottom: 1px solid var(--pio-border);
+  background: #edf2f8;
+  color: var(--pio-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.pio-dashboard table tbody td {
+  border-bottom: 1px solid var(--pio-border);
+}
+
+.pio-dashboard table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pio-dashboard table tbody tr:nth-child(even) {
+  background: #fafbfd;
+}
+
+.pio-dashboard table tbody tr:hover,
+.pio-dashboard table tbody tr:focus-within {
+  background: #eef4fa;
+}
+
+/* Keep the title prominent and let long titles wrap. */
+
+.pio-dashboard .views-field-title {
+  width: 55%;
+}
+
+.pio-dashboard .views-field-title a {
+  color: #245580;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.2em;
+}
+
+.pio-dashboard .views-field-status {
+  white-space: nowrap;
+}
+
+.pio-dashboard td.views-field-changed {
+  color: var(--pio-muted);
+  font-size: 0.875rem;
+}
+
+.pio-dashboard .views-field-operations {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Publication status: retain text as well as color. */
+
+.pio-dashboard .pio-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.pio-dashboard .pio-status::before {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.pio-dashboard .pio-status--published {
+  border-color: #b9ddc8;
+  background: #eaf6ee;
+  color: #19613e;
+}
+
+.pio-dashboard .pio-status--unpublished {
+  border-color: #e6cf94;
+  background: #fff4d5;
+  color: #795200;
+}
+
+/* Tighter spacing on smaller screens. */
+
+@media (max-width: 48rem) {
+  .pio-dashboard .views-exposed-form {
+    padding: 1rem;
+  }
+
+  .pio-dashboard table th,
+  .pio-dashboard table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .pio-dashboard .views-field-title {
+    width: auto;
+  }
+}
