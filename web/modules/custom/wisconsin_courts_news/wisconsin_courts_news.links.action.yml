@@ -1,0 +1,21 @@
+wisconsin_courts_news.pio_add_news_story:
+  title: 'Add News story'
+  route_name: node.add
+  route_parameters:
+    node_type: news_story
+  options:
+    query:
+      destination: '/admin/content/pio'
+  appears_on:
+    - view.pio_content_dashboard.page_1
+
+wisconsin_courts_news.pio_add_opinion:
+  title: 'Add Opinion'
+  route_name: node.add
+  route_parameters:
+    node_type: opinion
+  options:
+    query:
+      destination: '/admin/content/pio/opinions'
+  appears_on:
+    - view.pio_content_dashboard.page_2

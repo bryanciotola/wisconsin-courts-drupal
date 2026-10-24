@@ -1,0 +1,37 @@
+uuid: 5a9c2616-7675-414c-bcc9-1f3736a364c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_story
+    - node.type.opinion
+  module:
+    - navigation
+    - node
+    - system
+id: pio
+label: PIO
+weight: 4
+is_admin: false
+permissions:
+  - 'access content overview'
+  - 'access navigation'
+  - 'administer node published status'
+  - 'create news_story content'
+  - 'create opinion content'
+  - 'delete any news_story content'
+  - 'delete any opinion content'
+  - 'delete news_story revisions'
+  - 'delete opinion revisions'
+  - 'delete own news_story content'
+  - 'delete own opinion content'
+  - 'edit any news_story content'
+  - 'edit any opinion content'
+  - 'edit own news_story content'
+  - 'edit own opinion content'
+  - 'revert news_story revisions'
+  - 'revert opinion revisions'
+  - 'view news_story revisions'
+  - 'view opinion revisions'
+  - 'view own unpublished content'
+  - 'view the administration theme'
