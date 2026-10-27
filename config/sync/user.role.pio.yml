@@ -3,9 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.document
+    - media.type.image
     - node.type.news_story
     - node.type.opinion
   module:
+    - media
     - navigation
     - node
     - system
@@ -17,6 +20,8 @@ permissions:
   - 'access content overview'
   - 'access navigation'
   - 'administer node published status'
+  - 'create document media'
+  - 'create image media'
   - 'create news_story content'
   - 'create opinion content'
   - 'delete any news_story content'
