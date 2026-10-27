@@ -1,0 +1,12 @@
+# Add a third tab beside News stories and Opinions.
+wisconsin_courts_news.publishing_activity_tab:
+  title: 'Publishing activity'
+
+  # Open the page defined in our routing file.
+  route_name: wisconsin_courts_news.publishing_activity
+
+  # Join the same tab group as the existing dashboard pages.
+  base_route: view.pio_content_dashboard.page_1
+
+  # Position this tab after News stories and Opinions.
+  weight: 2

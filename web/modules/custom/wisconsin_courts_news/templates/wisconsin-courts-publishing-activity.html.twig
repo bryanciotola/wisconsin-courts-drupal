@@ -1,0 +1,287 @@
+{#
+/**
+ * @file
+ * Publishing activity dashboard for News and Opinions.
+ *
+ * Publication totals, the chart, the latest publication, and the
+ * publications list follow the selected reporting period.
+ *
+ * Unpublished items and the current-week summary show current activity.
+ */
+#}
+
+{{ attach_library('wisconsin_courts_news/publishing-activity') }}
+
+<div class="pio-activity">
+
+  <header class="pio-activity__header">
+    <div>
+      <h2>{{ 'Publishing overview'|t }}</h2>
+      <p class="pio-activity__meta">
+        {{ 'News and Opinions you can edit.'|t }}
+      </p>
+    </div>
+
+    {# GET puts the selected range into the page URL.
+       Clicking Apply reloads the dashboard with that selection. #}
+    <div class="pio-activity__filter">
+      <form
+        method="get"
+        action="{{ filter_action }}"
+        aria-label="{{ 'Choose a reporting period'|t }}"
+      >
+        <div class="pio-activity__filter-field">
+          <label for="pio-activity-range">
+            {{ 'Reporting period'|t }}
+          </label>
+
+          <select
+            id="pio-activity-range"
+            name="range"
+            class="form-select"
+          >
+            {% for value, label in range_options %}
+              <option
+                value="{{ value }}"
+                {% if value == range %}selected{% endif %}
+              >
+                {{ label }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="button button--primary">
+          {{ 'Apply'|t }}
+        </button>
+      </form>
+
+      <p class="pio-activity__meta">
+        {{ period_label }}
+      </p>
+    </div>
+  </header>
+
+  {# Summary cards identify whether they follow the selected period
+     or describe the site's current activity. #}
+  <div class="pio-activity__cards">
+
+    <div class="pio-activity__card">
+      <h3>{{ 'Published in selected period'|t }}</h3>
+      <p class="pio-activity__value">{{ summary.published }}</p>
+      <p class="pio-activity__meta">
+        {{ '@news News · @opinions Opinions'|t({
+          '@news': summary.published_news,
+          '@opinions': summary.published_opinions
+        }) }}
+      </p>
+    </div>
+
+    <div class="pio-activity__card">
+      <h3>{{ 'Unpublished now'|t }}</h3>
+      <p class="pio-activity__value">{{ summary.unpublished }}</p>
+      <p class="pio-activity__meta">
+        {{ '@news News · @opinions Opinions'|t({
+          '@news': summary.unpublished_news,
+          '@opinions': summary.unpublished_opinions
+        }) }}
+      </p>
+    </div>
+
+    <div class="pio-activity__card">
+      <h3>{{ 'Published this week'|t }}</h3>
+      <p class="pio-activity__value">
+        {{ summary.published_this_week }}
+      </p>
+      <p class="pio-activity__meta">
+        {{ 'Monday through today'|t }}
+      </p>
+    </div>
+
+    <div class="pio-activity__card">
+      <h3>{{ 'Most recent publication'|t }}</h3>
+      <p class="pio-activity__value pio-activity__value--date">
+        {{ summary.latest_publication }}
+      </p>
+      <p class="pio-activity__meta">
+        {{ 'In the selected period'|t }}
+      </p>
+    </div>
+
+  </div>
+
+  <div class="pio-activity__layout">
+
+    <section
+      class="pio-activity__panel"
+      aria-labelledby="pio-activity-chart-title"
+    >
+      <h3 id="pio-activity-chart-title">
+        {{ 'Publications over time'|t }}
+      </h3>
+
+      <p class="pio-activity__meta">
+        {{ range_label }} · {{ period_label }}
+      </p>
+
+      <p class="pio-activity__meta">
+        {{ 'Currently published items, grouped by first publication date.'|t }}
+      </p>
+
+      {% if summary.published == 0 %}
+        <p>{{ 'No publications in this period.'|t }}</p>
+      {% endif %}
+
+      {# The column count adjusts for very short periods. #}
+      <div class="pio-activity__chart-scroll">
+        <div
+          class="pio-activity__chart"
+          style="--chart-columns: {{ chart|length }};"
+          role="list"
+          aria-label="{{ 'Publication counts by date range'|t }}"
+        >
+          {% for bucket in chart %}
+            <div class="pio-activity__column" role="listitem">
+              <span class="pio-activity__chart-count">
+                {{ bucket.count }}
+              </span>
+
+              {# Visible numbers and labels supply the data.
+                 The bar itself is decorative. #}
+              <div class="pio-activity__bar-track" aria-hidden="true">
+                <div
+                  class="pio-activity__bar"
+                  style="--bar-height: {{ bucket.percent }}%;"
+                ></div>
+              </div>
+
+              <span class="pio-activity__chart-label">
+                {{ bucket.label }}
+              </span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {# A table provides another way to read the chart. #}
+      <details class="pio-activity__chart-data">
+        <summary>{{ 'View chart data as a table'|t }}</summary>
+
+        <table>
+          <caption class="visually-hidden">
+            {{ 'Publication counts for the selected period'|t }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ 'Date range'|t }}</th>
+              <th scope="col">{{ 'Published'|t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for bucket in chart %}
+              <tr>
+                <th scope="row">{{ bucket.label }}</th>
+                <td>{{ bucket.count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    </section>
+
+    {# This section always reflects current unpublished content. #}
+    <section
+      class="pio-activity__panel"
+      aria-labelledby="pio-activity-drafts-title"
+    >
+      <h3 id="pio-activity-drafts-title">
+        {{ 'Older unpublished items'|t }}
+      </h3>
+
+      <p class="pio-activity__meta">
+        {{ 'Currently unpublished and not updated in at least 14 days. Showing up to three oldest items.'|t }}
+      </p>
+
+      <p>
+        {{ 'Matching items: @count'|t({
+          '@count': summary.older_unpublished
+        }) }}
+      </p>
+
+      {% if older_drafts %}
+        <ul class="pio-activity__drafts">
+          {% for item in older_drafts %}
+            <li>
+              <a href="{{ item.edit_url }}">{{ item.title }}</a>
+
+              <p class="pio-activity__meta">
+                {{ item.type }} ·
+                {{ 'Updated @date'|t({'@date': item.date}) }}
+              </p>
+
+              <span class="pio-activity__badge">
+                {{ 'Unpublished'|t }}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>{{ 'No unpublished items match this check.'|t }}</p>
+      {% endif %}
+    </section>
+
+  </div>
+
+  {# Publication rows follow the selected reporting period. #}
+  <section
+    class="pio-activity__panel"
+    aria-labelledby="pio-activity-recent-title"
+  >
+    <h3 id="pio-activity-recent-title">
+      {{ 'Recent publications'|t }}
+    </h3>
+
+    <p class="pio-activity__meta">
+      {{ 'Up to five recent publications in the selected period. Select a title to edit it.'|t }}
+    </p>
+
+    {% if recent_publications %}
+      <div class="pio-activity__table-wrap">
+        <table>
+          <caption class="visually-hidden">
+            {{ 'Recent publications in the selected period'|t }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ 'Title'|t }}</th>
+              <th scope="col">{{ 'Type'|t }}</th>
+              <th scope="col">{{ 'Published'|t }}</th>
+              <th scope="col">{{ 'Author'|t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in recent_publications %}
+              <tr>
+                <td>
+                  <a href="{{ item.edit_url }}">{{ item.title }}</a>
+                </td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.author }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>{{ 'No publications in this period.'|t }}</p>
+    {% endif %}
+  </section>
+
+  <p class="pio-activity__footnote">
+    {{ 'Dates use the site timezone: @timezone.'|t({
+      '@timezone': timezone_label
+    }) }}
+  </p>
+
+</div>

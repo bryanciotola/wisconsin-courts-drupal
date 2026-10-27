@@ -1,0 +1,350 @@
+/*
+ * Publishing activity dashboard.
+ * All styles are scoped to this dashboard.
+ */
+
+.pio-activity {
+  --activity-blue: #003ecc;
+  --activity-heading: #102a43;
+  --activity-muted: #526375;
+  --activity-border: #d5dfe9;
+  --activity-soft-blue: #edf4fa;
+
+  color: var(--activity-heading);
+}
+
+.pio-activity,
+.pio-activity * {
+  box-sizing: border-box;
+}
+
+/* Page introduction and reporting period. */
+
+.pio-activity__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pio-activity__header h2 {
+  margin: 0 0 0.375rem;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.pio-activity__meta,
+.pio-activity__footnote {
+  color: var(--activity-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.pio-activity__meta {
+  margin: 0.375rem 0 0;
+}
+
+.pio-activity__period {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--activity-border);
+  border-radius: 6px;
+  background: var(--activity-soft-blue);
+  font-weight: 600;
+}
+
+.pio-activity__period span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--activity-muted);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+/* Four summary cards. */
+
+.pio-activity__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pio-activity__card {
+  min-width: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--activity-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.pio-activity__card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.pio-activity__card .pio-activity__value {
+  margin: 0;
+  color: var(--activity-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pio-activity__card .pio-activity__value--date {
+  font-size: 1.375rem;
+  line-height: 1.5;
+}
+
+/* Main chart and older-content panels. */
+
+.pio-activity__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(16rem, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pio-activity__panel {
+  min-width: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--activity-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.pio-activity__panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.pio-activity a {
+  color: #004b9b;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.pio-activity a:hover {
+  color: #002e73;
+}
+
+/* Six chart columns, each representing five calendar days. */
+
+.pio-activity__chart-scroll {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.pio-activity__chart {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 32rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.pio-activity__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.pio-activity__chart-count {
+  margin-bottom: 0.5rem;
+  color: var(--activity-blue);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pio-activity__bar-track {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 180px;
+  border-bottom: 1px solid var(--activity-border);
+}
+
+.pio-activity__bar {
+  width: 70%;
+  max-width: 3.5rem;
+
+  /* The controller supplies a percentage from 0 to 100. */
+  height: var(--bar-height, 0%);
+
+  border-radius: 4px 4px 0 0;
+  background: var(--activity-blue);
+}
+
+.pio-activity__chart-label {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.pio-activity__chart-data {
+  margin-top: 1rem;
+}
+
+.pio-activity__chart-data summary {
+  padding: 0.75rem;
+  color: #004b9b;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Older unpublished content. */
+
+.pio-activity__drafts {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pio-activity__drafts li {
+  padding: 1rem 0;
+  border-top: 1px solid var(--activity-border);
+}
+
+.pio-activity__drafts li > a {
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.pio-activity__badge {
+  display: inline-block;
+  margin-top: 0.625rem;
+  padding: 0.2rem 0.625rem;
+  border-radius: 1rem;
+  background: #e9edf2;
+  color: #344054;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Recent-publications table and chart-data table. */
+
+.pio-activity__table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.pio-activity table {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--activity-border);
+  border-collapse: collapse;
+}
+
+.pio-activity th,
+.pio-activity td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--activity-border);
+  text-align: start;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.pio-activity thead th {
+  background: var(--activity-soft-blue);
+  color: var(--activity-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.pio-activity tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.pio-activity__table-wrap table {
+  min-width: 38rem;
+}
+
+.pio-activity__table-wrap td:first-child {
+  width: 45%;
+}
+
+.pio-activity__table-wrap td:nth-child(3) {
+  white-space: nowrap;
+}
+
+.pio-activity__chart-data table {
+  margin-top: 0.75rem;
+}
+
+.pio-activity__footnote {
+  margin: 1rem 0 0;
+}
+
+/* Stack panels when there is less room beside the sidebar. */
+
+@media (max-width: 1200px) {
+  .pio-activity__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pio-activity__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Use one summary card per row on smaller screens. */
+
+@media (max-width: 640px) {
+  .pio-activity__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pio-activity__card,
+  .pio-activity__panel {
+    padding: 1rem;
+  }
+}
+
+/* Reporting-period dropdown and Apply button. */
+
+.pio-activity__filter {
+  max-width: 100%;
+}
+
+.pio-activity__filter form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.pio-activity__filter-field {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 12rem;
+}
+
+.pio-activity__filter-field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.pio-activity__filter select {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.pio-activity__filter .button {
+  margin: 0;
+}
+
+/* Match the number of chart columns supplied by the controller. */
+
+.pio-activity__chart {
+  grid-template-columns:
+    repeat(var(--chart-columns, 6), minmax(0, 1fr));
+}

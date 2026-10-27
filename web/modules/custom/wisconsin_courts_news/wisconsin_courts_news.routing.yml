@@ -1,0 +1,17 @@
+# The publishing activity page within the PIO dashboard.
+wisconsin_courts_news.publishing_activity:
+  path: '/admin/content/pio/activity'
+
+  defaults:
+    # The PHP class and method that will build the dashboard.
+    _controller: '\Drupal\wisconsin_courts_news\Controller\PublishingActivityController::overview'
+    _title: 'PIO Content Dashboard'
+
+  requirements:
+    # Allow either role, matching the existing PIO dashboard.
+    # A plus sign means the user needs at least one of these roles.
+    _role: 'administrator+pio'
+
+  options:
+    # Use Drupal's administration theme for this page.
+    _admin_route: TRUE

@@ -2,3 +2,9 @@ pio-dashboard:
   css:
     theme:
       css/pio-dashboard.css: {}
+
+# Styles used only by the Publishing activity dashboard.
+publishing-activity:
+  css:
+    theme:
+      css/publishing-activity.css: {}
