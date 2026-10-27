@@ -1,0 +1,40 @@
+# Parent item in the left navigation.
+wisconsin_courts_news.view_website:
+  title: 'View website'
+  description: 'Visit the public-facing pages of this Drupal site.'
+  route_name: '<nolink>'
+  menu_name: content
+  weight: 10
+
+  # Display Drupal's eye icon beside the parent item.
+  options:
+    icon:
+      pack_id: navigation
+      icon_id: eye
+      settings:
+        class: toolbar-button__icon
+        size: 20
+
+# Homepage link beneath "View website".
+wisconsin_courts_news.view_homepage:
+  title: 'Homepage'
+  route_name: '<front>'
+  menu_name: content
+  parent: wisconsin_courts_news.view_website
+  weight: 0
+
+# Public News listing beneath "View website".
+wisconsin_courts_news.view_news:
+  title: 'News'
+  route_name: view.news.page_1
+  menu_name: content
+  parent: wisconsin_courts_news.view_website
+  weight: 1
+
+# Public Opinions listing beneath "View website".
+wisconsin_courts_news.view_opinions:
+  title: 'Opinions'
+  route_name: view.opinions.page_1
+  menu_name: content
+  parent: wisconsin_courts_news.view_website
+  weight: 2
