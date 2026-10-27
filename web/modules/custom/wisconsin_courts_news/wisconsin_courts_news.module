@@ -176,3 +176,31 @@ function wisconsin_courts_news_preprocess_views_view_field(
     ]
   );
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for the Navigation menu.
+ *
+ * Gives the "View website" menu item Drupal's eye icon.
+ */
+function wisconsin_courts_news_preprocess_navigation_menu(
+  array &$variables
+): void {
+
+  // The ID of the "View website" menu link created in the Drupal UI.
+  $link_id = 'menu_link_content:0f5b9122-d995-49d5-ac55-6fba7dee2751';
+
+  // Only change this link when it exists in the menu being rendered.
+  if (!isset($variables['items'][$link_id])) {
+    return;
+  }
+
+  // Use the eye icon from Drupal's Navigation icon pack.
+  $variables['items'][$link_id]['icon'] = [
+    'pack_id' => 'navigation',
+    'icon_id' => 'eye',
+    'settings' => [
+      'class' => 'toolbar-button__icon',
+      'size' => 20,
+    ],
+  ];
+}

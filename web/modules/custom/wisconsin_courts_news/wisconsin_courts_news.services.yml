@@ -1,0 +1,18 @@
+# Services provided by the Wisconsin Courts News module.
+services:
+
+  # A unique name for our PIO content redirect service.
+  wisconsin_courts_news.pio_content_redirect:
+
+    # The PHP class that will contain the redirect logic.
+    # We'll create this class in the next step.
+    class: Drupal\wisconsin_courts_news\EventSubscriber\PioContentRedirectSubscriber
+
+    # Give the class access to the currently signed-in user.
+    # This lets it check whether the user has the PIO role.
+    arguments: ['@current_user']
+
+    # Register this class as an event subscriber, so it can
+    # respond when Drupal processes a page request.
+    tags:
+      - { name: event_subscriber }
