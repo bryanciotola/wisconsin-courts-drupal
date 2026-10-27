@@ -10,3 +10,10 @@ wisconsin_courts_news.publishing_activity_tab:
 
   # Position this tab after News stories and Opinions.
   weight: 2
+
+# Add the workload screen to the existing dashboard tabs.
+wisconsin_courts_news.drafts_workload_tab:
+  title: 'Drafts and workload'
+  route_name: wisconsin_courts_news.drafts_workload
+  base_route: view.pio_content_dashboard.page_1
+  weight: 3

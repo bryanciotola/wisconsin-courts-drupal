@@ -180,7 +180,7 @@ function wisconsin_courts_news_preprocess_views_view_field(
 /**
  * Implements hook_theme().
  *
- * Registers the publishing activity template and its variables.
+ * Registers the publishing activity and workload templates.
  */
 function wisconsin_courts_news_theme(
   $existing,
@@ -197,14 +197,29 @@ function wisconsin_courts_news_theme(
         'recent_publications' => [],
         'period_label' => '',
         'timezone_label' => '',
-
-        // Settings for the reporting-period dropdown.
         'range' => '30',
         'range_options' => [],
         'range_label' => '',
         'filter_action' => '',
       ],
       'template' => 'wisconsin-courts-publishing-activity',
+      'path' => $path . '/templates',
+    ],
+
+    'wisconsin_courts_drafts_workload' => [
+      'variables' => [
+        'filters' => [],
+        'summary' => [],
+        'rows' => [],
+        'authors' => [],
+        'recent' => [],
+        'total' => 0,
+        'sort_direction' => 'descending',
+        'urls' => [],
+        'pager' => NULL,
+        'timezone_label' => '',
+      ],
+      'template' => 'wisconsin-courts-drafts-workload',
       'path' => $path . '/templates',
     ],
   ];

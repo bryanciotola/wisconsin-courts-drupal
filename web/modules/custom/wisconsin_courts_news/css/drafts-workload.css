@@ -1,0 +1,561 @@
+/*
+ * Drafts and workload dashboard.
+ * Scoped to this page so other administration screens are unaffected.
+ */
+
+.pio-workload {
+  --workload-heading: #102a43;
+  --workload-text: #213a58;
+  --workload-muted: #526783;
+  --workload-blue: #0043ce;
+  --workload-border: #d6e1ee;
+  --workload-table-head: #eaf1f8;
+
+  width: 100%;
+  max-width: 90rem;
+  color: var(--workload-text);
+}
+
+.pio-workload,
+.pio-workload * {
+  box-sizing: border-box;
+}
+
+.pio-workload a {
+  color: var(--workload-blue);
+  text-underline-offset: 0.15em;
+}
+
+.pio-workload a:hover {
+  text-decoration: underline;
+}
+
+/* Page heading and introduction. */
+
+.pio-workload__header {
+  margin-bottom: 1.25rem;
+}
+
+.pio-workload__header h2 {
+  margin: 0 0 0.375rem;
+  color: var(--workload-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.pio-workload__header p {
+  margin: 0;
+  color: var(--workload-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Type and Author filters. */
+
+.pio-workload__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.875rem;
+  margin: 0 0 1.25rem;
+}
+
+.pio-workload__field {
+  display: grid;
+  gap: 0.375rem;
+  width: 12rem;
+  max-width: 100%;
+}
+
+.pio-workload__field label {
+  color: var(--workload-text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pio-workload__field select {
+  width: 100%;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.625rem 2rem 0.625rem 0.875rem;
+  border: 1px solid #bdcde0;
+  border-radius: 5px;
+  background-color: #fff;
+  color: var(--workload-text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.pio-workload__filters .button {
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.625rem 1.125rem;
+  border: 1px solid var(--workload-blue);
+  border-radius: 4px;
+  background: var(--workload-blue);
+  box-shadow: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pio-workload__filters .button:hover {
+  background: #0034a3;
+}
+
+.pio-workload__reset {
+  padding: 0.75rem 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* Three summary cards. */
+
+.pio-workload__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pio-workload__card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  min-height: 6rem;
+  padding: 1.125rem;
+  border: 1px solid var(--workload-border);
+  border-radius: 6px;
+  background: #f4f7fc;
+}
+
+.pio-workload__card > div {
+  min-width: 0;
+}
+
+.pio-workload__card h3 {
+  margin: 0 0 0.25rem;
+  color: #405a7c;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pio-workload__card .pio-workload__value {
+  margin: 0;
+  color: var(--workload-heading);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.pio-workload__card-icon {
+  display: grid;
+  flex: 0 0 3rem;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #fff;
+  color: #203b60;
+}
+
+.pio-workload__card-icon svg {
+  display: block;
+}
+
+.pio-workload__card--opinions {
+  border-color: #bde3e8;
+  background: #edf9fa;
+}
+
+.pio-workload__card--opinions .pio-workload__card-icon {
+  color: #006b7a;
+}
+
+.pio-workload .pio-workload__card--older {
+  border-color: #f2ddb4;
+  background: #fff9ed;
+  color: var(--workload-text);
+  text-decoration: none;
+}
+
+.pio-workload__card--older .pio-workload__card-icon {
+  color: #b55a00;
+}
+
+.pio-workload .pio-workload__card--older:hover {
+  border-color: #c78025;
+  background: #fff4dc;
+  text-decoration: none;
+}
+
+/* Main table and right-hand summaries. */
+
+.pio-workload__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(17rem, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.pio-workload__sidebar {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.pio-workload__panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--workload-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.pio-workload__panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.125rem;
+}
+
+.pio-workload__panel-header h3 {
+  margin: 0;
+  color: var(--workload-heading);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Older-items checkbox and its Apply button. */
+
+.pio-workload__age-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.pio-workload__age-filter label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--workload-text);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pio-workload__age-filter input {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--workload-blue);
+}
+
+.pio-workload__age-filter .pio-workload__apply-age {
+  min-height: 2rem;
+  margin: 0;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid #a8bcd5;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: none;
+  color: #24446e;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pio-workload__age-filter .pio-workload__apply-age:hover {
+  border-color: var(--workload-blue);
+  background: #edf4ff;
+}
+
+/* Tables. */
+
+.pio-workload__table-wrap {
+  overflow-x: auto;
+}
+
+.pio-workload table {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-collapse: collapse;
+  color: var(--workload-text);
+  font-size: 0.875rem;
+}
+
+.pio-workload th,
+.pio-workload td {
+  padding: 0.75rem 0.875rem;
+  border: 0;
+  border-bottom: 1px solid var(--workload-border);
+  text-align: start;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.pio-workload thead th {
+  background: var(--workload-table-head);
+  color: #344e70;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.pio-workload tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.pio-workload tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pio-workload__table {
+  min-width: 35rem;
+}
+
+.pio-workload__table th:first-child {
+  width: 38%;
+}
+
+.pio-workload__table td:first-child {
+  overflow-wrap: anywhere;
+}
+
+.pio-workload__table td:first-child a {
+  color: #1f3d64;
+  text-decoration: none;
+}
+
+.pio-workload__table td:first-child a:hover {
+  color: var(--workload-blue);
+  text-decoration: underline;
+}
+
+.pio-workload__table th[aria-sort] a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pio-workload__table th[aria-sort] a:hover {
+  color: var(--workload-blue);
+  text-decoration: underline;
+}
+
+/* News and Opinion badges. */
+
+.pio-workload__type {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
+  background: #e7ecf2;
+  color: #354c68;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.pio-workload__type--opinion {
+  background: #cceef0;
+  color: #005662;
+}
+
+/* Highlight older dates with both color and a text label. */
+
+.pio-workload__updated {
+  white-space: nowrap;
+}
+
+.pio-workload .pio-workload__updated--older {
+  background: #fff5e2;
+  color: #a64b00;
+}
+
+.pio-workload__stale-label {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/* Outline-style Edit buttons. */
+
+.pio-workload a.pio-workload__edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--workload-blue);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--workload-blue);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pio-workload a.pio-workload__edit:hover {
+  background: var(--workload-blue);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Table results, pagination, and empty states. */
+
+.pio-workload__table-footer {
+  padding: 1rem 1.125rem;
+  border-top: 1px solid var(--workload-border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.pio-workload__table-footer > p {
+  margin: 0 0 0.5rem;
+  color: var(--workload-muted);
+}
+
+.pio-workload__table-footer .pager {
+  margin: 0.75rem 0;
+}
+
+.pio-workload__empty {
+  margin: 0;
+  padding: 0 1.125rem 1.125rem;
+  color: var(--workload-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.pio-workload__note {
+  margin: 0;
+  padding: 0 1.125rem 0.75rem;
+  color: var(--workload-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Drafts by author. */
+
+.pio-workload__author-table th:last-child,
+.pio-workload__author-table td:last-child {
+  width: 7rem;
+  text-align: center;
+}
+
+/* Recently updated content. */
+
+.pio-workload__recent {
+  margin: 0;
+  padding: 0 1.125rem;
+  list-style: none;
+}
+
+.pio-workload__recent li {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.625rem;
+  padding: 0.875rem 0;
+  border-top: 1px solid var(--workload-border);
+}
+
+.pio-workload__recent li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.pio-workload__recent a {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.pio-workload__recent a:hover {
+  text-decoration: underline;
+}
+
+.pio-workload__recent p {
+  margin: 0.25rem 0 0;
+  color: var(--workload-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.pio-workload__recent-icon {
+  display: block;
+  padding-top: 0.125rem;
+  color: #345375;
+}
+
+.pio-workload__recent-icon--opinion {
+  color: #007386;
+}
+
+.pio-workload__footnote {
+  margin: 1rem 0 0;
+  color: var(--workload-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Visible keyboard focus. */
+
+.pio-workload a:focus-visible,
+.pio-workload button:focus-visible,
+.pio-workload select:focus-visible,
+.pio-workload input:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+/* Stack the main table above the summaries on narrower screens. */
+
+@media (max-width: 1050px) {
+  .pio-workload__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pio-workload__sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Use a single column on smaller screens. */
+
+@media (max-width: 700px) {
+  .pio-workload__cards,
+  .pio-workload__sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pio-workload__field {
+    flex: 1 1 12rem;
+    width: auto;
+  }
+
+  .pio-workload__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .pio-workload__panel-header {
+    align-items: flex-start;
+  }
+}

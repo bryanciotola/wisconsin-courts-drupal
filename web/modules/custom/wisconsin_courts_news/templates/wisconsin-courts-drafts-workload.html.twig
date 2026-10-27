@@ -1,0 +1,389 @@
+{#
+/**
+ * @file
+ * Drafts and workload dashboard.
+ *
+ * Type and Author filter the entire dashboard.
+ * The older-items checkbox additionally filters the main table.
+ */
+#}
+
+{{ attach_library('wisconsin_courts_news/drafts-workload') }}
+
+{# Small decorative icons used by cards and recent items. #}
+{% macro icon(name) %}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    {% if name == 'clock' %}
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 7v5l3 2"></path>
+    {% else %}
+      <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+      <path d="M14 3v6h6"></path>
+      <path d="M8 13h8M8 17h6"></path>
+    {% endif %}
+  </svg>
+{% endmacro %}
+
+{% import _self as ui %}
+
+<div class="pio-workload">
+
+  <header class="pio-workload__header">
+    <h2>{{ 'Drafts and workload'|t }}</h2>
+    <p>{{ 'Find unfinished content and see recent updates.'|t }}</p>
+  </header>
+
+  {# The checkbox farther down the page belongs to this same form.
+     Either Apply button submits all the selected filters together. #}
+  <form
+    id="pio-workload-filters"
+    class="pio-workload__filters"
+    method="get"
+    action="{{ urls.filter }}"
+    aria-label="{{ 'Filter drafts and workload'|t }}"
+  >
+    <div class="pio-workload__field">
+      <label for="pio-workload-type">{{ 'Type'|t }}</label>
+
+      <select
+        id="pio-workload-type"
+        name="type"
+        class="form-select"
+      >
+        {% for value, label in filters.type_options %}
+          <option
+            value="{{ value }}"
+            {% if value == filters.type %}selected{% endif %}
+          >
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="pio-workload__field">
+      <label for="pio-workload-author">{{ 'Author'|t }}</label>
+
+      <select
+        id="pio-workload-author"
+        name="author"
+        class="form-select"
+      >
+        {% for value, label in filters.author_options %}
+          <option
+            value="{{ value }}"
+            {% if value == filters.author %}selected{% endif %}
+          >
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    {# Preserve sorting when applying different filters. #}
+    <input type="hidden" name="sort" value="{{ filters.sort }}">
+
+    <button type="submit" class="button button--primary">
+      {{ 'Apply'|t }}
+    </button>
+
+    <a class="pio-workload__reset" href="{{ urls.reset }}">
+      {{ 'Reset'|t }}
+    </a>
+  </form>
+
+  {# Summary cards follow the selected Type and Author. #}
+  <div class="pio-workload__cards">
+
+    <div class="pio-workload__card pio-workload__card--news">
+      <span class="pio-workload__card-icon">
+        {{ ui.icon('document') }}
+      </span>
+
+      <div>
+        <h3>{{ 'Unpublished News'|t }}</h3>
+        <p class="pio-workload__value">
+          {{ summary.unpublished_news }}
+        </p>
+      </div>
+    </div>
+
+    <div class="pio-workload__card pio-workload__card--opinions">
+      <span class="pio-workload__card-icon">
+        {{ ui.icon('document') }}
+      </span>
+
+      <div>
+        <h3>{{ 'Unpublished Opinions'|t }}</h3>
+        <p class="pio-workload__value">
+          {{ summary.unpublished_opinions }}
+        </p>
+      </div>
+    </div>
+
+    <a
+      class="pio-workload__card pio-workload__card--older"
+      href="{{ urls.older }}"
+    >
+      <span class="pio-workload__card-icon">
+        {{ ui.icon('clock') }}
+      </span>
+
+      <div>
+        <h3>{{ 'Not updated in 14+ days'|t }}</h3>
+        <p class="pio-workload__value">{{ summary.older }}</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="pio-workload__layout">
+
+    {# Main unpublished-content table. #}
+    <section
+      class="pio-workload__panel"
+      aria-labelledby="pio-workload-table-title"
+    >
+      <div class="pio-workload__panel-header">
+        <h3 id="pio-workload-table-title">
+          {{ 'Unpublished content'|t }}
+        </h3>
+
+        <div class="pio-workload__age-filter">
+          <label for="pio-workload-older">
+            <input
+              id="pio-workload-older"
+              form="pio-workload-filters"
+              type="checkbox"
+              name="older"
+              value="1"
+              {% if filters.older %}checked{% endif %}
+            >
+            {{ 'Not updated in 14+ days'|t }}
+          </label>
+
+          <button
+            form="pio-workload-filters"
+            type="submit"
+            class="button pio-workload__apply-age"
+            aria-label="{{ 'Apply the selected workload filters'|t }}"
+          >
+            {{ 'Apply'|t }}
+          </button>
+        </div>
+      </div>
+
+      {% if rows %}
+        <div class="pio-workload__table-wrap">
+          <table class="pio-workload__table">
+            <caption class="visually-hidden">
+              {{ 'Unpublished News and Opinions matching the selected filters'|t }}
+            </caption>
+
+            <thead>
+              <tr>
+                <th scope="col">{{ 'Title'|t }}</th>
+                <th scope="col">{{ 'Type'|t }}</th>
+
+                <th scope="col" aria-sort="{{ sort_direction }}">
+                  <a href="{{ urls.sort }}">
+                    {{ 'Last updated'|t }}
+                    <span aria-hidden="true">
+                      {{ sort_direction == 'descending' ? '↓' : '↑' }}
+                    </span>
+                  </a>
+                </th>
+
+                <th scope="col">{{ 'Author'|t }}</th>
+                <th scope="col">{{ 'Action'|t }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for item in rows %}
+                <tr>
+                  <td>
+                    <a href="{{ item.edit_url }}">
+                      {{ item.title }}
+                    </a>
+                  </td>
+
+                  <td>
+                    <span
+                      class="pio-workload__type pio-workload__type--{{ item.bundle == 'opinion' ? 'opinion' : 'news' }}"
+                    >
+                      {{ item.type }}
+                    </span>
+                  </td>
+
+                  <td
+                    class="pio-workload__updated{% if item.is_older %} pio-workload__updated--older{% endif %}"
+                  >
+                    {{ item.updated }}
+
+                    {% if item.is_older %}
+                      <span class="pio-workload__stale-label">
+                        {{ '14+ days'|t }}
+                      </span>
+                    {% endif %}
+                  </td>
+
+                  <td>{{ item.author }}</td>
+
+                  <td>
+                    <a
+                      class="pio-workload__edit"
+                      href="{{ item.edit_url }}"
+                      aria-label="{{ 'Edit @title'|t({
+                        '@title': item.title
+                      }) }}"
+                    >
+                      {{ 'Edit'|t }}
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p class="pio-workload__empty">
+          {{ 'No unpublished items match these filters.'|t }}
+        </p>
+      {% endif %}
+
+      <footer class="pio-workload__table-footer">
+        <p>
+          {{ 'Showing @shown of @total matching unpublished items.'|t({
+            '@shown': rows|length,
+            '@total': total
+          }) }}
+        </p>
+
+        {{ pager }}
+
+        {% if filters.older %}
+          <a href="{{ urls.all }}">
+            {{ 'View all @count matching unpublished items'|t({
+              '@count': summary.unpublished_total
+            }) }}
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </footer>
+    </section>
+
+    <aside
+      class="pio-workload__sidebar"
+      aria-label="{{ 'Workload summaries'|t }}"
+    >
+
+      {# Author totals reflect Type and Author, not the age checkbox. #}
+      <section
+        class="pio-workload__panel"
+        aria-labelledby="pio-workload-authors-title"
+      >
+        <div class="pio-workload__panel-header">
+          <h3 id="pio-workload-authors-title">
+            {{ 'Drafts by author'|t }}
+          </h3>
+        </div>
+
+        <p class="pio-workload__note">
+          {{ 'Unpublished items, grouped by content author.'|t }}
+        </p>
+
+        {% if authors %}
+          <div class="pio-workload__table-wrap">
+            <table class="pio-workload__author-table">
+              <caption class="visually-hidden">
+                {{ 'Unpublished content totals by author'|t }}
+              </caption>
+
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'Author'|t }}</th>
+                  <th scope="col">{{ 'Unpublished'|t }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for author in authors %}
+                  <tr>
+                    <td>{{ author.name }}</td>
+                    <td>{{ author.count }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="pio-workload__empty">
+            {{ 'No unpublished items match the selected Type and Author.'|t }}
+          </p>
+        {% endif %}
+      </section>
+
+      {# Recently updated includes published and unpublished content. #}
+      <section
+        class="pio-workload__panel"
+        aria-labelledby="pio-workload-recent-title"
+      >
+        <div class="pio-workload__panel-header">
+          <h3 id="pio-workload-recent-title">
+            {{ 'Recently updated'|t }}
+          </h3>
+        </div>
+
+        {% if recent %}
+          <ul class="pio-workload__recent">
+            {% for item in recent %}
+              <li>
+                <span
+                  class="pio-workload__recent-icon pio-workload__recent-icon--{{ item.bundle == 'opinion' ? 'opinion' : 'news' }}"
+                >
+                  {{ ui.icon('document') }}
+                </span>
+
+                <div>
+                  <a href="{{ item.edit_url }}">
+                    {{ item.title }}
+                  </a>
+
+                  <p>
+                    {{ item.type }} ·
+                    {{ 'Updated @date'|t({'@date': item.updated}) }}
+                  </p>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="pio-workload__empty">
+            {{ 'No content matches the selected Type and Author.'|t }}
+          </p>
+        {% endif %}
+      </section>
+
+    </aside>
+  </div>
+
+  <p class="pio-workload__footnote">
+    {{ 'Dates use the site timezone: @timezone.'|t({
+      '@timezone': timezone_label
+    }) }}
+  </p>
+
+</div>

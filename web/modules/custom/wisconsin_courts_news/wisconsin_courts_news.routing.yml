@@ -15,3 +15,18 @@ wisconsin_courts_news.publishing_activity:
   options:
     # Use Drupal's administration theme for this page.
     _admin_route: TRUE
+
+# The Drafts and workload dashboard.
+wisconsin_courts_news.drafts_workload:
+  path: '/admin/content/pio/workload'
+
+  defaults:
+    _controller: '\Drupal\wisconsin_courts_news\Controller\DraftsWorkloadController::overview'
+    _title: 'PIO Content Dashboard'
+
+  requirements:
+    # Match access to the existing PIO dashboard.
+    _role: 'administrator+pio'
+
+  options:
+    _admin_route: TRUE

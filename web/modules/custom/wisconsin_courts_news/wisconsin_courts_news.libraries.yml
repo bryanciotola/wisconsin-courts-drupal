@@ -8,3 +8,9 @@ publishing-activity:
   css:
     theme:
       css/publishing-activity.css: {}
+
+# Styles for the Drafts and workload dashboard.
+drafts-workload:
+  css:
+    theme:
+      css/drafts-workload.css: {}
